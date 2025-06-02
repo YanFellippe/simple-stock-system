@@ -13,9 +13,6 @@ Este projeto é um **dashboard completo** para gerenciar o **estoque de uma lanc
 
 ---
 
-
----
-
 ## 🔧 Tecnologias
 - **Frontend**: HTML5, CSS3, JavaScript
 - **Backend**: Node.js, Express, MySQL2
