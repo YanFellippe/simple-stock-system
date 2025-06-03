@@ -26,7 +26,7 @@ Este projeto é um **dashboard completo** para gerenciar o **estoque de uma lanc
 
 ### 1️⃣ Clone o repositório
 ```bash
-git clone https://github.com/seu-usuario/lanchonete-estoque.git
+git clone https://github.com/YanFellippe/simple-stock-system.git
 cd lanchonete-estoque
 ```
 
