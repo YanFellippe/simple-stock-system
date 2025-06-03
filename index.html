@@ -3,111 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard Avançado - Estoque Lanchonete</title>
-  <script src="./js/server.js" defer></script>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      display: flex;
-    }
-    .sidebar {
-      width: 200px;
-      background-color: #333;
-      color: white;
-      height: 100vh;
-      padding: 20px;
-    }
-    .sidebar h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin-bottom: 10px;
-    }
-    .sidebar a:hover {
-      background-color: #555;
-      padding-left: 5px;
-    }
-
-    .main {
-      flex-grow: 1;
-      padding: 20px;
-    }
-    .header {
-      background-color: #ff9800;
-      color: white;
-      padding: 10px;
-      font-size: 24px;
-      text-align: center;
-      border-radius: 8px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    table, th, td {
-      border: 1px solid #ddd;
-    }
-    th, td {
-      padding: 8px;
-      text-align: center;
-    }
-    th {
-      background-color: #f2f2f2;
-    }
-    .summary {
-      margin-top: 20px;
-      padding: 10px;
-      background-color: #dff0d8;
-      border: 1px solid #3c763d;
-      border-radius: 5px;
-      color: #3c763d;
-    }
-    form {
-      margin-top: 20px;
-      background-color: #fff;
-      padding: 10px;
-      border-radius: 5px;
-    }
-    input, button {
-      margin: 5px;
-      padding: 5px;
-    }
-    #filterInput {
-      margin-top: 10px;
-      width: 200px;
-      padding: 5px;
-    }
-    .btn-delete {
-      background-color: red;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      cursor: pointer;
-      border-radius: 3px;
-    }
-  </style>
+  <link rel="stylesheet" href="./style/style.css">
 </head>
 <body>
-
   <div class="sidebar">
-    <h2>Lanchonete</h2>
+    <img src="./src/Blue and Beige Vintage Retro Illustration Sweet Pancake Badge Logo.png" alt="lanchonete">
     <a href="#">Dashboard</a>
     <a href="#">Estoque</a>
     <a href="#">Pedidos</a>
     <a href="#">Configurações</a>
   </div>
-
   <div class="main">
-    <div class="header">Dashboard Avançado de Estoque</div>
-
+    <div class="header">Dashboard de Estoque - Produtos</div>
     <input type="text" id="filterInput" placeholder="Filtrar por nome">
-
     <table id="estoqueTable">
       <thead>
         <tr>
@@ -121,12 +29,10 @@
         <!-- Conteúdo gerado dinamicamente -->
       </tbody>
     </table>
-
     <div class="summary" id="resumoEstoque">
       Carregando resumo...
     </div>
-
-    <form id="addForm">
+    <form class="addForm" id="addForm">
       <h3>Adicionar novo item</h3>
       <input type="text" id="itemNome" placeholder="Nome do item" required>
       <input type="number" id="itemQtd" placeholder="Quantidade" required>
@@ -134,66 +40,7 @@
       <button type="submit">Adicionar</button>
     </form>
   </div>
-
-  <script>
-    const tabela = document.getElementById("estoqueTable").querySelector("tbody");
-    const resumo = document.getElementById("resumoEstoque");
-    const form = document.getElementById("addForm");
-    const filterInput = document.getElementById("filterInput");
-
-    let estoque = JSON.parse(localStorage.getItem("estoque")) || [
-      {nome: "Pão", qtd: 50, cat: "Padaria"},
-      {nome: "Queijo", qtd: 30, cat: "Laticínios"},
-      {nome: "Presunto", qtd: 25, cat: "Frios"},
-      {nome: "Refrigerante", qtd: 100, cat: "Bebidas"},
-    ];
-
-    function salvarEstoque() {
-      localStorage.setItem("estoque", JSON.stringify(estoque));
-    }
-
-    function renderTabela(filtro="") {
-      tabela.innerHTML = "";
-      let total = 0;
-      estoque.forEach((item, index) => {
-        if (item.nome.toLowerCase().includes(filtro.toLowerCase())) {
-          const row = tabela.insertRow();
-          row.insertCell(0).textContent = item.nome;
-          row.insertCell(1).textContent = item.qtd;
-          row.insertCell(2).textContent = item.cat;
-          const actionsCell = row.insertCell(3);
-          const btn = document.createElement("button");
-          btn.textContent = "Excluir";
-          btn.className = "btn-delete";
-          btn.onclick = () => {
-            estoque.splice(index,1);
-            salvarEstoque();
-            renderTabela(filterInput.value);
-          };
-          actionsCell.appendChild(btn);
-          total += parseInt(item.qtd);
-        }
-      });
-      resumo.textContent = `Total de itens em estoque: ${total}`;
-    }
-
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-      const nome = document.getElementById("itemNome").value;
-      const qtd = parseInt(document.getElementById("itemQtd").value);
-      const cat = document.getElementById("itemCat").value;
-      estoque.push({nome, qtd, cat});
-      salvarEstoque();
-      form.reset();
-      renderTabela(filterInput.value);
-    });
-
-    filterInput.addEventListener("input", e => {
-      renderTabela(e.target.value);
-    });
-
-    renderTabela();
-  </script>
-
+  <script src="./js/server.js"></script>
+  <script src="./js/cadastro-estoque.js"></script>
 </body>
 </html>

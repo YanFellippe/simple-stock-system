@@ -9,7 +9,7 @@ const PORT = 3307;
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));  // Servir frontend
+app.use(express.static(path.join(__dirname, 'public')));
 
 const db = mysql.createConnection({
     host: 'localhost',
