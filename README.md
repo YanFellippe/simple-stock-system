@@ -17,8 +17,8 @@ Este projeto é um **dashboard completo** para gerenciar o **estoque de uma lanc
 - **Frontend**: HTML5, CSS3, JavaScript
 - **Backend**: Node.js, Express, MySQL2
 - **Banco de dados**: MySQL
-- **Requisições HTTP**: Fetch API
-- **Controle de CORS**: Middleware `cors`
+- **Requisições HTTP**: Fetch API (EM DESENVOLVIMENTO)
+- **Controle de CORS**: Middleware `cors` (EM DESENVOLVIMENTO)
 
 ---
 
@@ -33,6 +33,8 @@ cd simple-stock-system
 ## 2️⃣ Instale as dependências
 ```bash
 npm install
+
+npm install express mysql2
 ```
 
 ## 3️⃣ Configure o banco de dados
@@ -76,4 +78,3 @@ node server.js
 ```bash
 http://localhost:3000
 ```
-
