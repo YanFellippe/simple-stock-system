@@ -33,6 +33,8 @@ cd simple-stock-system
 ## 2️⃣ Instale as dependências
 ```bash
 npm install
+
+npm install express mysql2
 ```
 
 ## 3️⃣ Configure o banco de dados
