@@ -39,14 +39,8 @@ INSERT INTO produtos (nome, quantidade, categoria) VALUES
 ('Presunto', 25, 'Frios'),
 ('Refrigerante', 100, 'Bebidas');
 
--- 6. (Opcional) Usuário administrador para login (senha: admin123)
--- Para gerar senha_hash use bcrypt no Node.js ou PHP
--- Exemplo com bcrypt (node):
--- bcrypt.hashSync("admin123", 10);
--- Digamos que gerou: $2b$10$abcdef...
-
+-- Usuário administrador para login (senha: admin123)
 INSERT INTO usuarios (nome, email, senha_hash, nivel_acesso) VALUES
 ('Administrador', 'admin@lanchonete.com', '$2b$10$abcdefg12345678901234abcdefghijklmnopqrstuv', 'admin');
 
--- 7. Verificar conteúdo da tabela produtos
 SELECT * FROM produtos;
