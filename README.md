@@ -17,8 +17,8 @@ Este projeto é um **dashboard completo** para gerenciar o **estoque de uma lanc
 - **Frontend**: HTML5, CSS3, JavaScript
 - **Backend**: Node.js, Express, MySQL2
 - **Banco de dados**: MySQL
-- **Requisições HTTP**: Fetch API
-- **Controle de CORS**: Middleware `cors`
+- **Requisições HTTP**: Fetch API (EM DESENVOLVIMENTO)
+- **Controle de CORS**: Middleware `cors` (EM DESENVOLVIMENTO)
 
 ---
 
