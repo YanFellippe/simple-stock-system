@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Configurações - Estoque Lanchonete</title>
   <link rel="stylesheet" href="../style/style.css">
+  <link rel="stylesheet" href="../style/theme.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
@@ -28,7 +29,13 @@
   </div>
   <div class="main">
     <div class="header">⚙️ Configurações do Sistema</div>
-
+    <div class="theme-toggle">
+  <h3>Alterar Tema</h3>
+    <label class="switch">
+      <input type="checkbox" id="toggleThemeCheckbox" />
+      <span class="slider"></span>
+    </label>
+  </div>
     <form class="addForm">
       <h3>Alterar Usuário</h3>
       <input type="text" placeholder="Novo nome de usuário">
@@ -49,5 +56,6 @@
     lucide.createIcons();
   </script>
   <script src="../js/configuracoes.js"></script>
+  <script src="../js/tema.js"></script>
 </body>
 </html>

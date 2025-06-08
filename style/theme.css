@@ -1,0 +1,113 @@
+/* Tema claro (padrão) */
+body {
+  background-color: #fff;
+  color: #333;
+}
+
+/* Tema escuro */
+body.dark-theme {
+  background-color: #121212;
+  color: #eee;
+}
+
+/* Ajuste da sidebar no tema escuro */
+body.dark-theme .sidebar {
+  background-color: #222;
+}
+
+/* Fundo e texto das divs principais no tema escuro */
+body.dark-theme .main {
+  background-color: #242424; /* cinza escuro, mais claro que o fundo */
+  color: #eee;
+}
+
+body.dark-theme .cards {
+  background-color: #2e2e2e; /* cinza intermediário */
+  padding: 15px;
+  border-radius: 8px;
+}
+
+body.dark-theme .card {
+  background-color: #333333; /* cinza escuro para cards */
+  color: #eee;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* Summary com fundo cinza e borda mais escura */
+body.dark-theme .summary {
+  background-color: #2e2e2e;
+  border: 1px solid #444;
+  color: #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Formulários com fundo cinza escuro e texto claro */
+body.dark-theme form,
+body.dark-theme .addForm {
+  background-color: #2e2e2e;
+  color: #eee;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* Inputs, selects e textareas escuros com texto claro */
+body.dark-theme input,
+body.dark-theme textarea,
+body.dark-theme select {
+  background-color: #444;
+  color: #eee;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+/* Botões para ficarem harmonizados no tema escuro */
+body.dark-theme .addForm button,
+body.dark-theme button {
+  background-color: #36b138;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+body.dark-theme .addForm button:hover,
+body.dark-theme button:hover {
+  background-color: #3c763d;
+}
+
+/* Ajuste da tabela no tema escuro */
+body.dark-theme table {
+  background-color: #2e2e2e;
+  color: #eee;
+  border-collapse: collapse;
+}
+
+body.dark-theme th,
+body.dark-theme td {
+  border: 1px solid #444;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Cabeçalho da tabela com fundo mais claro */
+body.dark-theme th {
+  background-color: #3a3a3a;
+  color: #eee;
+}
+
+/* Links da sidebar ficam brancos no tema escuro */
+body.dark-theme .sidebar a {
+  color: #eee;
+}
+
+/* Hover na sidebar com tom escuro */
+body.dark-theme .sidebar a:hover,
+body.dark-theme .sidebar a.active {
+  background-color: #555;
+  border-radius: 4px;
+}
