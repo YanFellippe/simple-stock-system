@@ -4,34 +4,43 @@ body {
     background-color: #f4f4f4;
     display: flex;
   }
+  
   .sidebar {
-    width: 200px;
-    background-color: #333;
-    color: white;
-    height: 100vh;
-    padding: 20px;
-  }
+  width: 200px;
+  background-color: #333;
+  color: white;
+  height: 100vh;
+  padding: 20px;
+}
 
-  .sidebar img {
-    margin-left: 25%;
-    margin-bottom: 10px;
-    width: 80px;
-    height: 80px;
-  }
+.sidebar img {
+  display: block;
+  margin: 0 auto 20px;
+  width: 80px;
+  height: 80px;
+}
 
-  .sidebar a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    margin-bottom: 10px;
-    padding: 5px;
-  }
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 12px;
+  padding: 8px;
+  transition: background-color 0.2s;
+}
 
-  .sidebar a:hover,
-  .sidebar a.active {
-    background-color: #555;
-    border-radius: 4px;
-  }
+.sidebar a:hover,
+.sidebar a.active {
+  background-color: #555;
+  border-radius: 4px;
+}
+
+.sidebar i {
+  width: 20px;
+  height: 20px;
+}
 
   .main {
     flex-grow: 1;

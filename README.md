@@ -1,26 +1,79 @@
 # 📦 Sistema de Estoque para Lanchonete 🥪🍹
 
-Este projeto é um **dashboard completo** para gerenciar o **estoque de uma lanchonete**, desenvolvido com **HTML, CSS, JavaScript, Node.js e MySQL**.  
+![GitHub last commit](https://img.shields.io/github/last-commit/YanFellippe/simple-stock-system?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/YanFellippe/simple-stock-system?style=flat-square)
+![GitHub language count](https://img.shields.io/github/languages/count/YanFellippe/simple-stock-system?style=flat-square)
+![GitHub top language](https://img.shields.io/github/languages/top/YanFellippe/simple-stock-system?style=flat-square)
 
-## 🌟 Funcionalidades
-✅ Visualizar todos os produtos em estoque  
-✅ Adicionar novos produtos (nome, quantidade, categoria)  
-✅ Excluir produtos do estoque  
-✅ Contagem total de itens  
-✅ Filtro por nome de produto  
-✅ Backend com Node.js e MySQL  
-✅ Conexão via API RESTful  
+Sistema completo para **gestão de estoque de uma lanchonete**, com painel visual moderno, backend robusto em **Node.js + PostgreSQL**, e funcionalidades essenciais para controle de produtos.
 
 ---
 
-## 🔧 Tecnologias
-- **Frontend**: HTML5, CSS3, JavaScript
-- **Backend**: Node.js, Express, MySQL2
-- **Banco de dados**: MySQL
-- **Requisições HTTP**: Fetch API (EM DESENVOLVIMENTO)
-- **Controle de CORS**: Middleware `cors` (EM DESENVOLVIMENTO)
+## 🌟 Funcionalidades Principais
+
+| Funcionalidade               | Status | Descrição                                  |
+|------------------------------|--------|--------------------------------------------|
+| Listagem de produtos          | ✅     | Visualização completa do estoque           |
+| Adição de novos itens         | ✅     | Nome, quantidade e categoria               |
+| Exclusão de produtos          | ✅     | Remoção segura com confirmação             |
+| Filtro em tempo real          | ✅     | Busca instantânea por nome                 |
+| Resumo total de itens         | ✅     | Contagem automática                        |
+| Registro automático de ações  | ✅     | Via triggers no PostgreSQL                 |
+| Painel visual moderno         | ✅     | Com Lucide Icons                           |
+| Páginas separadas             | ✅     | Dashboard, Pedidos e Configurações         |
 
 ---
+
+## 🛠️ Stack Tecnológica
+
+### Frontend
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+
+### Backend
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+
+### Banco de Dados
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Triggers](https://img.shields.io/badge/PostgreSQL-Triggers-336791?style=for-the-badge&logo=postgresql&logoColor=white)
+
+### UI/UX
+![Lucide Icons](https://img.shields.io/badge/Lucide_Icons-FF6B6B?style=for-the-badge&logo=react&logoColor=white)
+![Responsivo](https://img.shields.io/badge/Responsivo-Design-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+
+---
+
+## 📁 Estrutura do Projeto
+
+```bash
+simple-stock-system/
+├── database/
+│   └── lanchonete_db.sql       # Script completo do PostgreSQL
+├── js/
+│   ├── cadastro-estoque.js     # Lógica do estoque
+│   ├── configuracoes.js        # Configurações do sistema
+│   ├── dashboard.js            # Dashboard principal
+│   ├── pedidos.js              # Gestão de pedidos
+│   └── server.js               # Servidor Express
+├── public/
+│   ├── configuracoes.html      # Página de configurações
+│   ├── dashboard.html          # Dashboard principal
+│   └── pedidos.html            # Página de pedidos
+├── route/
+│   ├── pedidos.js              # API de pedidos
+│   └── usuario.js              # Rotas de usuário (WIP)
+├── src/
+│   ├── logo.png                # Logo da lanchonete
+│   └── sistema-example.png     # Screenshot do sistema
+├── style/
+│   ├── dashboard.css           # Estilo da dashboard
+│   ├── pedidos.css             # Estilo de pedidos
+│   ├── style.css               # Estilos globais
+│   └── index.html              # Página inicial (WIP)
+└── README.md                   # Documentação
+```
 
 ## 🚀 Instalação e Execução
 
@@ -34,7 +87,8 @@ cd simple-stock-system
 ```bash
 npm install
 
-npm install express mysql2
+npm install pg
+
 ```
 
 ## 3️⃣ Configure o banco de dados
@@ -42,31 +96,47 @@ Crie um banco MySQL com o nome lanchonete_db.
 
 Execute o script SQL:
 ```bash
-CREATE DATABASE IF NOT EXISTS lanchonete_db;
-USE lanchonete_db;
+CREATE DATABASE lanchonete_db;
+\c lanchonete_db;
 
 CREATE TABLE produtos (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    quantidade INT NOT NULL,
-    categoria VARCHAR(50) NOT NULL
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  quantidade INT NOT NULL,
+  categoria VARCHAR(50) NOT NULL
 );
 
+CREATE TABLE logs_estoque (
+  id SERIAL PRIMARY KEY,
+  produto_id INT NOT NULL,
+  acao TEXT NOT NULL CHECK (acao IN ('adicionado', 'removido', 'atualizado')),
+  quantidade INT NOT NULL,
+  data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (produto_id) REFERENCES produtos(id)
+);
+
+-- Trigger para registrar automaticamente as ações
+-- Consulte o arquivo SQL para detalhes completos
+
+-- Dados de exemplo
 INSERT INTO produtos (nome, quantidade, categoria) VALUES
 ('Pão', 50, 'Padaria'),
 ('Queijo', 30, 'Laticínios'),
-('Presunto', 25, 'Frios'),
 ('Refrigerante', 100, 'Bebidas');
 ```
 
-## 4️⃣ Configure a conexão MySQL no server.js
+## 4️⃣ Configure a conexão PostgreeSQL no server.js
 ```bash
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',        // Seu usuário
-    password: '',        // Sua senha
-    database: 'lanchonete_db'
+const { Pool } = require('pg');
+
+const pool = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'lanchonete_db',
+  password: 'SUA_SENHA_AQUI',
+  port: 5432,
 });
+
 ```
 
 ## 5️⃣ Inicie o servidor
@@ -78,3 +148,21 @@ node server.js
 ```bash
 http://localhost:3000
 ```
+
+### 🖼️ Preview
+![Dashboard Estoque](./src/sistema-example.png)
+
+### 🛠️ Funcionalidades futuras
+ # Login e autenticação de usuários
+
+ # Histórico detalhado de alterações
+
+ # Upload de imagem por produto
+
+ # Edição inline dos campos
+
+ # Dashboard com gráficos (por categoria, movimentações)
+
+### 👨‍💻 Desenvolvedor
+Feito com 💻 por Yan Fellippe — Desenvolvedor Fullstack
+Sinta-se à vontade para sugerir melhorias ou abrir issues! 🚀

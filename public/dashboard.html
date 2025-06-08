@@ -5,14 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dashboard - Sistema de Estoque</title>
   <link rel="stylesheet" href="../style/dashboard.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <div class="sidebar">
     <img src="../src/Blue and Beige Vintage Retro Illustration Sweet Pancake Badge Logo.png" alt="lanchonete">
-    <a href="./dashboard.html">Dashboard</a>
-    <a href="../index.html">Estoque</a>
-    <a href="./pedidos.html">Pedidos</a>
-    <a href="./configuracoes.html">Configurações</a>
+    <a href="./dashboard.html">
+      <i data-lucide="layout-dashboard"></i>
+      Dashboard
+    </a>
+    <a href="../index.html">
+      <i data-lucide="boxes"></i>
+      Estoque
+    </a>
+    <a href="./pedidos.html">
+      <i data-lucide="clipboard-list"></i>
+      Pedidos
+    </a>
+    <a href="./configuracoes.html">
+      <i data-lucide="settings"></i>
+      Configurações
+    </a>
   </div>
 
   <div class="main">
@@ -23,7 +36,9 @@
       <div class="card low-stock" id="baixoEstoque">Itens com Estoque Baixo: ...</div>
     </div>
   </div>
-
+  <script>
+    lucide.createIcons();
+  </script>
   <script src="../js/dashboard.js"></script>
 </body>
 </html>

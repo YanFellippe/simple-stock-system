@@ -4,14 +4,27 @@
   <meta charset="UTF-8">
   <title>Configurações - Estoque Lanchonete</title>
   <link rel="stylesheet" href="../style/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <div class="sidebar">
     <img src="../src/Blue and Beige Vintage Retro Illustration Sweet Pancake Badge Logo.png" alt="lanchonete">
-    <a href="./dashboard.html">Dashboard</a>
-    <a href="../index.html">Estoque</a>
-    <a href="./pedidos.html">Pedidos</a>
-    <a href="./configuracoes.html">Configurações</a>
+    <a href="./dashboard.html">
+      <i data-lucide="layout-dashboard"></i>
+      Dashboard
+    </a>
+    <a href="../index.html">
+      <i data-lucide="boxes"></i>
+      Estoque
+    </a>
+    <a href="./pedidos.html">
+      <i data-lucide="clipboard-list"></i>
+      Pedidos
+    </a>
+    <a href="./configuracoes.html">
+      <i data-lucide="settings"></i>
+      Configurações
+    </a>
   </div>
   <div class="main">
     <div class="header">⚙️ Configurações do Sistema</div>
@@ -32,7 +45,9 @@
       <button type="submit">Salvar</button>
     </form>
   </div>
-
+  <script>
+    lucide.createIcons();
+  </script>
   <script src="../js/configuracoes.js"></script>
 </body>
 </html>
