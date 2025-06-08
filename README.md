@@ -1,27 +1,11 @@
 # 📦 Sistema de Estoque para Lanchonete 🥪🍹
+<div align="center">
 
-<p align="center">
-  <a href="https://github.com/YanFellippe/simple-stock-system/commits">
-    <img src="https://img.shields.io/github/last-commit/YanFellippe/simple-stock-system?style=flat-square" alt="Último commit" />
-  </a>
-  <a href="https://github.com/YanFellippe/simple-stock-system">
-    <img src="https://img.shields.io/github/repo-size/YanFellippe/simple-stock-system?style=flat-square" alt="Tamanho do repositório" />
-  </a>
-  <a href="https://github.com/YanFellippe/simple-stock-system/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/YanFellippe/simple-stock-system?style=flat-square" alt="Licença" />
-  </a>
-  <a href="https://github.com/YanFellippe/simple-stock-system/issues">
-    <img src="https://img.shields.io/github/issues/YanFellippe/simple-stock-system?style=flat-square" alt="Issues abertas" />
-  </a>
-  <a href="https://www.npmjs.com/package/seu-pacote">
-    <img src="https://img.shields.io/npm/v/seu-pacote?style=flat-square" alt="Versão npm" />
-  </a>
-  <a href="https://github.com/YanFellippe/simple-stock-system/actions">
-    <img src="https://img.shields.io/github/actions/workflow/status/YanFellippe/simple-stock-system/build.yml?style=flat-square" alt="Status do build" />
-  </a>
-</p>
+![GitHub last commit](https://img.shields.io/github/last-commit/YanFellippe/simple-stock-system?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/YanFellippe/simple-stock-system?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues/YanFellippe/simple-stock-system?style=flat-square)
 
-
+</div>
 Sistema completo para **gestão de estoque de uma lanchonete**, com painel visual moderno, backend robusto em **Node.js + PostgreSQL**, e funcionalidades essenciais para controle de produtos.
 
 ---
@@ -170,11 +154,13 @@ http://localhost:3000
 ![Dashboard Estoque](./src/sistema-example.png)
 
 ### 🛠️ Funcionalidades futuras
- 🔵 Login e autenticação de usuários
- 🔵 Histórico detalhado de alterações
- 🔵 Upload de imagem por produto
- 🔵 Edição inline dos campos
- 🔵 Dashboard com gráficos (por categoria, movimentações)
+
+- 🔵 Login e autenticação de usuários
+- 🔵 Histórico detalhado de alterações
+- 🔵 Upload de imagem por produto
+- 🔵 Edição inline dos campos
+- 🔵 Dashboard com gráficos (por categoria, movimentações)
+
 
 ### 👨‍💻 Desenvolvedor
 Feito com 💻 por Yan Fellippe — Desenvolvedor Fullstack
