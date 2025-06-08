@@ -163,5 +163,5 @@ http://localhost:3000
 
 
 ### 👨‍💻 Desenvolvedor
-Feito com 💻 por Yan Fellippe — Desenvolvedor Fullstack
-Sinta-se à vontade para sugerir melhorias ou abrir issues! 🚀
+<p>Feito com 💻 por Yan Fellippe — Desenvolvedor Fullstack</p>
+<p>Sinta-se à vontade para sugerir melhorias ou abrir issues! 🚀</p>
