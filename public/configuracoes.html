@@ -3,58 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <title>Configurações - Estoque Lanchonete</title>
-  <link rel="stylesheet" href="../style/style.css">
   <link rel="stylesheet" href="../style/theme.css">
+  <link rel="stylesheet" href="../style/configuracoes.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <div class="sidebar">
     <img src="../src/Blue and Beige Vintage Retro Illustration Sweet Pancake Badge Logo.png" alt="lanchonete">
-    <a href="./dashboard.html">
-      <i data-lucide="layout-dashboard"></i>
-      Dashboard
-    </a>
-    <a href="../index.html">
-      <i data-lucide="boxes"></i>
-      Estoque
-    </a>
-    <a href="./pedidos.html">
-      <i data-lucide="clipboard-list"></i>
-      Pedidos
-    </a>
-    <a href="./configuracoes.html">
-      <i data-lucide="settings"></i>
-      Configurações
-    </a>
+    <a href="./dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+    <a href="../index.html"><i data-lucide="boxes"></i> Estoque</a>
+    <a href="./pedidos.html"><i data-lucide="clipboard-list"></i> Pedidos</a>
+    <a href="./configuracoes.html"><i data-lucide="settings"></i> Configurações</a>
   </div>
   <div class="main">
     <div class="header">⚙️ Configurações do Sistema</div>
-    <div class="theme-toggle">
-  <h3>Alterar Tema</h3>
-    <label class="switch">
-      <input type="checkbox" id="toggleThemeCheckbox" />
-      <span class="slider"></span>
-    </label>
-  </div>
-    <form class="addForm">
-      <h3>Alterar Usuário</h3>
+    <!-- Alterar Tema -->
+    <section class="config-section themeSwitch">
+      <h3>🎨 Alterar Tema</h3>
+      <label class="switch">
+        <input type="checkbox" id="toggleThemeCheckbox" />
+        <span class="slider"></span>
+      </label>
+    </section>
+    <!-- Alterar Usuário -->
+    <form class="config-section addForm">
+      <h3>👤 Alterar Usuário</h3>
       <input type="text" placeholder="Novo nome de usuário">
       <input type="password" placeholder="Nova senha">
       <button type="submit">Atualizar</button>
     </form>
-
-    <form class="addForm">
-      <h3>Configurações do Banco de Dados</h3>
+    <!-- Configurações do Banco -->
+    <form class="config-section addForm">
+      <h3>🗄️ Configurações do Banco de Dados</h3>
       <input type="text" placeholder="Host">
       <input type="text" placeholder="Usuário">
       <input type="password" placeholder="Senha">
       <input type="text" placeholder="Nome do Banco">
       <button type="submit">Salvar</button>
     </form>
+    <div class="config-restauration">
+      <!-- Backup e Restauração -->
+      <section class="config-section">
+        <h3>📥 Backup e Restauração</h3>
+        <button onclick="exportarBackup()">Exportar Backup</button>
+        <input type="file" id="inputRestore" accept=".json,.sql" onchange="restaurarBackup(event)">
+      </section>
+      <!-- Limpar Estoque -->
+      <section class="config-section">
+        <h3>🧹 Limpar Estoque (modo seguro)</h3>
+        <button onclick="confirmarLimpeza()">Limpar todos os produtos</button>
+      </section>
+      <!-- Notificações de Estoque Baixo -->
+      <section class="config-section">
+        <h3>🔔 Notificações de Estoque Baixo</h3>
+        <input type="number" id="limiteEstoque" placeholder="Ex: 10 unidades">
+        <button onclick="salvarLimite()">Salvar limite</button>
+      </section>
+      <!-- Logs de ações -->
+      <section class="config-section">
+        <h3>📜 Ações Recentes</h3>
+        <ul id="logRecentes">
+          <li>[08/06 14:32] Produto "Pão" atualizado para 100 unidades</li>
+          <li>[08/06 14:28] Produto "Queijo" removido</li>
+        </ul>
+      </section>
+    </div>
   </div>
-  <script>
-    lucide.createIcons();
-  </script>
   <script src="../js/configuracoes.js"></script>
   <script src="../js/tema.js"></script>
 </body>

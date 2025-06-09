@@ -1,0 +1,299 @@
+html, body {
+  height: 100%; /* Garante que html e body ocupem 100% da altura */
+  margin: 0; /* Remove margens padrão */
+}
+
+body {
+  min-height: 100vh; /* Mínimo da altura da viewport */
+  display: flex;
+  flex-direction: row; /* Disposição em linha (padrão) */
+  overflow: hidden; /* Previne barras de rolagem desnecessárias */
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  height: 100vh; /* Ocupa 100% da altura da viewport */
+  min-height: 100%; /* Garante mínimo de 100% */
+  overflow-y: auto; /* Adiciona rolagem apenas se necessário */
+  position: sticky; /* Mantém fixo durante rolagem */
+  top: 0;
+  /* Mantenha as outras propriedades existentes */
+  width: 200px;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+}
+
+.main {
+  flex: 1; /* Ocupa todo o espaço restante */
+  overflow-y: auto; /* Permite rolagem no conteúdo principal */
+  padding: 20px;
+  /* Mantenha as outras propriedades existentes */
+}
+
+.sidebar img {
+  display: block;
+  margin: 0 auto 20px;
+  width: 80px;
+  height: 80px;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 12px;
+  padding: 8px;
+  transition: background-color 0.2s;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background-color: #555;
+  border-radius: 4px;
+}
+
+.sidebar i {
+  width: 20px;
+  height: 20px;
+}
+
+.main {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.header {
+  background-color: #ff9800;
+  color: white;
+  padding: 10px;
+  font-size: 24px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.summary {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #dff0d8;
+  border: 1px solid #3c763d;
+  border-radius: 5px;
+  color: #3c763d;
+}
+
+form {
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+input, button {
+  margin: 5px;
+  padding: 5px;
+}
+
+#filterInput {
+  margin-top: 10px;
+  width: 200px;
+  padding: 5px;
+}
+
+.btn-delete {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-delete:hover {
+  background-color: rgb(167, 1, 1);
+}
+
+.addForm button {
+  background-color: #36b138;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  width: 80px;
+  height: 30px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.addForm button:hover {
+  background-color: #3c763d;
+}
+
+.theme-toggle {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 18px;
+  color: inherit;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.config-restauration {
+  background-color: white;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.themeSwitch {
+  margin-top: 10px;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+.config-restauration .config-section {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 6px;
+  border-left: 4px solid #ff9800;
+}
+
+.config-restauration .config-section h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #333;
+}
+
+.config-restauration .config-section button {
+  background-color: #36b138;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.config-restauration .config-section button:hover {
+  background-color: #3c763d;
+}
+
+.config-restauration .config-section input[type="number"],
+.config-restauration .config-section input[type="file"] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.config-restauration .config-section ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.config-restauration .config-section li {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+input:checked + .slider {
+  background-color: #ff9800;
+}
+
+input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+.danger-zone {
+  margin-top: 30px;
+  background-color: #fff3f3;
+  border: 1px solid #ff4d4d;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.danger-zone h3 {
+  color: #d40000;
+  margin-top: 0;
+}
+
+.btn-danger {
+  background-color: #d40000;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-danger:hover {
+  background-color: #9e0000;
+}

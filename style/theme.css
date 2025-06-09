@@ -1,113 +1,226 @@
+:root {
+  --primary-light: #36b138;
+  --primary-dark: #2a8a2c;
+  --text-light: #333;
+  --text-dark: #eee;
+  --bg-light: #fff;
+  --bg-dark: #121212;
+  --sidebar-light: #f8f9fa;
+  --sidebar-dark: #222;
+  --card-light: #fff;
+  --card-dark: #2e2e2e;
+  --border-light: #ddd;
+  --border-dark: #444;
+  --input-bg-light: #fff;
+  --input-bg-dark: #444;
+}
+
 /* Tema claro (padrão) */
 body {
-  background-color: #fff;
-  color: #333;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Tema escuro */
 body.dark-theme {
-  background-color: #121212;
-  color: #eee;
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
 }
 
-/* Ajuste da sidebar no tema escuro */
+/* Elementos comuns */
 body.dark-theme .sidebar {
-  background-color: #222;
+  background-color: var(--sidebar-dark);
+  border-right: 1px solid var(--border-dark);
 }
 
-/* Fundo e texto das divs principais no tema escuro */
-body.dark-theme .main {
-  background-color: #242424; /* cinza escuro, mais claro que o fundo */
-  color: #eee;
+body.dark-theme .main,
+body.dark-theme .config-section,
+body.dark-theme .cards,
+body.dark-theme .summary,
+body.dark-theme table {
+  background-color: var(--card-dark);
 }
 
-body.dark-theme .cards {
-  background-color: #2e2e2e; /* cinza intermediário */
-  padding: 15px;
-  border-radius: 8px;
+body.dark-theme h1, 
+body.dark-theme h2, 
+body.dark-theme h3, 
+body.dark-theme h4 {
+  color: #ff9800;
 }
 
-body.dark-theme .card {
-  background-color: #333333; /* cinza escuro para cards */
-  color: #eee;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
-}
-
-/* Summary com fundo cinza e borda mais escura */
-body.dark-theme .summary {
-  background-color: #2e2e2e;
-  border: 1px solid #444;
-  color: #ddd;
-  border-radius: 5px;
-  padding: 10px;
-}
-
-/* Formulários com fundo cinza escuro e texto claro */
-body.dark-theme form,
-body.dark-theme .addForm {
-  background-color: #2e2e2e;
-  color: #eee;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
-}
-
-/* Inputs, selects e textareas escuros com texto claro */
+/* Formulários e inputs */
 body.dark-theme input,
 body.dark-theme textarea,
-body.dark-theme select {
-  background-color: #444;
-  color: #eee;
-  border: 1px solid #555;
-  border-radius: 4px;
-  padding: 5px;
+body.dark-theme select,
+body.dark-theme .form-control {
+  background-color: var(--input-bg-dark);
+  color: var(--text-dark);
+  border: 1px solid var(--border-dark);
 }
 
-/* Botões para ficarem harmonizados no tema escuro */
-body.dark-theme .addForm button,
-body.dark-theme button {
-  background-color: #36b138;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 3px;
-  transition: background-color 0.3s ease-in-out;
+body.dark-theme input:focus,
+body.dark-theme textarea:focus,
+body.dark-theme select:focus {
+  border-color: #ff9800;
+  box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.25);
 }
 
-body.dark-theme .addForm button:hover,
-body.dark-theme button:hover {
-  background-color: #3c763d;
+/* Botões */
+body.dark-theme .btn-primary {
+  background-color: var(--primary-light);
+  border-color: var(--primary-light);
 }
 
-/* Ajuste da tabela no tema escuro */
-body.dark-theme table {
-  background-color: #2e2e2e;
-  color: #eee;
-  border-collapse: collapse;
+body.dark-theme .btn-primary:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
 }
 
-body.dark-theme th,
-body.dark-theme td {
-  border: 1px solid #444;
-  padding: 8px;
-  text-align: center;
+/* Links */
+body.dark-theme a {
+  color: #ffffff;
 }
 
-/* Cabeçalho da tabela com fundo mais claro */
+body.dark-theme a:hover {
+  color: #b37e59;
+}
+
+/* Tabelas */
 body.dark-theme th {
   background-color: #3a3a3a;
-  color: #eee;
+  color: var(--text-dark);
 }
 
-/* Links da sidebar ficam brancos no tema escuro */
-body.dark-theme .sidebar a {
-  color: #eee;
+body.dark-theme td {
+  border-color: var(--border-dark);
 }
 
-/* Hover na sidebar com tom escuro */
-body.dark-theme .sidebar a:hover,
-body.dark-theme .sidebar a.active {
-  background-color: #555;
-  border-radius: 4px;
+/* Cards */
+body.dark-theme .card {
+  background-color: #333;
+  border-color: var(--border-dark);
+}
+
+/* Alertas */
+body.dark-theme .alert-info {
+  background-color: #1a237e;
+  color: white;
+}
+
+body.dark-theme .alert-success {
+  background-color: #1b5e20;
+  color: white;
+}
+
+body.dark-theme .alert-warning {
+  background-color: #ff6f00;
+  color: white;
+}
+
+body.dark-theme .alert-danger {
+  background-color: #b71c1c;
+  color: white;
+}
+
+/* Modal */
+body.dark-theme .modal-content {
+  background-color: var(--card-dark);
+  border-color: var(--border-dark);
+}
+
+body.dark-theme .modal-header,
+body.dark-theme .modal-footer {
+  border-color: var(--border-dark);
+}
+
+/* Navbar */
+body.dark-theme .navbar {
+  background-color: #1e1e1e;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+/* Dropdown */
+body.dark-theme .dropdown-menu {
+  background-color: #333;
+  border-color: var(--border-dark);
+}
+
+body.dark-theme .dropdown-item {
+  color: var(--text-dark);
+}
+
+body.dark-theme .dropdown-item:hover {
+  background-color: #444;
+  color: var(--text-dark);
+}
+
+/* Tooltip */
+body.dark-theme .tooltip-inner {
+  background-color: #444;
+}
+
+body.dark-theme .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before,
+body.dark-theme .bs-tooltip-top .tooltip-arrow::before {
+  border-top-color: #444;
+}
+
+/* Custom scrollbar */
+body.dark-theme ::-webkit-scrollbar {
+  width: 10px;
+}
+
+body.dark-theme ::-webkit-scrollbar-track {
+  background: #333;
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Estilos específicos para o formulário no tema escuro */
+body.dark-theme .addForm {
+  background-color: var(--card-dark) !important;
+  color: var(--text-dark) !important;
+}
+
+body.dark-theme .addForm h3 {
+  color: #ff9800 !important;
+}
+
+body.dark-theme .addForm input {
+  background-color: var(--input-bg-dark) !important;
+  color: var(--text-dark) !important;
+  border: 1px solid var(--border-dark) !important;
+}
+
+body.dark-theme .addForm input::placeholder {
+  color: #ffffff !important;
+  opacity: 0.8;
+}
+
+body.dark-theme .addForm button {
+  background-color: var(--primary-light) !important;
+  color: white !important;
+  border: none !important;
+}
+
+body.dark-theme .addForm button:hover {
+  background-color: var(--primary-dark) !important;
+}
+
+body.dark-theme .config-restauration {
+  background-color: #323232 !important;
+  border-color: #333 !important; 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+  transition: background-color 0.3s ease;
+  color: var(--text-dark);
+}
+
+body.dark-theme .config-restauration h3 {
+  color: #ff9800;
 }
