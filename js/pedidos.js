@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const tabela = document.querySelector("#tabelaPedidos tbody");
 
   fetch("/api/pedidos")
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       data.forEach(addPedidoNaTabela);
     });
 
@@ -18,13 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("/api/pedidos", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ cliente, produto, quantidade })
+      body: JSON.stringify({ cliente, produto, quantidade }),
     })
-    .then(res => res.json())
-    .then(novo => {
-      addPedidoNaTabela(novo);
-      pedidoForm.reset();
-    });
+      .then((res) => res.json())
+      .then((novo) => {
+        addPedidoNaTabela(novo);
+        pedidoForm.reset();
+      });
   });
 
   function addPedidoNaTabela(pedido) {
@@ -41,10 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
   tabela.addEventListener("click", (e) => {
     if (e.target.classList.contains("btn-delete")) {
       const id = e.target.dataset.id;
-      fetch(`/api/pedidos/${id}`, { method: "DELETE" })
-        .then(() => {
-          e.target.closest("tr").remove();
-        });
+      fetch(`/api/pedidos/${id}`, { method: "DELETE" }).then(() => {
+        e.target.closest("tr").remove();
+      });
     }
   });
 });

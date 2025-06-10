@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Avançado - Estoque Lanchonete</title>
+  <link rel="stylesheet" href="../style/style.css">
+  <link rel="stylesheet" href="../style/theme.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="../src/Blue and Beige Vintage Retro Illustration Sweet Pancake Badge Logo.png" alt="lanchonete">
+    <a href="./dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+    <a href="./estoque.html"><i data-lucide="boxes"></i> Estoque</a>
+    <a href="./pedidos.html"><i data-lucide="clipboard-list"></i> Pedidos</a>
+    <a href="./configuracoes.html"><i data-lucide="settings"></i> Configurações</a>
+  </div>
+  <div class="main">
+    <div class="header">Dashboard de Estoque - Produtos</div>
+    <input type="text" id="filterInput" placeholder="Filtrar por nome">
+    <table id="estoqueTable">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Quantidade</th>
+          <th>Categoria</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Conteúdo gerado dinamicamente -->
+      </tbody>
+    </table>
+    <div class="summary" id="resumoEstoque">
+      Carregando resumo...
+    </div>
+    <form class="addForm" id="addForm">
+      <h3>Adicionar novo item</h3>
+      <input type="text" id="itemNome" placeholder="Nome do item" required>
+      <input type="number" id="itemQtd" placeholder="Quantidade" required>
+      <input type="text" id="itemCat" placeholder="Categoria" required>
+      <button type="submit">Adicionar</button>
+    </form>
+  </div>
+  <script>
+    lucide.createIcons();
+  </script>
+  <script src="./js/server.js"></script>
+  <script src="./js/cadastro-estoque.js"></script>
+  <script src="./js/theme.js"></script> <!-- <- Tema global -->
+</body>
+</html>

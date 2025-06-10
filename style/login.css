@@ -1,0 +1,299 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Fundo com animação de partículas */
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: #ff9800;
+}
+
+/* Seção Inicial */
+.landing {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.landing .logo {
+  max-width: 150px;
+  margin-bottom: 2rem;
+}
+
+.landing h1 {
+  font-size: 2.5rem;
+  color: #222;
+  margin-bottom: 1rem;
+}
+
+.landing p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+#openModal {
+  border: none;
+  border-radius: 20px;
+  padding: 0.75rem 2.5rem;
+  background-color: #ff9800;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#openModal:hover {
+  background-color: #e68900;
+}
+
+/* Modal de Login/Cadastro */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-overlay[aria-hidden="false"] {
+  display: flex;
+}
+
+.container {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  width: 768px;
+  max-width: 90%;
+  min-height: 480px;
+  display: flex;
+}
+
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.sign-up-container {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+
+.container.right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+.container.right-panel-active .sign-in-container {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+form {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 3rem;
+  height: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+label {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  align-self: flex-start;
+}
+
+input {
+  background-color: #eee;
+  border: none;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+button {
+  border: none;
+  border-radius: 20px;
+  padding: 0.75rem 2.5rem;
+  background-color: #ff9800;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #e68900;
+}
+
+.ghost {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.container.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+
+.overlay {
+  background: linear-gradient(120deg, #ff9800, #ffa726);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.container.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2.5rem;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+  transform: translateX(-20%);
+  left: 0;
+}
+
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+  transform: translateX(20%);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Estilo para mensagens de erro */
+.error {
+  color: #d32f2f;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    min-height: 400px;
+  }
+  .form-container {
+    width: 100%;
+  }
+  .sign-in-container {
+    width: 100%;
+  }
+  .sign-up-container {
+    width: 100%;
+    transform: translateX(-100%);
+  }
+  .container.right-panel-active .sign-up-container {
+    transform: translateX(0);
+  }
+  .container.right-panel-active .sign-in-container {
+    transform: translateX(-100%);
+  }
+  .overlay-container {
+    display: none;
+  }
+  .landing h1 {
+    font-size: 2rem;
+  }
+  .landing p {
+    font-size: 1rem;
+  }
+}

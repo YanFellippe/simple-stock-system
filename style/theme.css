@@ -42,9 +42,9 @@ body.dark-theme table {
   background-color: var(--card-dark);
 }
 
-body.dark-theme h1, 
-body.dark-theme h2, 
-body.dark-theme h3, 
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
 body.dark-theme h4 {
   color: #ff9800;
 }
@@ -160,7 +160,9 @@ body.dark-theme .tooltip-inner {
   background-color: #444;
 }
 
-body.dark-theme .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before,
+body.dark-theme
+  .bs-tooltip-auto[data-popper-placement^="top"]
+  .tooltip-arrow::before,
 body.dark-theme .bs-tooltip-top .tooltip-arrow::before {
   border-top-color: #444;
 }
@@ -215,7 +217,7 @@ body.dark-theme .addForm button:hover {
 
 body.dark-theme .config-restauration {
   background-color: #323232 !important;
-  border-color: #333 !important; 
+  border-color: #333 !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
   transition: background-color 0.3s ease;
   color: var(--text-dark);
