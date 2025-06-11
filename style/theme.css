@@ -226,3 +226,112 @@ body.dark-theme .config-restauration {
 body.dark-theme .config-restauration h3 {
   color: #ff9800;
 }
+
+/* Página de Perfil - Tema Escuro */
+body.dark-theme .profile-container {
+  background-color: var(--card-dark);
+  border: 1px solid var(--border-dark);
+  color: var(--text-dark);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+body.dark-theme .profile-header {
+  border-bottom: 1px solid var(--border-dark);
+}
+
+body.dark-theme .profile-info h2,
+body.dark-theme .profile-info p {
+  color: var(--text-dark);
+}
+
+body.dark-theme .form-group label {
+  color: var(--text-dark);
+}
+
+body.dark-theme .form-group input {
+  background-color: var(--input-bg-dark);
+  color: var(--text-dark);
+  border: 1px solid var(--border-dark);
+}
+
+body.dark-theme .form-group input::placeholder {
+  color: #ccc;
+}
+
+body.dark-theme .error {
+  color: #ff6f00;
+}
+
+body.dark-theme .btn-save {
+  background-color: var(--primary-light);
+  color: white;
+  border: none;
+}
+
+body.dark-theme .btn-save:hover {
+  background-color: var(--primary-dark);
+}
+
+body.dark-theme .btn-logout {
+  background-color: #b71c1c;
+  color: white;
+  border: none;
+}
+
+body.dark-theme .btn-logout:hover {
+  background-color: #8e0000;
+}
+
+body.dark-theme .profile-area {
+  background-color: var(--card-dark);
+  color: var(--text-dark);
+  border: 1px solid var(--border-dark);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-theme .profile-area h3 {
+  color: #ff9800;
+}
+
+body.dark-theme .profile-area .form-group label {
+  color: var(--text-dark);
+}
+
+body.dark-theme .profile-area .form-group input {
+  background-color: var(--input-bg-dark);
+  color: var(--text-dark);
+  border: 1px solid var(--border-dark);
+}
+
+body.dark-theme .profile-area .form-group input::placeholder {
+  color: #ccc;
+}
+
+body.dark-theme .profile-area .error {
+  color: #ff6f00;
+}
+
+body.dark-theme .profile-area .button-group button {
+  transition: background-color 0.3s ease;
+}
+
+body.dark-theme .profile-area .btn-save {
+  background-color: var(--primary-light);
+  color: white;
+}
+
+body.dark-theme .profile-area .btn-save:hover {
+  background-color: var(--primary-dark);
+}
+
+body.dark-theme .profile-area .btn-logout {
+  background-color: #b71c1c;
+  color: white;
+}
+
+body.dark-theme .profile-area .btn-logout:hover {
+  background-color: #8e0000;
+}

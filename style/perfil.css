@@ -1,0 +1,127 @@
+.profile-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #ff9800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.profile-info h2 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+.profile-info p {
+  color: #666;
+  font-size: 1rem;
+}
+.profile-area h3 {
+  color: #333;
+  margin: 1.5rem 0 1rem;
+}
+.form-group {
+  margin-bottom: 1rem;
+}
+.form-group label {
+  display: block;
+  color: #333;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+.form-group input {
+  width: 95%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 1rem;
+}
+.form-group input:focus {
+  outline: none;
+  border-color: #ff9800;
+  box-shadow: 0 0 5px rgba(255, 152, 0, 0.3);
+}
+.error {
+  color: #d9534f;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  display: none;
+}
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.btn-save {
+  background-color: #36b138;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.3s ease-in-out;
+}
+.btn-save:hover {
+  background-color: #3c763d;
+}
+.btn-logout {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.3s ease-in-out;
+}
+.btn-logout:hover {
+  background-color: #c9302c;
+}
+.alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  color: white;
+  z-index: 1000;
+  animation: slide-in 0.3s ease-out;
+}
+.alert-success {
+  background-color: #36b138;
+}
+.alert-error {
+  background-color: #d9534f;
+}
+.fade-out {
+  animation: fade-out 0.5s ease-out forwards;
+}
+body.dark-theme .alert-success {
+  background-color: #2e7d32;
+}
+body.dark-theme .alert-error {
+  background-color: #c62828;
+}
+@keyframes slide-in {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes fade-out {
+  to { opacity: 0; transform: translateY(-20px); }
+}
