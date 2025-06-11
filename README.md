@@ -57,10 +57,15 @@ simple-stock-system/
 │   ├── configuracoes.js        # Configurações do sistema
 │   ├── dashboard.js            # Dashboard principal
 │   ├── pedidos.js              # Gestão de pedidos
+│   ├── perfil.js               # Gestão do perfil
+│   ├── login.js                # Gestão do usuario
+│   ├── theme.js                # Logica dos temas
 │   └── server.js               # Servidor Express
 ├── public/
 │   ├── configuracoes.html      # Página de configurações
 │   ├── dashboard.html          # Dashboard principal
+│   ├── estoque.html            # Dashboard de estoque dos produtos
+│   ├── perfil-usuario.html     # Pagina do usuario
 │   └── pedidos.html            # Página de pedidos
 ├── route/
 │   ├── pedidos.js              # API de pedidos
@@ -72,8 +77,13 @@ simple-stock-system/
 │   ├── dashboard.css           # Estilo da dashboard
 │   ├── pedidos.css             # Estilo de pedidos
 │   ├── style.css               # Estilos globais
-│   └── index.html              # Página inicial (WIP)
+│   ├── configuracoes.css       # Estilos de configurações
+│   ├── perfil.css              # Estilos do perfil
+│   ├── theme.css               # Estilos para alterar tema (LIGHT/DARK)
+│   └── login.css               # Estilo da Index
+├── index.html                  # Página inicial
 └── README.md                   # Documentação
+
 ```
 
 ## 🚀 Instalação e Execução
