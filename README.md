@@ -6,7 +6,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/YanFellippe/simple-stock-system?style=flat-square)
 
 </div>
-Sistema completo para **gestão de estoque de uma lanchonete**, com painel visual moderno, backend robusto em **Node.js + PostgreSQL**, e funcionalidades essenciais para controle de produtos.
+Sistema completo para *gestão de estoque de uma lanchonete*, com painel visual moderno, backend robusto em *Node.js + PostgreSQL*, e funcionalidades essenciais para controle de produtos.
 
 ---
 
