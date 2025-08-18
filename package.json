@@ -1,0 +1,20 @@
+{
+  "name": "lanchonete-estoque-system",
+  "version": "1.0.0",
+  "description": "Sistema de estoque para lanchonete com PostgreSQL - Frontend e Backend",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "dev": "cd backend && npm run dev",
+    "install-backend": "cd backend && npm install",
+    "init-db": "cd backend && npm run init-db",
+    "setup": "npm run install-backend && npm run init-db",
+    "test-api": "node test-api.js"
+  },
+  "keywords": ["estoque", "lanchonete", "postgresql", "nodejs", "frontend", "backend"],
+  "author": "Sistema Lanchonete",
+  "license": "MIT",
+  "devDependencies": {
+    "node-fetch": "^2.6.7"
+  }
+}

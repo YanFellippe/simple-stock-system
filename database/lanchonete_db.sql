@@ -1,3 +1,18 @@
+-- Database: lanchonete_db
+
+-- DROP DATABASE IF EXISTS lanchonete_db;
+
+CREATE DATABASE lanchonete_db
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Portuguese_Brazil.1252'
+    LC_CTYPE = 'Portuguese_Brazil.1252'
+    LOCALE_PROVIDER = 'libc'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
 -- 2. Tabela de produtos (estoque)
 CREATE TABLE produtos (
     id SERIAL PRIMARY KEY,
@@ -6,7 +21,17 @@ CREATE TABLE produtos (
     categoria VARCHAR(50) NOT NULL
 );
 
--- 3. Tabela de usuários (login opcional)
+-- 3. Tabela de pedidos
+CREATE TABLE pedidos (
+    id SERIAL PRIMARY KEY,
+    cliente VARCHAR(100) NOT NULL,
+    produto VARCHAR(100) NOT NULL,
+    quantidade INT NOT NULL,
+    status VARCHAR(20) DEFAULT 'pendente' CHECK (status IN ('pendente', 'preparando', 'pronto', 'entregue')),
+    data_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 4. Tabela de usuários (login opcional)
 CREATE TABLE usuarios (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -15,7 +40,7 @@ CREATE TABLE usuarios (
     nivel_acesso TEXT DEFAULT 'funcionario' CHECK (nivel_acesso IN ('admin', 'funcionario'))
 );
 
--- 4. Tabela de logs de alterações no estoque
+-- 5. Tabela de logs de alterações no estoque
 CREATE TABLE logs_estoque (
     id SERIAL PRIMARY KEY,
     produto_id INT NOT NULL,
@@ -55,6 +80,14 @@ INSERT INTO usuarios (nome, email, senha_hash, nivel_acesso) VALUES
 ('João da Silva', 'joao@lanchonete.com', '$2b$10$hashfalso1234567890abcdefghijk', 'funcionario'),
 ('Maria Oliveira', 'maria@lanchonete.com', '$2b$10$hashfalso2234567890abcdefghijk', 'funcionario'),
 ('Carlos Souza', 'carlos@lanchonete.com', '$2b$10$hashfalso3234567890abcdefghijk', 'admin');
+
+-- Dados iniciais de pedidos
+INSERT INTO pedidos (cliente, produto, quantidade, status) VALUES
+('João Silva', 'Hambúrguer', 2, 'pendente'),
+('Maria Santos', 'Refrigerante', 3, 'preparando'),
+('Pedro Costa', 'Pão', 5, 'pronto'),
+('Ana Oliveira', 'Café', 1, 'entregue'),
+('Carlos Lima', 'Batata Frita', 2, 'pendente');
 
 INSERT INTO logs_estoque (produto_id, acao, quantidade) VALUES
 (1, 'adicionado', 20),
