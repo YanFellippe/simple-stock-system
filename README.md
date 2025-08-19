@@ -1,151 +1,92 @@
 # 📦 Sistema de Estoque para Lanchonete 🥪🍹
-
 <div align="center">
 
-![Logo](src/Blue%20and%20Beige%20Vintage%20Retro%20Illustration%20Sweet%20Pancake%20Badge%20Logo.png)
-
-**Sistema completo de gerenciamento de estoque para lanchonetes**  
-*Desenvolvido com Node.js, PostgreSQL e tecnologias web modernas*
-
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-12+-blue.svg)](https://postgresql.org/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![GitHub last commit](https://img.shields.io/github/last-commit/YanFellippe/simple-stock-system?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/YanFellippe/simple-stock-system?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues/YanFellippe/simple-stock-system?style=flat-square)
 
 </div>
+Sistema completo para <strong>gestão de estoque de uma lanchonete</strong>, com painel visual moderno, backend robusto em <strong>Node.js + PostgreSQL</strong>, e funcionalidades essenciais para controle de produtos.
 
 ---
 
-## 📋 Sobre o Projeto
+## 🌟 Funcionalidades Principais
 
-Este é um **sistema completo de gestão de estoque** desenvolvido especificamente para lanchonetes e pequenos estabelecimentos alimentícios. O sistema oferece controle total sobre produtos, pedidos, usuários e relatórios em tempo real.
-
-### 🎯 Objetivo
-Facilitar o gerenciamento diário de estoque, pedidos e operações de uma lanchonete através de uma interface web intuitiva e um backend robusto.
-
----
-
-## ✨ Funcionalidades Principais
-
-### 📦 **Gestão de Estoque**
-- ✅ Visualizar todos os produtos em estoque
-- ✅ Adicionar novos produtos (nome, quantidade, categoria)
-- ✅ Editar informações de produtos existentes
-- ✅ Excluir produtos do estoque
-- ✅ Filtro avançado por nome de produto
-- ✅ Alertas automáticos para estoque baixo
-- ✅ Contagem total de itens em tempo real
-
-### 📋 **Sistema de Pedidos**
-- ✅ Criar novos pedidos de clientes
-- ✅ Visualizar todos os pedidos
-- ✅ Controle de status (pendente, preparando, pronto, entregue)
-- ✅ Histórico completo de pedidos
-- ✅ Exclusão de pedidos
-
-### 📊 **Dashboard Inteligente**
-- ✅ Estatísticas em tempo real
-- ✅ Total de produtos cadastrados
-- ✅ Total de pedidos realizados
-- ✅ Produtos com estoque baixo
-- ✅ Movimentações do dia
-- ✅ Resumo por categorias
-
-### 👥 **Sistema de Usuários**
-- ✅ Autenticação segura com JWT
-- ✅ Cadastro de novos usuários
-- ✅ Níveis de acesso (admin/funcionário)
-- ✅ Senhas criptografadas com bcrypt
-- ✅ Controle de sessões
-
-### 📈 **Logs e Auditoria**
-- ✅ Registro automático de todas as operações
-- ✅ Histórico de movimentações de estoque
-- ✅ Triggers automáticos no banco de dados
-- ✅ Rastreabilidade completa
+| Funcionalidade               | Status | Descrição                                  |
+|------------------------------|--------|--------------------------------------------|
+| Listagem de produtos          | ✅     | Visualização completa do estoque           |
+| Adição de novos itens         | ✅     | Nome, quantidade e categoria               |
+| Exclusão de produtos          | ✅     | Remoção segura com confirmação             |
+| Filtro em tempo real          | ✅     | Busca instantânea por nome                 |
+| Resumo total de itens         | ✅     | Contagem automática                        |
+| Registro automático de ações  | ✅     | Via triggers no PostgreSQL                 |
+| Painel visual moderno         | ✅     | Com Lucide Icons                           |
+| Páginas separadas             | ✅     | Dashboard, Pedidos e Configurações         |
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Stack Tecnológica
 
-### **Frontend**
-- **HTML5** - Estrutura das páginas
-- **CSS3** - Estilização responsiva
-- **JavaScript (ES6+)** - Interatividade e requisições
-- **Fetch API** - Comunicação com backend
+### Frontend
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-### **Backend**
-- **Node.js** - Runtime JavaScript
-- **Express.js** - Framework web
-- **PostgreSQL** - Banco de dados relacional
-- **JWT** - Autenticação de usuários
-- **bcrypt** - Criptografia de senhas
-- **CORS** - Controle de acesso
+### Backend
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
 
-### **Banco de Dados**
-- **PostgreSQL 12+** - Sistema de gerenciamento
-- **Triggers** - Automação de logs
-- **Constraints** - Validação de dados
-- **Índices** - Otimização de consultas
+### Banco de Dados
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Triggers](https://img.shields.io/badge/PostgreSQL-Triggers-336791?style=for-the-badge&logo=postgresql&logoColor=white)
+
+### UI/UX
+![Lucide Icons](https://img.shields.io/badge/Lucide_Icons-FF6B6B?style=for-the-badge&logo=react&logoColor=white)
+![Responsivo](https://img.shields.io/badge/Responsivo-Design-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
 ---
 
-## � Estsrutura do Projeto
+## 📁 Estrutura do Projeto
+
+```bash
+simple-stock-system/
+├── database/
+│   └── lanchonete_db.sql       # Script completo do PostgreSQL
+├── js/
+│   ├── cadastro-estoque.js     # Lógica do estoque
+│   ├── configuracoes.js        # Configurações do sistema
+│   ├── dashboard.js            # Dashboard principal
+│   ├── pedidos.js              # Gestão de pedidos
+│   ├── perfil.js               # Gestão do perfil
+│   ├── login.js                # Gestão do usuario
+│   ├── theme.js                # Logica dos temas
+│   └── server.js               # Servidor Express
+├── public/
+│   ├── configuracoes.html      # Página de configurações
+│   ├── dashboard.html          # Dashboard principal
+│   ├── estoque.html            # Dashboard de estoque dos produtos
+│   ├── perfil-usuario.html     # Pagina do usuario
+│   └── pedidos.html            # Página de pedidos
+├── route/
+│   ├── pedidos.js              # API de pedidos
+│   └── usuario.js              # Rotas de usuário (WIP)
+├── src/
+│   ├── logo.png                # Logo da lanchonete
+│   └── sistema-example.png     # Screenshot do sistema
+├── style/
+│   ├── dashboard.css           # Estilo da dashboard
+│   ├── pedidos.css             # Estilo de pedidos
+│   ├── style.css               # Estilos globais
+│   ├── configuracoes.css       # Estilos de configurações
+│   ├── perfil.css              # Estilos do perfil
+│   ├── theme.css               # Estilos para alterar tema (LIGHT/DARK)
+│   └── login.css               # Estilo da Index
+├── index.html                  # Página inicial
+└── README.md                   # Documentação
 
 ```
-lanchonete-estoque-system/
-├── 🚀 backend/                    # Backend Node.js + PostgreSQL
-│   ├── server.js                 # Servidor principal
-│   ├── package.json              # Dependências do backend
-│   ├── .env                      # Configurações (configure!)
-│   ├── .env.example              # Exemplo de configuração
-│   ├── config/
-│   │   └── database.js           # Conexão PostgreSQL
-│   ├── routes/
-│   │   ├── produtos.js           # API de produtos
-│   │   ├── pedidos.js            # API de pedidos
-│   │   ├── usuarios.js           # API de usuários
-│   │   └── dashboard.js          # API do dashboard
-│   ├── scripts/
-│   │   └── init-db.js            # Inicialização do banco
-│   └── README.md                 # Documentação do backend
-├── 🎨 Frontend/
-│   ├── index.html                # Página principal (estoque)
-│   ├── js/
-│   │   ├── cadastro-estoque.js   # Lógica do estoque
-│   │   ├── dashboard.js          # Lógica do dashboard
-│   │   ├── pedidos.js            # Lógica dos pedidos
-│   │   └── configuracoes.js      # Lógica das configurações
-│   ├── public/
-│   │   ├── dashboard.html        # Página do dashboard
-│   │   ├── pedidos.html          # Página de pedidos
-│   │   └── configuracoes.html    # Página de configurações
-│   ├── style/
-│   │   ├── style.css             # Estilos principais
-│   │   ├── dashboard.css         # Estilos do dashboard
-│   │   └── pedidos.css           # Estilos dos pedidos
-│   └── src/
-│       └── logo.png              # Logo da lanchonete
-├── 🗄️ database/
-│   └── lanchonete_db.sql         # Script completo do banco
-├── 📚 Documentação/
-│   ├── README.md                 # Este arquivo
-│   ├── SETUP.md                  # Guia de instalação detalhado
-│   ├── IMPLEMENTACAO.md          # Detalhes da implementação
-│   └── INICIO-RAPIDO.md          # Guia de início rápido
-├── package.json                  # Scripts principais do projeto
-└── test-api.js                   # Script de teste das APIs
-```
 
----
-
-## 🚀 Instalação e Configuração
-
-### 📋 **Pré-requisitos**
-- **Node.js** 18+ ([Download](https://nodejs.org/))
-- **PostgreSQL** 12+ ([Download](https://postgresql.org/))
-- **npm** ou **yarn**
-
-### ⚡ **Instalação Rápida**
+## 🚀 Instalação e Execução
 
 ```bash
 # 1. Clone o repositório
@@ -170,34 +111,53 @@ npm run dev
 
 ### ⚙️ **Configuração Detalhada**
 
-1. **Configurar PostgreSQL:**
-```sql
--- Criar banco de dados
-CREATE DATABASE lanchonete_db;
+npm install pg
 
--- Criar usuário (opcional)
-CREATE USER lanchonete_user WITH PASSWORD 'sua_senha';
-GRANT ALL PRIVILEGES ON DATABASE lanchonete_db TO lanchonete_user;
 ```
 
 2. **Configurar variáveis de ambiente:**
 ```bash
-# Copie o arquivo de exemplo
-cp backend/.env.example backend/.env
+CREATE DATABASE lanchonete_db;
+\c lanchonete_db;
 
-# Edite com suas configurações
-nano backend/.env
+CREATE TABLE produtos (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  quantidade INT NOT NULL,
+  categoria VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE logs_estoque (
+  id SERIAL PRIMARY KEY,
+  produto_id INT NOT NULL,
+  acao TEXT NOT NULL CHECK (acao IN ('adicionado', 'removido', 'atualizado')),
+  quantidade INT NOT NULL,
+  data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (produto_id) REFERENCES produtos(id)
+);
+
+-- Trigger para registrar automaticamente as ações
+-- Consulte o arquivo SQL para detalhes completos
+
+-- Dados de exemplo
+INSERT INTO produtos (nome, quantidade, categoria) VALUES
+('Pão', 50, 'Padaria'),
+('Queijo', 30, 'Laticínios'),
+('Refrigerante', 100, 'Bebidas');
 ```
 
-3. **Arquivo backend/.env:**
-```env
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=lanchonete_db
-DB_USER=postgres
-DB_PASSWORD=sua_senha_postgresql
-JWT_SECRET=seu_jwt_secret_muito_seguro_aqui
-PORT=3000
+## 4️⃣ Configure a conexão PostgreeSQL no server.js
+```bash
+const { Pool } = require('pg');
+
+const pool = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'lanchonete_db',
+  password: 'SUA_SENHA_AQUI',
+  port: 5432,
+});
+
 ```
 
 ---
@@ -297,79 +257,21 @@ DELETE /api/usuarios/:id       # Excluir usuário
 ## 🧪 Testes
 
 ```bash
-# Testar APIs
-npm run test-api
-
-# Testar conexão com banco
-npm run init-db
-
-# Verificar logs do servidor
-npm run dev
+http://localhost:3000
 ```
 
----
+### 🖼️ Preview
+![Dashboard Estoque](./src/sistema-example.png)
 
-## 📈 Melhorias Futuras
+### 🛠️ Funcionalidades futuras
 
-- [ ] **Dashboard avançado** com gráficos
-- [ ] **Relatórios em PDF**
-- [ ] **Sistema de notificações**
-- [ ] **App mobile** com React Native
-- [ ] **Integração com impressoras**
-- [ ] **Backup automático**
-- [ ] **Multi-tenancy**
-- [ ] **API de pagamentos**
+- 🔵 Login e autenticação de usuários
+- 🔵 Histórico detalhado de alterações
+- 🔵 Upload de imagem por produto
+- 🔵 Edição inline dos campos
+- 🔵 Dashboard com gráficos (por categoria, movimentações)
 
----
 
-## 🤝 Contribuição
-
-1. **Fork** o projeto
-2. **Crie** uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. **Commit** suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. **Push** para a branch (`git push origin feature/AmazingFeature`)
-5. **Abra** um Pull Request
-
----
-
-## 📄 Licença
-
-Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
-## 👨‍💻 Autor
-
-**Yan Fellippe**
-- GitHub: [@YanFellippe](https://github.com/YanFellippe)
-- LinkedIn: [Yan Fellippe](https://linkedin.com/in/yanfellippe)
-
----
-
-## 📞 Suporte
-
-Encontrou algum problema? Precisa de ajuda?
-
-1. **Verifique** a documentação em `SETUP.md`
-2. **Consulte** os logs do servidor
-3. **Abra** uma issue no GitHub
-4. **Entre em contato** através do LinkedIn
-
----
-
-## 🙏 Agradecimentos
-
-- **PostgreSQL** pela robustez do banco de dados
-- **Node.js** pela versatilidade do runtime
-- **Express.js** pela simplicidade do framework
-- **Comunidade open source** pelo suporte
-
----
-
-<div align="center">
-
-**⭐ Se este projeto te ajudou, considere dar uma estrela!**
-
-*Desenvolvido para facilitar a gestão de lanchonetes*
-
-</div>
+### 👨‍💻 Desenvolvedor
+<p>Feito com 💻 por Yan Fellippe — Desenvolvedor Fullstack</p>
+<p>Sinta-se à vontade para sugerir melhorias ou abrir issues! 🚀</p>
