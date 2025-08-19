@@ -33,15 +33,15 @@ router.get('/:id', async (req, res) => {
 // POST - Adicionar novo produto
 router.post('/', async (req, res) => {
     try {
-        const { nome, quantidade, categoria } = req.body;
+        const { nome, quantidade, categoria, preco } = req.body;
         
-        if (!nome || quantidade === undefined || !categoria) {
-            return res.status(400).json({ erro: 'Nome, quantidade e categoria são obrigatórios' });
+        if (!nome || quantidade === undefined || !categoria || preco === undefined) {
+            return res.status(400).json({ erro: 'Nome, quantidade, categoria e preço são obrigatórios' });
         }
         
         const result = await pool.query(
-            'INSERT INTO produtos (nome, quantidade, categoria) VALUES ($1, $2, $3) RETURNING *',
-            [nome, quantidade, categoria]
+            'INSERT INTO produtos (nome, quantidade, categoria, preco) VALUES ($1, $2, $3, $4) RETURNING *',
+            [nome, quantidade, categoria, preco]
         );
         
         res.status(201).json(result.rows[0]);
@@ -55,11 +55,11 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const { nome, quantidade, categoria } = req.body;
+        const { nome, quantidade, categoria, preco } = req.body;
         
         const result = await pool.query(
-            'UPDATE produtos SET nome = $1, quantidade = $2, categoria = $3 WHERE id = $4 RETURNING *',
-            [nome, quantidade, categoria, id]
+            'UPDATE produtos SET nome = $1, quantidade = $2, categoria = $3, preco = $4 WHERE id = $5 RETURNING *',
+            [nome, quantidade, categoria, preco, id]
         );
         
         if (result.rows.length === 0) {

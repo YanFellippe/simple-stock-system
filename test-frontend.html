@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Frontend</title>
+</head>
+<body>
+    <h1>Teste de APIs</h1>
+    <div id="results"></div>
+    
+    <script>
+        async function testarAPIs() {
+            const results = document.getElementById('results');
+            
+            try {
+                // Testar API de estatísticas
+                console.log('Testando /api/dashboard/stats...');
+                const statsResponse = await fetch('/api/dashboard/stats');
+                const stats = await statsResponse.json();
+                
+                results.innerHTML += `<h3>Stats API:</h3><pre>${JSON.stringify(stats, null, 2)}</pre>`;
+                
+                // Testar API de produtos
+                console.log('Testando /api/produtos...');
+                const produtosResponse = await fetch('/api/produtos');
+                const produtos = await produtosResponse.json();
+                
+                results.innerHTML += `<h3>Produtos API (${produtos.length} produtos):</h3><pre>${JSON.stringify(produtos.slice(0, 3), null, 2)}</pre>`;
+                
+                // Testar API de pedidos
+                console.log('Testando /api/pedidos...');
+                const pedidosResponse = await fetch('/api/pedidos');
+                const pedidos = await pedidosResponse.json();
+                
+                results.innerHTML += `<h3>Pedidos API (${pedidos.length} pedidos):</h3><pre>${JSON.stringify(pedidos, null, 2)}</pre>`;
+                
+                // Testar API de categorias
+                console.log('Testando /api/dashboard/categorias...');
+                const categoriasResponse = await fetch('/api/dashboard/categorias');
+                const categorias = await categoriasResponse.json();
+                
+                results.innerHTML += `<h3>Categorias API:</h3><pre>${JSON.stringify(categorias, null, 2)}</pre>`;
+                
+            } catch (error) {
+                results.innerHTML += `<h3>Erro:</h3><pre>${error.message}</pre>`;
+                console.error('Erro nos testes:', error);
+            }
+        }
+        
+        // Executar testes quando a página carregar
+        document.addEventListener('DOMContentLoaded', testarAPIs);
+    </script>
+</body>
+</html>

@@ -23,9 +23,12 @@
     <form class="addForm" id="pedidoForm">
       <h3>Adicionar Pedido</h3>
       <input type="text" id="pedidoCliente" placeholder="Nome do Cliente" required>
-      <input type="text" id="pedidoItem" placeholder="Produto" required>
-      <input type="number" id="pedidoQtd" placeholder="Quantidade" required>
-      <button type="submit">Salvar</button>
+      <select id="pedidoProduto" required>
+        <option value="">Selecione um produto</option>
+      </select>
+      <input type="number" id="pedidoQtd" placeholder="Quantidade" min="1" required>
+      <div id="precoInfo" class="preco-info"></div>
+      <button type="submit">Criar Pedido</button>
     </form>
 
     <table id="tabelaPedidos">
@@ -34,6 +37,10 @@
           <th>Cliente</th>
           <th>Produto</th>
           <th>Quantidade</th>
+          <th>Preço Unit.</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Data</th>
           <th>Ações</th>
         </tr>
       </thead>

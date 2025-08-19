@@ -32,34 +32,79 @@ router.get('/:id', async (req, res) => {
 
 // POST - Criar novo pedido
 router.post('/', async (req, res) => {
+    const client = await pool.connect();
+    
     try {
-        const { cliente, produto, quantidade, status = 'pendente' } = req.body;
+        await client.query('BEGIN');
         
-        if (!cliente || !produto || !quantidade) {
-            return res.status(400).json({ erro: 'Cliente, produto e quantidade são obrigatórios' });
+        const { cliente, produto_id, quantidade, status = 'pendente' } = req.body;
+        
+        if (!cliente || !produto_id || !quantidade) {
+            return res.status(400).json({ erro: 'Cliente, produto_id e quantidade são obrigatórios' });
         }
         
-        const result = await pool.query(
-            'INSERT INTO pedidos (cliente, produto, quantidade, status) VALUES ($1, $2, $3, $4) RETURNING *',
-            [cliente, produto, quantidade, status]
+        // Buscar informações do produto
+        const produtoResult = await client.query(
+            'SELECT * FROM produtos WHERE id = $1',
+            [produto_id]
         );
         
-        res.status(201).json(result.rows[0]);
+        if (produtoResult.rows.length === 0) {
+            await client.query('ROLLBACK');
+            return res.status(404).json({ erro: 'Produto não encontrado' });
+        }
+        
+        const produto = produtoResult.rows[0];
+        
+        // Verificar se há estoque suficiente
+        if (produto.quantidade < quantidade) {
+            await client.query('ROLLBACK');
+            return res.status(400).json({ 
+                erro: `Estoque insuficiente. Disponível: ${produto.quantidade}, Solicitado: ${quantidade}` 
+            });
+        }
+        
+        // Calcular valor total
+        const preco_unitario = parseFloat(produto.preco);
+        const valor_total = preco_unitario * quantidade;
+        
+        // Criar o pedido
+        const pedidoResult = await client.query(
+            'INSERT INTO pedidos (cliente, produto_id, produto_nome, quantidade, preco_unitario, valor_total, status) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+            [cliente, produto_id, produto.nome, quantidade, preco_unitario, valor_total, status]
+        );
+        
+        // Atualizar estoque do produto
+        await client.query(
+            'UPDATE produtos SET quantidade = quantidade - $1 WHERE id = $2',
+            [quantidade, produto_id]
+        );
+        
+        await client.query('COMMIT');
+        
+        res.status(201).json(pedidoResult.rows[0]);
     } catch (error) {
+        await client.query('ROLLBACK');
         console.error('Erro ao criar pedido:', error);
         res.status(500).json({ erro: 'Erro ao criar pedido' });
+    } finally {
+        client.release();
     }
 });
 
-// PUT - Atualizar pedido
+// PUT - Atualizar pedido (apenas status)
 router.put('/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const { cliente, produto, quantidade, status } = req.body;
+        const { status } = req.body;
+        
+        if (!status) {
+            return res.status(400).json({ erro: 'Status é obrigatório' });
+        }
         
         const result = await pool.query(
-            'UPDATE pedidos SET cliente = $1, produto = $2, quantidade = $3, status = $4 WHERE id = $5 RETURNING *',
-            [cliente, produto, quantidade, status, id]
+            'UPDATE pedidos SET status = $1 WHERE id = $2 RETURNING *',
+            [status, id]
         );
         
         if (result.rows.length === 0) {
@@ -73,21 +118,49 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// DELETE - Excluir pedido
+// DELETE - Excluir pedido (com devolução de estoque)
 router.delete('/:id', async (req, res) => {
+    const client = await pool.connect();
+    
     try {
+        await client.query('BEGIN');
+        
         const { id } = req.params;
         
-        const result = await pool.query('DELETE FROM pedidos WHERE id = $1 RETURNING *', [id]);
+        // Buscar o pedido antes de excluir
+        const pedidoResult = await client.query('SELECT * FROM pedidos WHERE id = $1', [id]);
         
-        if (result.rows.length === 0) {
+        if (pedidoResult.rows.length === 0) {
+            await client.query('ROLLBACK');
             return res.status(404).json({ erro: 'Pedido não encontrado' });
         }
         
-        res.json({ mensagem: 'Pedido excluído com sucesso', pedido: result.rows[0] });
+        const pedido = pedidoResult.rows[0];
+        
+        // Devolver estoque apenas se o pedido não foi entregue
+        if (pedido.status !== 'entregue') {
+            await client.query(
+                'UPDATE produtos SET quantidade = quantidade + $1 WHERE id = $2',
+                [pedido.quantidade, pedido.produto_id]
+            );
+        }
+        
+        // Excluir o pedido
+        await client.query('DELETE FROM pedidos WHERE id = $1', [id]);
+        
+        await client.query('COMMIT');
+        
+        res.json({ 
+            mensagem: 'Pedido excluído com sucesso', 
+            pedido: pedido,
+            estoque_devolvido: pedido.status !== 'entregue'
+        });
     } catch (error) {
+        await client.query('ROLLBACK');
         console.error('Erro ao excluir pedido:', error);
         res.status(500).json({ erro: 'Erro ao excluir pedido' });
+    } finally {
+        client.release();
     }
 });
 

@@ -97,3 +97,60 @@ button {
   background-color: #f44336;
   color: white;
 }
+
+/* Estilos específicos para pedidos */
+.preco-info {
+  margin-top: 10px;
+  padding: 8px;
+  background-color: #f0f8ff;
+  border-radius: 4px;
+  font-weight: bold;
+  min-height: 20px;
+}
+
+#pedidoProduto {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.status-select {
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.status-select option[value="pendente"] {
+  background-color: #fff3cd;
+}
+
+.status-select option[value="preparando"] {
+  background-color: #d1ecf1;
+}
+
+.status-select option[value="pronto"] {
+  background-color: #d4edda;
+}
+
+.status-select option[value="entregue"] {
+  background-color: #f8d7da;
+}
+
+table th, table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+table th:first-child,
+table td:first-child {
+  text-align: left;
+}
+
+.addForm select,
+.addForm input {
+  width: 100%;
+  max-width: 300px;
+}

@@ -6,8 +6,9 @@
   <title>Dashboard - Sistema de Estoque</title>
   <link rel="stylesheet" href="../style/dashboard.css">
   <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="../style/theme.css">
+  <link rel="stylesheet" href="../style/theme.css">
   <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="sidebar">
@@ -20,11 +21,115 @@
   </div>
 
   <div class="main">
-    <div class="header">Painel da Lanchonete</div>
+    <div class="header">📊 Painel da Lanchonete</div>
+    
+    <!-- Cards de Resumo -->
     <div class="cards">
-      <div class="card" id="totalProdutos">Total de Produtos: ...</div>
-      <div class="card" id="totalPedidos">Total de Pedidos: ...</div>
-      <div class="card low-stock" id="baixoEstoque">Itens com Estoque Baixo: ...</div>
+      <div class="card" id="totalProdutos">
+        <i data-lucide="package"></i>
+        <div class="card-content">
+          <h3>Total de Produtos</h3>
+          <span class="card-number">...</span>
+        </div>
+      </div>
+      <div class="card" id="totalPedidos">
+        <i data-lucide="shopping-cart"></i>
+        <div class="card-content">
+          <h3>Total de Pedidos</h3>
+          <span class="card-number">...</span>
+        </div>
+      </div>
+      <div class="card low-stock" id="baixoEstoque">
+        <i data-lucide="alert-triangle"></i>
+        <div class="card-content">
+          <h3>Estoque Baixo</h3>
+          <span class="card-number">...</span>
+        </div>
+      </div>
+      <div class="card" id="movimentacoesHoje">
+        <i data-lucide="activity"></i>
+        <div class="card-content">
+          <h3>Movimentações Hoje</h3>
+          <span class="card-number">...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filtros de Período -->
+    <div class="filters">
+      <h3>📅 Período de Análise</h3>
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-period="7">Últimos 7 dias</button>
+        <button class="filter-btn" data-period="30">Últimos 30 dias</button>
+        <button class="filter-btn" data-period="90">Últimos 3 meses</button>
+        <button class="filter-btn" data-period="365">Último ano</button>
+      </div>
+    </div>
+
+    <!-- Gráficos -->
+    <div class="charts-container">
+      <!-- Gráfico de Produtos vs Pedidos -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <h3>📈 Produtos vs Pedidos</h3>
+          <p>Relação entre produtos cadastrados e pedidos realizados</p>
+        </div>
+        <canvas id="produtosPedidosChart"></canvas>
+      </div>
+
+      <!-- Gráfico de Estoque Baixo -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <h3>⚠️ Produtos com Estoque Baixo</h3>
+          <p>Produtos que precisam de reposição</p>
+        </div>
+        <canvas id="estoqueBaixoChart"></canvas>
+      </div>
+
+      <!-- Gráfico de Cadastros por Período -->
+      <div class="chart-card full-width">
+        <div class="chart-header">
+          <h3>📦 Cadastro de Produtos por Período</h3>
+          <p>Novos produtos adicionados ao estoque</p>
+        </div>
+        <canvas id="cadastrosPeriodoChart"></canvas>
+      </div>
+
+      <!-- Gráfico de Categorias -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <h3>🏷️ Produtos por Categoria</h3>
+          <p>Distribuição dos produtos por categoria</p>
+        </div>
+        <canvas id="categoriasChart"></canvas>
+      </div>
+
+      <!-- Gráfico de Movimentações -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <h3>📊 Movimentações de Estoque</h3>
+          <p>Adições, atualizações e remoções</p>
+        </div>
+        <canvas id="movimentacoesChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Tabela de Produtos com Estoque Baixo -->
+    <div class="low-stock-table">
+      <h3>🚨 Produtos que Precisam de Reposição</h3>
+      <table id="tabelaEstoqueBaixo">
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Categoria</th>
+            <th>Quantidade Atual</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Conteúdo dinâmico -->
+        </tbody>
+      </table>
     </div>
   </div>
   <script>
