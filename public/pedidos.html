@@ -2,7 +2,9 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pedidos - Estoque Lanchonete</title>
+  <link rel="stylesheet" href="../style/style.css">
   <link rel="stylesheet" href="../style/pedidos.css">
   <link rel="stylesheet" href="../style/theme.css">
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -12,9 +14,9 @@
     <img src="../src/Blue and Beige Vintage Retro Illustration Sweet Pancake Badge Logo.png" alt="lanchonete">
     <a href="./dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a>
     <a href="./estoque.html"><i data-lucide="boxes"></i> Estoque</a>
-    <a href="./pedidos.html"><i data-lucide="clipboard-list"></i> Pedidos</a>
+    <a href="./pedidos.html" class="active"><i data-lucide="clipboard-list"></i> Pedidos</a>
     <a href="./configuracoes.html"><i data-lucide="settings"></i> Configurações</a>
-    <a href="./perfil-usuario.html"><i data-lucide="user"></i>Perfil</a>
+    <a href="./perfil-usuario.html"><i data-lucide="user"></i> Perfil</a>
   </div>
   <div class="main">
     <div class="header">📋 Gestão de Pedidos</div>
@@ -41,9 +43,10 @@
     </table>
   </div>
   <script>
+    // Inicializar ícones do Lucide
     lucide.createIcons();
   </script>
   <script src="../js/pedidos.js"></script>
-  <script src="../route/pedidos.js"></script>
+  <script src="../js/theme.js"></script>
 </body>
 </html>

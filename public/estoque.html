@@ -2,7 +2,8 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard Avançado - Estoque Lanchonete</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estoque - Sistema de Lanchonete</title>
   <link rel="stylesheet" href="../style/style.css">
   <link rel="stylesheet" href="../style/theme.css">
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -11,10 +12,10 @@
   <div class="sidebar">
     <img src="../src/Blue and Beige Vintage Retro Illustration Sweet Pancake Badge Logo.png" alt="lanchonete">
     <a href="./dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a>
-    <a href="./estoque.html"><i data-lucide="boxes"></i> Estoque</a>
+    <a href="./estoque.html" class="active"><i data-lucide="boxes"></i> Estoque</a>
     <a href="./pedidos.html"><i data-lucide="clipboard-list"></i> Pedidos</a>
     <a href="./configuracoes.html"><i data-lucide="settings"></i> Configurações</a>
-    <a href="./perfil-usuario.html"><i data-lucide="user"></i>Perfil</a>
+    <a href="./perfil-usuario.html"><i data-lucide="user"></i> Perfil</a>
   </div>
   <div class="main">
     <div class="header">Dashboard de Estoque - Produtos</div>
@@ -43,11 +44,12 @@
       <button type="submit">Adicionar</button>
     </form>
   </div>
+  
   <script>
+    // Inicializar ícones do Lucide
     lucide.createIcons();
   </script>
-  <script src="../js/server.js"></script>
   <script src="../js/cadastro-estoque.js"></script>
-  <script src="../js/theme.js"></script> <!-- <- Tema global -->
+  <script src="../js/theme.js"></script>
 </body>
 </html>
