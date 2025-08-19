@@ -7,36 +7,68 @@
   <link rel="stylesheet" href="./style/login.css">
 </head>
 <body>
-  <div class="sidebar">
-    <img src="./src/Blue and Beige Vintage Retro Illustration Sweet Pancake Badge Logo.png" alt="lanchonete">
-    <a href="./public/dashboard.html">Dashboard</a>
-    <a href="index.html">Estoque</a>
-    <a href="./public/pedidos.html">Pedidos</a>
-    <a href="./public/configuracoes.html">Configurações</a>
-  </div>
-  <div class="main">
-    <div class="header">Dashboard de Estoque - Produtos</div>
-    <input type="text" id="filterInput" placeholder="Filtrar por nome">
-    <table id="estoqueTable">
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Quantidade</th>
-          <th>Categoria</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Conteúdo gerado dinamicamente -->
-      </tbody>
-    </table>
-    <div class="summary" id="resumoEstoque">
-      Carregando resumo...
+  <!-- Fundo animado -->
+  <canvas id="background"></canvas>
+
+  <section class="landing">
+    <img 
+      src="./src/Blue and Beige Vintage Retro Illustration Sweet Pancake Badge Logo.png" 
+      alt="Logo Lanchonete" 
+      class="logo" 
+      width="150" 
+      height="150" 
+    />
+    <h1>Bem-vindo ao Sistema de Estoque da Lanchonete</h1>
+    <p>Gerencie seus produtos, pedidos e categorias com facilidade e agilidade.</p>
+    <button type="button" id="openModal">Acessar Sistema</button>
+  </section>
+  <!-- Modal de Login/Cadastro -->
+  <div class="modal-overlay" id="authModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="container" id="container">
+      <div class="form-container sign-up-container">
+        <form id="signupForm">
+          <h2 id="signUpTitle">Criar Conta</h2>
+          <label for="name">Nome</label>
+          <input type="text" id="name" placeholder="Nome" required />
+          <label for="signupEmail">Email</label>
+          <input type="email" id="signupEmail" placeholder="Email" required />
+          <label for="signupPassword">Senha</label>
+          <input type="password" id="signupPassword" placeholder="Senha" required />
+          <p class="error" id="signupError">Por favor, preencha todos os campos corretamente.</p>
+          <button type="submit">Cadastrar</button>
+        </form>
+      </div>
+      <div class="form-container sign-in-container">
+        <form id="signinForm">
+          <h2 id="signInTitle">Entrar</h2>
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" placeholder="Email" required />
+          <label for="loginPassword">Senha</label>
+          <input type="password" id="loginPassword" placeholder="Senha" required />
+          <p class="error" id="signinError">Por favor, preencha todos os campos corretamente.</p>
+          <button type="submit">Entrar</button>
+        </form>
+      </div>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h2>Já tem uma conta?</h2>
+            <p>Acesse o sistema com seu login</p>
+            <button class="ghost" id="signIn" type="button">Entrar</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h2>Olá!</h2>
+            <p>Cadastre-se para começar a gerenciar seu estoque</p>
+            <button class="ghost" id="signUp" type="button">Cadastrar</button>
+          </div>
+        </div>
+      </div>
     </div>
     <button class="close-btn" id="closeModal" type="button" aria-label="Fechar modal">
       <i data-lucide="x"></i>
     </button>
   </div>
-  <script src="./js/cadastro-estoque.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="./js/login.js"></script>
 </body>
 </html>
