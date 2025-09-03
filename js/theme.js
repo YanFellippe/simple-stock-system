@@ -30,7 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (toggle) {
     toggle.addEventListener("change", (e) => {
       applyTheme(e.target.checked);
-      addLog(`Tema alterado para ${e.target.checked ? "escuro" : "claro"}`);
+      if (typeof addLog === 'function') {
+        addLog(`Tema alterado para ${e.target.checked ? "escuro" : "claro"}`);
+      } else {
+        console.log(`Tema alterado para ${e.target.checked ? "escuro" : "claro"}`);
+      }
     });
   }
   // Observa mudanças na preferência do sistema

@@ -125,3 +125,24 @@ body.dark-theme .alert-error {
 @keyframes fade-out {
   to { opacity: 0; transform: translateY(-20px); }
 }
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .profile-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+  
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .form-group input {
+    width: 90%;
+  }
+}

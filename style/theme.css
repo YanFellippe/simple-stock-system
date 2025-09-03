@@ -335,3 +335,340 @@ body.dark-theme .profile-area .btn-logout {
 body.dark-theme .profile-area .btn-logout:hover {
   background-color: #8e0000;
 }
+
+/* Dashboard - Tema Escuro */
+body.dark-theme .main {
+  background-color: var(--bg-dark);
+}
+
+body.dark-theme .header {
+  background: linear-gradient(135deg, #e65100, #bf360c);
+  color: white;
+  box-shadow: 0 4px 12px rgba(230, 81, 0, 0.3);
+}
+
+body.dark-theme .theme-toggle .theme-label {
+  color: white;
+}
+
+body.dark-theme .slider {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-theme input:checked + .slider {
+  background-color: rgba(255, 152, 0, 0.8);
+}
+
+/* Cards do Dashboard */
+body.dark-theme .card {
+  background-color: var(--card-dark);
+  color: var(--text-dark);
+  border: 1px solid var(--border-dark);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+body.dark-theme .card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+body.dark-theme .card-content h3 {
+  color: #bbb;
+}
+
+body.dark-theme .card-number {
+  color: var(--text-dark);
+}
+
+body.dark-theme .card.low-stock {
+  background: linear-gradient(135deg, #3e2723, #5d4037);
+  border-left: 4px solid #ff5722;
+}
+
+body.dark-theme .card.low-stock i {
+  color: #ff5722;
+}
+
+body.dark-theme .card.low-stock .card-number {
+  color: #ff8a65;
+}
+
+body.dark-theme #receitaHoje {
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
+  border-left: 4px solid #4caf50;
+}
+
+body.dark-theme #receitaHoje i {
+  color: #4caf50;
+}
+
+body.dark-theme #receitaHoje .card-number {
+  color: #81c784;
+}
+
+/* Filtros */
+body.dark-theme .filters {
+  background-color: var(--card-dark);
+  border: 1px solid var(--border-dark);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+body.dark-theme .filters h3 {
+  color: #ff9800;
+}
+
+body.dark-theme .filter-btn {
+  border: 2px solid #ff9800;
+  background-color: var(--card-dark);
+  color: #ff9800;
+}
+
+body.dark-theme .filter-btn:hover,
+body.dark-theme .filter-btn.active {
+  background-color: #ff9800;
+  color: #000;
+}
+
+/* Gráficos */
+body.dark-theme .chart-card {
+  background-color: var(--card-dark);
+  border: 1px solid var(--border-dark);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+body.dark-theme .chart-header h3 {
+  color: #ff9800;
+}
+
+body.dark-theme .chart-header p {
+  color: #bbb;
+}
+
+/* Tabelas */
+body.dark-theme .low-stock-table {
+  background-color: var(--card-dark);
+  border: 1px solid var(--border-dark);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+body.dark-theme .low-stock-table h3 {
+  color: #ff9800;
+}
+
+body.dark-theme #tabelaEstoqueBaixo,
+body.dark-theme #tabelaPedidosRecentes {
+  background-color: transparent;
+}
+
+body.dark-theme #tabelaEstoqueBaixo th,
+body.dark-theme #tabelaPedidosRecentes th {
+  background-color: #3a3a3a;
+  color: var(--text-dark);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+body.dark-theme #tabelaEstoqueBaixo td,
+body.dark-theme #tabelaPedidosRecentes td {
+  color: var(--text-dark);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+body.dark-theme #tabelaEstoqueBaixo tr:hover,
+body.dark-theme #tabelaPedidosRecentes tr:hover {
+  background-color: #3a3a3a;
+}
+
+/* Status badges no tema escuro */
+body.dark-theme .status-badge {
+  font-weight: bold;
+}
+
+body.dark-theme .status-critico {
+  background-color: #b71c1c;
+  color: #ffcdd2;
+}
+
+body.dark-theme .status-baixo {
+  background-color: #e65100;
+  color: #ffcc02;
+}
+
+body.dark-theme .status-pendente {
+  background-color: #e65100;
+  color: #ffcc02;
+}
+
+body.dark-theme .status-preparando {
+  background-color: #1565c0;
+  color: #bbdefb;
+}
+
+body.dark-theme .status-pronto {
+  background-color: #2e7d32;
+  color: #c8e6c9;
+}
+
+body.dark-theme .status-entregue {
+  background-color: #6a1b9a;
+  color: #e1bee7;
+}
+
+/* Sidebar no tema escuro */
+body.dark-theme .sidebar {
+  background-color: #1e1e1e;
+  border-right: 1px solid var(--border-dark);
+}
+
+body.dark-theme .sidebar a {
+  color: #bbb;
+}
+
+body.dark-theme .sidebar a:hover,
+body.dark-theme .sidebar a.active {
+  background-color: #333;
+  color: #ff9800;
+}
+
+body.dark-theme .sidebar i {
+  color: inherit;
+}
+
+/* Scrollbar personalizada para tema escuro */
+body.dark-theme ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.dark-theme ::-webkit-scrollbar-track {
+  background: #2e2e2e;
+  border-radius: 4px;
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+/* Transições suaves */
+body.dark-theme * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Correções para Chart.js no tema escuro */
+body.dark-theme canvas {
+  filter: brightness(1.1) contrast(0.9);
+}
+
+/* Inputs e selects específicos */
+body.dark-theme input[type="text"],
+body.dark-theme input[type="email"],
+body.dark-theme input[type="password"],
+body.dark-theme input[type="number"],
+body.dark-theme select,
+body.dark-theme textarea {
+  background-color: var(--input-bg-dark) !important;
+  color: var(--text-dark) !important;
+  border: 1px solid var(--border-dark) !important;
+}
+
+body.dark-theme input[type="text"]:focus,
+body.dark-theme input[type="email"]:focus,
+body.dark-theme input[type="password"]:focus,
+body.dark-theme input[type="number"]:focus,
+body.dark-theme select:focus,
+body.dark-theme textarea:focus {
+  border-color: #ff9800 !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.25) !important;
+  outline: none !important;
+}
+
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+  color: #aaa !important;
+  opacity: 1 !important;
+}
+
+/* Botões específicos */
+body.dark-theme button:not(.filter-btn):not(.slider) {
+  background-color: var(--primary-light) !important;
+  color: white !important;
+  border: 1px solid var(--primary-light) !important;
+}
+
+body.dark-theme button:not(.filter-btn):not(.slider):hover {
+  background-color: var(--primary-dark) !important;
+  border-color: var(--primary-dark) !important;
+}
+
+/* Correção para elementos específicos que podem estar com cor errada */
+body.dark-theme .card i {
+  color: #ff9800 !important;
+}
+
+body.dark-theme #receitaHoje i {
+  color: #4caf50 !important;
+}
+
+body.dark-theme .card.low-stock i {
+  color: #ff5722 !important;
+}
+
+/* Melhorias para legibilidade */
+body.dark-theme .chart-header h3,
+body.dark-theme .low-stock-table h3,
+body.dark-theme .filters h3 {
+  color: #ff9800 !important;
+  font-weight: 600;
+}
+
+body.dark-theme .chart-header p {
+  color: #ccc !important;
+}
+
+/* Correção para elementos de formulário */
+body.dark-theme label {
+  color: var(--text-dark) !important;
+}
+
+/* Melhorias para contraste */
+body.dark-theme .card-content h3 {
+  color: #bbb !important;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body.dark-theme .card-number {
+  color: var(--text-dark) !important;
+  font-weight: bold;
+}
+
+/* Correções específicas para ícones Lucide */
+body.dark-theme [data-lucide] {
+  color: inherit !important;
+}
+
+body.dark-theme .sidebar [data-lucide] {
+  color: #bbb !important;
+}
+
+body.dark-theme .sidebar a:hover [data-lucide],
+body.dark-theme .sidebar a.active [data-lucide] {
+  color: #ff9800 !important;
+}
+
+/* Garantir que elementos específicos mantenham suas cores */
+body.dark-theme .card [data-lucide] {
+  color: #ff9800 !important;
+}
+
+body.dark-theme #receitaHoje [data-lucide] {
+  color: #4caf50 !important;
+}
+
+body.dark-theme .card.low-stock [data-lucide] {
+  color: #ff5722 !important;
+}

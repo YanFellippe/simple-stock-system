@@ -138,3 +138,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Carregar dados iniciais
     carregarProdutos();
 });
+// Função para resetar o formulário
+function resetForm() {
+  const form = document.getElementById("addForm");
+  form.reset();
+}

@@ -3,6 +3,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4f4f4;
   display: flex;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .sidebar {
@@ -31,7 +32,7 @@ body {
   text-decoration: none;
   margin-bottom: 12px;
   padding: 8px;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s ease, color 0.3s ease;
   border-radius: 4px;
 }
 
@@ -61,12 +62,75 @@ body {
   border-radius: 12px;
   margin-bottom: 30px;
   box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Toggle de tema */
+.theme-toggle {
+  position: absolute;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-label {
+  font-size: 20px;
+}
+
+/* Switch do tema */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: 0.3s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
 }
 
 /* Cards de Resumo */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   margin-bottom: 30px;
 }
@@ -79,7 +143,7 @@ body {
   display: flex;
   align-items: center;
   gap: 15px;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s ease, color 0.3s ease;
 }
 
 .card:hover {
@@ -120,6 +184,19 @@ body {
   color: #d32f2f;
 }
 
+#receitaHoje {
+  background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+  border-left: 4px solid #4caf50;
+}
+
+#receitaHoje i {
+  color: #4caf50;
+}
+
+#receitaHoje .card-number {
+  color: #2e7d32;
+}
+
 /* Filtros */
 .filters {
   background: white;
@@ -127,6 +204,7 @@ body {
   border-radius: 12px;
   margin-bottom: 30px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .filters h3 {
@@ -147,7 +225,7 @@ body {
   color: #ff9800;
   border-radius: 20px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
   font-size: 14px;
 }
 
@@ -170,6 +248,7 @@ body {
   padding: 25px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .chart-card.full-width {
@@ -196,12 +275,14 @@ canvas {
   max-height: 300px;
 }
 
-/* Tabela de Estoque Baixo */
+/* Tabelas */
 .low-stock-table {
   background: white;
   padding: 25px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .low-stock-table h3 {
@@ -209,25 +290,30 @@ canvas {
   color: #333;
 }
 
-#tabelaEstoqueBaixo {
+#tabelaEstoqueBaixo,
+#tabelaPedidosRecentes {
   width: 100%;
   border-collapse: collapse;
 }
 
 #tabelaEstoqueBaixo th,
-#tabelaEstoqueBaixo td {
+#tabelaEstoqueBaixo td,
+#tabelaPedidosRecentes th,
+#tabelaPedidosRecentes td {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #eee;
 }
 
-#tabelaEstoqueBaixo th {
+#tabelaEstoqueBaixo th,
+#tabelaPedidosRecentes th {
   background: #f8f9fa;
   font-weight: 600;
   color: #333;
 }
 
-#tabelaEstoqueBaixo tr:hover {
+#tabelaEstoqueBaixo tr:hover,
+#tabelaPedidosRecentes tr:hover {
   background: #f8f9fa;
 }
 
@@ -236,6 +322,7 @@ canvas {
   border-radius: 12px;
   font-size: 12px;
   font-weight: bold;
+  text-transform: uppercase;
 }
 
 .status-critico {
@@ -246,6 +333,27 @@ canvas {
 .status-baixo {
   background: #fff3e0;
   color: #f57c00;
+}
+
+/* Status dos Pedidos */
+.status-pendente {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.status-preparando {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.status-pronto {
+  background: #e8f5e8;
+  color: #388e3c;
+}
+
+.status-entregue {
+  background: #f3e5f5;
+  color: #7b1fa2;
 }
 
 /* Responsividade */
@@ -270,5 +378,16 @@ canvas {
   
   .filter-buttons {
     justify-content: center;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 15px;
+    font-size: 24px;
+  }
+
+  .theme-toggle {
+    position: static;
+    right: auto;
   }
 }

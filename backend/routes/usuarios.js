@@ -92,6 +92,97 @@ router.post('/login', async (req, res) => {
     }
 });
 
+// GET - Buscar perfil do usuário atual (requer autenticação)
+router.get('/perfil', async (req, res) => {
+    try {
+        // Verificar se há token no header
+        const token = req.headers.authorization?.split(' ')[1];
+        
+        if (!token) {
+            return res.status(401).json({ erro: 'Token não fornecido' });
+        }
+        
+        // Verificar e decodificar token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        
+        // Buscar dados atuais do usuário
+        const result = await pool.query(
+            'SELECT id, nome, email, nivel_acesso FROM usuarios WHERE id = $1',
+            [decoded.id]
+        );
+        
+        if (result.rows.length === 0) {
+            return res.status(404).json({ erro: 'Usuário não encontrado' });
+        }
+        
+        res.json(result.rows[0]);
+    } catch (error) {
+        if (error.name === 'JsonWebTokenError') {
+            return res.status(401).json({ erro: 'Token inválido' });
+        }
+        console.error('Erro ao buscar perfil:', error);
+        res.status(500).json({ erro: 'Erro ao buscar perfil' });
+    }
+});
+
+// PUT - Atualizar perfil do usuário atual (requer autenticação)
+router.put('/perfil', async (req, res) => {
+    try {
+        // Verificar se há token no header
+        const token = req.headers.authorization?.split(' ')[1];
+        
+        if (!token) {
+            return res.status(401).json({ erro: 'Token não fornecido' });
+        }
+        
+        // Verificar e decodificar token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        
+        const { nome, email, senha } = req.body;
+        
+        if (!nome || !email) {
+            return res.status(400).json({ erro: 'Nome e email são obrigatórios' });
+        }
+        
+        // Verificar se email já existe para outro usuário
+        const emailExiste = await pool.query(
+            'SELECT id FROM usuarios WHERE email = $1 AND id != $2',
+            [email, decoded.id]
+        );
+        
+        if (emailExiste.rows.length > 0) {
+            return res.status(400).json({ erro: 'Email já está em uso por outro usuário' });
+        }
+        
+        let query = 'UPDATE usuarios SET nome = $1, email = $2';
+        let params = [nome, email];
+        
+        // Se senha foi fornecida, incluir no update
+        if (senha && senha.trim() !== '') {
+            const senhaHash = await bcrypt.hash(senha, 10);
+            query += ', senha_hash = $3 WHERE id = $4 RETURNING id, nome, email, nivel_acesso';
+            params.push(senhaHash, decoded.id);
+        } else {
+            query += ' WHERE id = $3 RETURNING id, nome, email, nivel_acesso';
+            params.push(decoded.id);
+        }
+        
+        const result = await pool.query(query, params);
+        
+        if (result.rows.length === 0) {
+            return res.status(404).json({ erro: 'Usuário não encontrado' });
+        }
+        
+        res.json(result.rows[0]);
+    } catch (error) {
+        if (error.name === 'JsonWebTokenError') {
+            return res.status(401).json({ erro: 'Token inválido' });
+        }
+        console.error('Erro ao atualizar perfil:', error);
+        res.status(500).json({ erro: 'Erro ao atualizar perfil' });
+    }
+});
+
 // PUT - Atualizar usuário
 router.put('/:id', async (req, res) => {
     try {

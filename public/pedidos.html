@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pedidos - Estoque Lanchonete</title>
+  <title>Pedidos Realizados</title>
   <link rel="stylesheet" href="../style/style.css">
   <link rel="stylesheet" href="../style/pedidos.css">
   <link rel="stylesheet" href="../style/theme.css">
+  <link rel="stylesheet" href="../style/form-fixes.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
   <div class="sidebar">
     <img src="../src/Blue and Beige Vintage Retro Illustration Sweet Pancake Badge Logo.png" alt="lanchonete">
@@ -19,17 +22,56 @@
     <a href="./perfil-usuario.html"><i data-lucide="user"></i> Perfil</a>
   </div>
   <div class="main">
-    <div class="header">📋 Gestão de Pedidos</div>
-    <form class="addForm" id="pedidoForm">
-      <h3>Adicionar Pedido</h3>
-      <input type="text" id="pedidoCliente" placeholder="Nome do Cliente" required>
-      <select id="pedidoProduto" required>
-        <option value="">Selecione um produto</option>
-      </select>
-      <input type="number" id="pedidoQtd" placeholder="Quantidade" min="1" required>
-      <div id="precoInfo" class="preco-info"></div>
-      <button type="submit">Criar Pedido</button>
-    </form>
+    <div class="header">Gestão de Pedidos</div>
+    <div class="form-container">
+      <form class="modern-form" id="pedidoForm">
+        <div class="form-header">
+          <i data-lucide="plus-circle"></i>
+          <h3>Adicionar Novo Pedido</h3>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="pedidoCliente">
+              <i data-lucide="user"></i>
+              Nome do Cliente
+            </label>
+            <input type="text" id="pedidoCliente" placeholder="Digite o nome do cliente" required>
+          </div>
+
+          <div class="form-group">
+            <label for="pedidoProduto">
+              <i data-lucide="package"></i>
+              Produto
+            </label>
+            <select id="pedidoProduto" required>
+              <option value="">Selecione um produto</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="pedidoQtd">
+              <i data-lucide="hash"></i>
+              Quantidade
+            </label>
+            <input type="number" id="pedidoQtd" placeholder="1" min="1" required>
+          </div>
+        </div>
+
+        <div id="precoInfo" class="price-preview"></div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">
+            <i data-lucide="check"></i>
+            Criar Pedido
+          </button>
+          <button type="button" class="btn-secondary" onclick="resetForm()">
+            <i data-lucide="x"></i>
+            Limpar
+          </button>
+        </div>
+      </form>
+    </div>
 
     <table id="tabelaPedidos">
       <thead>
@@ -53,7 +95,9 @@
     // Inicializar ícones do Lucide
     lucide.createIcons();
   </script>
+  <script src="../js/auth-check.js"></script>
   <script src="../js/pedidos.js"></script>
   <script src="../js/theme.js"></script>
 </body>
+
 </html>

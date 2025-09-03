@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estoque - Sistema de Lanchonete</title>
+  <title>Estoque de Produtos</title>
   <link rel="stylesheet" href="../style/style.css">
   <link rel="stylesheet" href="../style/theme.css">
+  <link rel="stylesheet" href="../style/form-fixes.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
   <div class="sidebar">
     <img src="../src/Blue and Beige Vintage Retro Illustration Sweet Pancake Badge Logo.png" alt="lanchonete">
@@ -19,7 +22,65 @@
   </div>
   <div class="main">
     <div class="header">Dashboard de Estoque - Produtos</div>
-    <input type="text" id="filterInput" placeholder="Filtrar por nome">
+    <div class="search-container">
+      <div class="search-box">
+        <i data-lucide="search"></i>
+        <input type="text" id="filterInput" placeholder="Buscar produtos por nome...">
+      </div>
+    </div>
+    <div class="form-container">
+      <form class="modern-form" id="addForm">
+        <div class="form-header">
+          <i data-lucide="plus-circle"></i>
+          <h3>Adicionar Novo Item</h3>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="itemNome">
+              <i data-lucide="tag"></i>
+              Nome do Item
+            </label>
+            <input type="text" id="itemNome" placeholder="Digite o nome do produto" required>
+          </div>
+
+          <div class="form-group">
+            <label for="itemQtd">
+              <i data-lucide="hash"></i>
+              Quantidade
+            </label>
+            <input type="number" id="itemQtd" placeholder="0" min="0" required>
+          </div>
+
+          <div class="form-group">
+            <label for="itemCat">
+              <i data-lucide="folder"></i>
+              Categoria
+            </label>
+            <input type="text" id="itemCat" placeholder="Ex: Bebidas, Lanches, Sobremesas" required>
+          </div>
+
+          <div class="form-group">
+            <label for="itemPreco">
+              <i data-lucide="dollar-sign"></i>
+              Preço (R$)
+            </label>
+            <input type="number" id="itemPreco" placeholder="0.00" step="0.01" min="0" required>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">
+            <i data-lucide="check"></i>
+            Adicionar Item
+          </button>
+          <button type="button" class="btn-secondary" onclick="resetForm()">
+            <i data-lucide="x"></i>
+            Limpar
+          </button>
+        </div>
+      </form>
+    </div>
     <table id="estoqueTable">
       <thead>
         <tr>
@@ -37,21 +98,15 @@
     <div class="summary" id="resumoEstoque">
       Carregando resumo...
     </div>
-    <form class="addForm" id="addForm">
-      <h3>Adicionar novo item</h3>
-      <input type="text" id="itemNome" placeholder="Nome do item" required>
-      <input type="number" id="itemQtd" placeholder="Quantidade" required>
-      <input type="text" id="itemCat" placeholder="Categoria" required>
-      <input type="number" id="itemPreco" placeholder="Preço (R$)" step="0.01" min="0" required>
-      <button type="submit">Adicionar</button>
-    </form>
   </div>
-  
+
   <script>
     // Inicializar ícones do Lucide
     lucide.createIcons();
   </script>
+  <script src="../js/auth-check.js"></script>
   <script src="../js/cadastro-estoque.js"></script>
   <script src="../js/theme.js"></script>
 </body>
+
 </html>

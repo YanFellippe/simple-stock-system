@@ -11,10 +11,17 @@
     "setup": "npm run install-backend && npm run init-db",
     "test-api": "node test-api.js"
   },
-  "keywords": ["estoque", "lanchonete", "postgresql", "nodejs", "frontend", "backend"],
+  "keywords": [
+    "estoque",
+    "lanchonete",
+    "postgresql",
+    "nodejs",
+    "frontend",
+    "backend"
+  ],
   "author": "Sistema Lanchonete",
   "license": "MIT",
   "devDependencies": {
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.7.0"
   }
 }

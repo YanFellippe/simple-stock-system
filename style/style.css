@@ -11,6 +11,7 @@ body {
   color: white;
   height: 100vh;
   padding: 20px;
+  position: fixed;
 }
 
 .sidebar img {
@@ -44,7 +45,9 @@ body {
 
 .main {
   flex-grow: 1;
+  margin-left: 240px; /* Largura da sidebar (200px) + padding (20px * 2) */
   padding: 20px;
+  min-height: 100vh;
 }
 .header {
   background-color: #ff9800;
@@ -82,9 +85,13 @@ th {
 }
 form {
   margin-top: 20px;
-  background-color: #fff;
+  background-color: var(--card-bg, #fff);
   padding: 10px;
   border-radius: 5px;
+}
+
+[data-theme="dark"] form {
+  background-color: var(--card-bg) !important;
 }
 input,
 button {
@@ -177,4 +184,469 @@ input:checked + .slider {
 
 input:checked + .slider::before {
   transform: translateX(24px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .main {
+    margin-left: 0;
+  }
+  
+  body {
+    flex-direction: column;
+  }
+}/* =
+==== MODERN FORM STYLES ===== */
+.form-container {
+  background: var(--card-bg, #ffffff);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  margin-bottom: 2rem;
+  overflow: hidden;
+  border: 1px solid var(--border-color, #e5e7eb);
+}
+
+.modern-form {
+  padding: 2rem;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border-color, #e5e7eb);
+}
+
+.form-header i {
+  width: 24px;
+  height: 24px;
+  color: var(--primary-color, #ff9800);
+}
+
+.form-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary, #1f2937);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  min-height: 80px;
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: var(--text-secondary, #374151);
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.form-group label i {
+  width: 16px;
+  height: 16px;
+  color: var(--primary-color, #ff9800);
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid var(--border-color, #e5e7eb);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  background-color: var(--input-bg, #ffffff);
+  color: var(--text-primary, #1f2937);
+  min-height: 48px;
+  height: 48px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.form-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 16px;
+  padding-right: 3rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color, #ff9800);
+  box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.1);
+}
+
+.form-group input::placeholder {
+  color: var(--text-muted, #9ca3af);
+}
+
+.price-preview {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 1px solid #0ea5e9;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  color: #0c4a6e;
+  min-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.btn-primary,
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+  color: white;
+  box-shadow: 0 2px 4px rgba(255, 152, 0, 0.2);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #f57c00 0%, #ef6c00 100%);
+  box-shadow: 0 4px 8px rgba(255, 152, 0, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--card-bg, #ffffff);
+  color: var(--text-secondary, #6b7280);
+  border: 2px solid var(--border-color, #e5e7eb);
+}
+
+.btn-secondary:hover {
+  background: var(--hover-bg, #f9fafb);
+  border-color: var(--text-secondary, #6b7280);
+}
+
+.btn-primary i,
+.btn-secondary i {
+  width: 16px;
+  height: 16px;
+}
+
+/* Dark theme support for forms */
+[data-theme="dark"] .form-container {
+  --card-bg: #1f2937;
+  --border-color: #4b5563;
+  --text-primary: #f9fafb;
+  --text-secondary: #e5e7eb;
+  --text-muted: #9ca3af;
+  --input-bg: #374151;
+  --hover-bg: #4b5563;
+  --primary-color: #fbbf24;
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .modern-form {
+  background-color: var(--card-bg);
+}
+
+[data-theme="dark"] .form-header h3 {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .form-group label {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .price-preview {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  border-color: #3b82f6;
+  color: #dbeafe;
+}
+
+[data-theme="dark"] .btn-secondary {
+  background-color: var(--card-bg);
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background-color: var(--hover-bg);
+  border-color: var(--text-secondary);
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select {
+  background-color: var(--input-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .form-group select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e5e7eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
+
+/* Responsive design for forms */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 1.5rem;
+  }
+  
+  .modern-form {
+    padding: 1.5rem;
+  }
+  
+  .form-group {
+    min-height: 75px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+  
+  .form-header h3 {
+    font-size: 1.125rem;
+  }
+  
+  .modern-form {
+    padding: 1.25rem;
+  }
+  
+  .form-grid {
+    gap: 1.25rem;
+  }
+}/* =
+==== SEARCH BOX STYLES ===== */
+.search-container {
+  margin-bottom: 2rem;
+}
+
+.search-box {
+  position: relative;
+  max-width: 400px;
+}
+
+.search-box i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted, #9ca3af);
+  pointer-events: none;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  border: 2px solid var(--border-color, #e5e7eb);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  background-color: var(--input-bg, #ffffff);
+  color: var(--text-primary, #1f2937);
+  transition: all 0.2s ease;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: var(--primary-color, #ff9800);
+  box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.1);
+}
+
+.search-box input::placeholder {
+  color: var(--text-muted, #9ca3af);
+}
+
+/* Dark theme support for search */
+[data-theme="dark"] .search-box {
+  --input-bg: #374151;
+  --text-primary: #f9fafb;
+  --text-muted: #9ca3af;
+  --border-color: #4b5563;
+  --primary-color: #fbbf24;
+}
+
+[data-theme="dark"] .search-box input {
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .search-box input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+}
+/* Additional dark theme improvements */
+[data-theme="dark"] .form-container {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3) !important;
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+[data-theme="dark"] .form-header {
+  border-bottom-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .form-actions {
+  border-top-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .form-group input::placeholder,
+[data-theme="dark"] .search-box input::placeholder {
+  color: var(--text-muted) !important;
+  opacity: 0.8;
+}
+
+/* Ensure proper contrast for icons in dark theme */
+[data-theme="dark"] .form-header i,
+[data-theme="dark"] .form-group label i {
+  color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .search-box i {
+  color: var(--text-muted) !important;
+}
+
+/* Better button styling in dark theme */
+[data-theme="dark"] .btn-primary {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+  box-shadow: 0 2px 4px rgba(251, 191, 36, 0.2);
+  color: #1f2937 !important;
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  box-shadow: 0 4px 8px rgba(251, 191, 36, 0.3);
+}
+
+[data-theme="dark"] .btn-secondary {
+  background-color: var(--card-bg) !important;
+  color: var(--text-secondary) !important;
+  border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background-color: var(--hover-bg) !important;
+  border-color: var(--text-secondary) !important;
+}/* F
+orce dark theme styles for better visibility */
+[data-theme="dark"] .price-preview {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%) !important;
+  border-color: #3b82f6 !important;
+  color: #dbeafe !important;
+}
+
+/* Ensure all form elements respect dark theme */
+[data-theme="dark"] .modern-form * {
+  color: inherit;
+}
+
+[data-theme="dark"] .form-group label {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .form-header h3 {
+  color: var(--text-primary) !important;
+}
+
+/* Fix select dropdown arrow in dark theme */
+[data-theme="dark"] select option {
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+}
+
+/* Ensure search box works properly in dark theme */
+[data-theme="dark"] .search-box input {
+  background-color: var(--input-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}/* 
+Override any conflicting styles for modern forms */
+.modern-form {
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .modern-form {
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+/* Ensure form container has proper dark theme background */
+[data-theme="dark"] .form-container {
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Fix any remaining white backgrounds in dark theme */
+[data-theme="dark"] * {
+  border-color: var(--border-color, #4b5563);
+}
+
+[data-theme="dark"] .form-container * {
+  color: inherit;
 }

@@ -1,0 +1,182 @@
+/* Fix select alignment - ensure all inputs have same height */
+.form-group input:not([type="checkbox"]):not([type="radio"]),
+.form-group select {
+  height: 48px !important;
+  min-height: 48px !important;
+  padding: 0.75rem 1rem !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  line-height: 1.5 !important;
+}
+
+/* Exclude checkboxes and radios from form fixes */
+.form-group input[type="checkbox"],
+.form-group input[type="radio"] {
+  height: auto !important;
+  min-height: auto !important;
+  padding: 0 !important;
+  display: block !important;
+  align-items: initial !important;
+  line-height: initial !important;
+}
+
+/* Custom select styling */
+.form-group select {
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 1rem center !important;
+  background-size: 16px !important;
+  padding-right: 3rem !important;
+}
+
+/* DARK THEME FIXES */
+[data-theme="dark"] .form-container {
+  background-color: #1f2937 !important;
+  border: 1px solid #4b5563 !important;
+  color: #f9fafb !important;
+}
+
+[data-theme="dark"] .modern-form {
+  background-color: #1f2937 !important;
+  color: #f9fafb !important;
+}
+
+[data-theme="dark"] .form-header h3 {
+  color: #f9fafb !important;
+}
+
+[data-theme="dark"] .form-group label {
+  color: #e5e7eb !important;
+}
+
+[data-theme="dark"] .form-group label i {
+  color: #fbbf24 !important;
+}
+
+[data-theme="dark"] .form-header i {
+  color: #fbbf24 !important;
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #f9fafb !important;
+}
+
+[data-theme="dark"] .form-group input::placeholder {
+  color: #9ca3af !important;
+}
+
+[data-theme="dark"] .form-group select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e5e7eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+}
+
+[data-theme="dark"] .form-group select option {
+  background-color: #374151 !important;
+  color: #f9fafb !important;
+}
+
+[data-theme="dark"] .price-preview {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%) !important;
+  border-color: #3b82f6 !important;
+  color: #dbeafe !important;
+}
+
+[data-theme="dark"] .btn-primary {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+  color: #1f2937 !important;
+}
+
+[data-theme="dark"] .btn-secondary {
+  background-color: #374151 !important;
+  color: #e5e7eb !important;
+  border-color: #4b5563 !important;
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background-color: #4b5563 !important;
+}
+
+/* Search box dark theme */
+[data-theme="dark"] .search-box input {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #f9fafb !important;
+}
+
+[data-theme="dark"] .search-box i {
+  color: #9ca3af !important;
+}/* Price p
+review states */
+.price-preview.error {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%) !important;
+  border-color: #ef4444 !important;
+  color: #dc2626 !important;
+}
+
+.price-preview.success {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%) !important;
+  border-color: #0ea5e9 !important;
+  color: #0c4a6e !important;
+}
+
+/* Dark theme price preview states */
+[data-theme="dark"] .price-preview.error {
+  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%) !important;
+  border-color: #ef4444 !important;
+  color: #fecaca !important;
+}
+
+[data-theme="dark"] .price-preview.success {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%) !important;
+  border-color: #3b82f6 !important;
+  color: #dbeafe !important;
+}
+* Force dark theme with highest specificity */
+html[data-theme="dark"] .form-container,
+body[data-theme="dark"] .form-container,
+[data-theme="dark"] body .form-container {
+  background-color: #1f2937 !important;
+  border-color: #4b5563 !important;
+}
+
+html[data-theme="dark"] .modern-form,
+body[data-theme="dark"] .modern-form,
+[data-theme="dark"] body .modern-form {
+  background-color: #1f2937 !important;
+  color: #f9fafb !important;
+}
+
+html[data-theme="dark"] .form-header h3,
+body[data-theme="dark"] .form-header h3,
+[data-theme="dark"] body .form-header h3 {
+  color: #f9fafb !important;
+}
+
+html[data-theme="dark"] .form-group label,
+body[data-theme="dark"] .form-group label,
+[data-theme="dark"] body .form-group label {
+  color: #e5e7eb !important;
+}
+
+/* Override any white backgrounds */
+[data-theme="dark"] * {
+  background-color: inherit;
+}
+
+[data-theme="dark"] .form-container * {
+  background-color: inherit;
+}
+
+/* Ensure inputs are properly styled */
+html[data-theme="dark"] .form-group input,
+html[data-theme="dark"] .form-group select,
+body[data-theme="dark"] .form-group input,
+body[data-theme="dark"] .form-group select {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #f9fafb !important;
+}

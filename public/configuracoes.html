@@ -4,83 +4,296 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Configurações - Estoque Lanchonete</title>
+  <title>Configurações - Sistema Lanchonete</title>
   <link rel="stylesheet" href="../style/style.css">
   <link rel="stylesheet" href="../style/theme.css">
   <link rel="stylesheet" href="../style/configuracoes.css">
+  <link rel="stylesheet" href="../style/form-fixes.css">
   <script src="https://unpkg.com/lucide@latest"></script>
+
 </head>
 
 <body>
   <div class="sidebar">
     <img src="../src/Blue and Beige Vintage Retro Illustration Sweet Pancake Badge Logo.png" alt="lanchonete">
-    <a href="./dashboard.html" class="active"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+    <a href="./dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a>
     <a href="./estoque.html"><i data-lucide="boxes"></i> Estoque</a>
     <a href="./pedidos.html"><i data-lucide="clipboard-list"></i> Pedidos</a>
-    <a href="./configuracoes.html"><i data-lucide="settings"></i> Configurações</a>
+    <a href="./configuracoes.html" class="active"><i data-lucide="settings"></i> Configurações</a>
     <a href="./perfil-usuario.html"><i data-lucide="user"></i> Perfil</a>
   </div>
+
   <div class="main">
     <div class="header">⚙️ Configurações do Sistema</div>
-    <!-- Alterar Tema -->
-    <section class="config-section themeSwitch">
-      <h3>🎨 Alterar Tema</h3>
-      <label class="switch">
-        <input type="checkbox" id="toggleThemeCheckbox" />
-        <span class="slider"></span>
-      </label>
-    </section>
-    <!-- Alterar Usuário -->
-    <form class="config-section addForm">
-      <h3>👤 Alterar Usuário</h3>
-      <input type="text" placeholder="Novo nome de usuário">
-      <input type="password" placeholder="Nova senha">
-      <button type="submit">Atualizar</button>
-    </form>
-    <!-- Configurações do Banco -->
-    <form class="config-section addForm">
-      <h3>🗄️ Configurações do Banco de Dados</h3>
-      <input type="text" placeholder="Host">
-      <input type="text" placeholder="Usuário">
-      <input type="password" placeholder="Senha">
-      <input type="text" placeholder="Nome do Banco">
-      <button type="submit">Salvar</button>
-    </form>
-    <div class="config-restauration">
-      <!-- Backup e Restauração -->
-      <section class="config-section">
-        <h3>📥 Backup e Restauração</h3>
-        <button onclick="exportarBackup()">Exportar Backup</button>
-        <input type="file" id="inputRestore" accept=".json,.sql" onchange="restaurarBackup(event)">
-      </section>
-      <!-- Limpar Estoque -->
-      <section class="config-section">
-        <h3>🧹 Limpar Estoque (modo seguro)</h3>
-        <button onclick="confirmarLimpeza()">Limpar todos os produtos</button>
-      </section>
-      <!-- Notificações de Estoque Baixo -->
-      <section class="config-section">
-        <h3>🔔 Notificações de Estoque Baixo</h3>
-        <input type="number" id="limiteEstoque" placeholder="Ex: 10 unidades">
-        <button onclick="salvarLimite()">Salvar limite</button>
-      </section>
-      <!-- Logs de ações -->
-      <section class="config-section">
-        <h3>📜 Ações Recentes</h3>
-        <ul id="logRecentes">
-          <li>[08/06 14:32] Produto "Pão" atualizado para 100 unidades</li>
-          <li>[08/06 14:28] Produto "Queijo" removido</li>
-        </ul>
-      </section>
+
+    <!-- Configurações Gerais -->
+    <div class="config-grid">
+
+      <!-- Tema e Aparência -->
+      <div class="config-card">
+        <div class="config-header">
+          <i data-lucide="palette"></i>
+          <h3>Tema e Aparência</h3>
+        </div>
+        <div class="config-content">
+          <div class="theme-selector">
+            <label class="theme-option">
+              <input type="radio" name="theme" value="light" id="themeLight">
+              <div class="theme-preview light">
+                <div class="theme-bar"></div>
+                <div class="theme-content"></div>
+              </div>
+              <span>Claro</span>
+            </label>
+            <label class="theme-option">
+              <input type="radio" name="theme" value="dark" id="themeDark">
+              <div class="theme-preview dark">
+                <div class="theme-bar"></div>
+                <div class="theme-content"></div>
+              </div>
+              <span>Escuro</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Configurações da Lanchonete -->
+      <div class="config-card">
+        <div class="config-header">
+          <i data-lucide="store"></i>
+          <h3>Dados da Lanchonete</h3>
+        </div>
+        <div class="config-content">
+          <form id="lanchoneteForm" class="modern-form">
+            <div class="form-group">
+              <label for="nomeLanchonete">
+                <i data-lucide="building"></i>
+                Nome da Lanchonete
+              </label>
+              <input type="text" id="nomeLanchonete" placeholder="Ex: Lanchonete do João" required>
+            </div>
+            <div class="form-group">
+              <label for="enderecoLanchonete">
+                <i data-lucide="map-pin"></i>
+                Endereço
+              </label>
+              <input type="text" id="enderecoLanchonete" placeholder="Rua, número, bairro" required>
+            </div>
+            <div class="form-group">
+              <label for="telefoneLanchonete">
+                <i data-lucide="phone"></i>
+                Telefone
+              </label>
+              <input type="tel" id="telefoneLanchonete" placeholder="(11) 99999-9999" required>
+            </div>
+            <button type="submit" class="btn-primary">
+              <i data-lucide="save"></i>
+              Salvar Informações
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Alertas de Estoque -->
+      <div class="config-card">
+        <div class="config-header">
+          <i data-lucide="alert-triangle"></i>
+          <h3>Alertas de Estoque</h3>
+        </div>
+        <div class="config-content">
+          <form id="estoqueForm" class="modern-form">
+            <div class="form-group">
+              <label for="limiteEstoqueBaixo">
+                <i data-lucide="package-x"></i>
+                Limite para Estoque Baixo
+              </label>
+              <input type="number" id="limiteEstoqueBaixo" placeholder="10" min="1" required>
+              <small>Produtos com quantidade abaixo deste valor serão destacados</small>
+            </div>
+            <div class="form-group">
+              <label for="limiteEstoqueCritico">
+                <i data-lucide="alert-circle"></i>
+                Limite para Estoque Crítico
+              </label>
+              <input type="number" id="limiteEstoqueCritico" placeholder="5" min="1" required>
+              <small>Produtos com quantidade abaixo deste valor aparecerão em vermelho</small>
+            </div>
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="notificacoesEmail">
+                <span class="checkmark"></span>
+                Receber notificações por email
+              </label>
+            </div>
+            <button type="submit" class="btn-primary">
+              <i data-lucide="bell"></i>
+              Salvar Configurações
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Configurações de Pedidos -->
+      <div class="config-card">
+        <div class="config-header">
+          <i data-lucide="clipboard-list"></i>
+          <h3>Configurações de Pedidos</h3>
+        </div>
+        <div class="config-content">
+          <form id="pedidosForm" class="modern-form">
+            <div class="form-group">
+              <label for="tempoPreparoPadrao">
+                <i data-lucide="clock"></i>
+                Tempo de Preparo Padrão (minutos)
+              </label>
+              <input type="number" id="tempoPreparoPadrao" placeholder="15" min="1" required>
+            </div>
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="autoConfirmarPedidos">
+                <span class="checkmark"></span>
+                Confirmar pedidos automaticamente
+              </label>
+            </div>
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="permitirPedidosSemEstoque">
+                <span class="checkmark"></span>
+                Permitir pedidos mesmo sem estoque suficiente
+              </label>
+            </div>
+            <button type="submit" class="btn-primary">
+              <i data-lucide="settings"></i>
+              Salvar Configurações
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Backup e Segurança -->
+      <div class="config-card">
+        <div class="config-header">
+          <i data-lucide="shield"></i>
+          <h3>Backup e Segurança</h3>
+        </div>
+        <div class="config-content">
+          <div class="backup-actions">
+            <button class="btn-secondary" onclick="exportarBackup()">
+              <i data-lucide="download"></i>
+              Exportar Backup
+            </button>
+            <div class="file-input-wrapper">
+              <input type="file" id="inputRestore" accept=".json" onchange="restaurarBackup(event)">
+              <button class="btn-secondary" onclick="document.getElementById('inputRestore').click()">
+                <i data-lucide="upload"></i>
+                Importar Backup
+              </button>
+            </div>
+          </div>
+          <div class="backup-info">
+            <p><strong>Último backup:</strong> <span id="ultimoBackup">Nunca</span></p>
+            <p><strong>Tamanho do banco:</strong> <span id="tamanhoBanco">Calculando...</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Relatórios e Estatísticas -->
+      <div class="config-card">
+        <div class="config-header">
+          <i data-lucide="bar-chart-3"></i>
+          <h3>Relatórios</h3>
+        </div>
+        <div class="config-content">
+          <div class="report-actions">
+            <button class="btn-secondary" onclick="gerarRelatorioVendas()">
+              <i data-lucide="trending-up"></i>
+              Relatório de Vendas
+            </button>
+            <button class="btn-secondary" onclick="gerarRelatorioEstoque()">
+              <i data-lucide="package"></i>
+              Relatório de Estoque
+            </button>
+            <button class="btn-secondary" onclick="gerarRelatorioProdutos()">
+              <i data-lucide="star"></i>
+              Produtos Mais Vendidos
+            </button>
+          </div>
+          <div class="report-period">
+            <label for="periodoRelatorio">Período:</label>
+            <select id="periodoRelatorio">
+              <option value="7">Últimos 7 dias</option>
+              <option value="30">Últimos 30 dias</option>
+              <option value="90">Últimos 3 meses</option>
+              <option value="365">Último ano</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
     </div>
+
+    <!-- Logs de Atividade -->
+    <div class="config-card full-width">
+      <div class="config-header">
+        <i data-lucide="activity"></i>
+        <h3>Atividade Recente do Sistema</h3>
+        <button class="btn-secondary small" onclick="limparLogs()">
+          <i data-lucide="trash-2"></i>
+          Limpar
+        </button>
+      </div>
+      <div class="config-content">
+        <div class="logs-container">
+          <ul id="logRecentes">
+            <li class="log-info">Sistema iniciado com sucesso</li>
+            <li class="log-success">Configurações carregadas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zona de Perigo -->
+    <div class="config-card danger-zone full-width">
+      <div class="config-header">
+        <i data-lucide="alert-octagon"></i>
+        <h3>Zona de Perigo</h3>
+      </div>
+      <div class="config-content">
+        <div class="danger-actions">
+          <button class="btn-danger" onclick="limparTodosDados()">
+            <i data-lucide="trash"></i>
+            Limpar Todos os Dados
+          </button>
+          <button class="btn-danger" onclick="resetarConfiguracoes()">
+            <i data-lucide="rotate-ccw"></i>
+            Resetar Configurações
+          </button>
+        </div>
+        <p class="danger-warning">
+          <i data-lucide="alert-triangle"></i>
+          Estas ações são irreversíveis. Certifique-se de ter um backup antes de prosseguir.
+        </p>
+      </div>
+    </div>
+
   </div>
 
   <script>
+    // Aplicar tema imediatamente antes de qualquer coisa
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.body.classList.remove('dark-theme');
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+
     // Inicializar ícones do Lucide
     lucide.createIcons();
   </script>
+  <script src="../js/auth-check.js"></script>
   <script src="../js/configuracoes.js"></script>
-  <script src="../js/theme.js"></script>
 </body>
 
 </html>

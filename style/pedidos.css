@@ -12,6 +12,7 @@ body {
   color: white;
   height: 100vh;
   padding: 20px;
+  position: fixed;
 }
 
 .sidebar img {
@@ -45,7 +46,9 @@ body {
 
 .main {
   flex-grow: 1;
+  margin-left: 240px; /* Largura da sidebar (200px) + padding (20px * 2) */
   padding: 20px;
+  min-height: 100vh;
 }
 
 .header {
@@ -99,23 +102,6 @@ button {
 }
 
 /* Estilos específicos para pedidos */
-.preco-info {
-  margin-top: 10px;
-  padding: 8px;
-  background-color: #f0f8ff;
-  border-radius: 4px;
-  font-weight: bold;
-  min-height: 20px;
-}
-
-#pedidoProduto {
-  width: 100%;
-  padding: 8px;
-  margin: 5px 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
 .status-select {
   padding: 4px 8px;
   border: 1px solid #ddd;
@@ -149,8 +135,32 @@ table td:first-child {
   text-align: left;
 }
 
-.addForm select,
-.addForm input {
-  width: 100%;
-  max-width: 300px;
+/* Responsividade */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .main {
+    margin-left: 0;
+  }
+  
+  body {
+    flex-direction: column;
+  }
+  
+  table {
+    font-size: 14px;
+  }
+  
+  th, td {
+    padding: 8px 4px;
+  }
+  
+  .actions {
+    flex-direction: column;
+    gap: 5px;
+  }
 }

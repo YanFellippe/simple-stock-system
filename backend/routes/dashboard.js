@@ -234,4 +234,106 @@ router.get('/tendencias', async (req, res) => {
     }
 });
 
+// GET - Dados de compras e receita por período
+router.get('/compras-receita', async (req, res) => {
+    try {
+        const dias = parseInt(req.query.dias) || 7;
+        
+        const result = await pool.query(`
+            SELECT 
+                DATE(data_pedido) as data,
+                COUNT(*) as total_pedidos,
+                SUM(valor_total) as receita_total
+            FROM pedidos 
+            WHERE data_pedido >= CURRENT_DATE - INTERVAL '${dias} days'
+            GROUP BY DATE(data_pedido)
+            ORDER BY data
+        `);
+
+        // Preencher dias sem pedidos com valores zero
+        const dados = {};
+        const hoje = new Date();
+        
+        for (let i = dias - 1; i >= 0; i--) {
+            const data = new Date(hoje);
+            data.setDate(hoje.getDate() - i);
+            const dataStr = data.toISOString().split('T')[0];
+            dados[dataStr] = { pedidos: 0, receita: 0 };
+        }
+
+        // Preencher com dados reais
+        result.rows.forEach(row => {
+            const dataStr = row.data.toISOString().split('T')[0];
+            if (dados[dataStr]) {
+                dados[dataStr].pedidos = parseInt(row.total_pedidos);
+                dados[dataStr].receita = parseFloat(row.receita_total);
+            }
+        });
+
+        const labels = Object.keys(dados).map(data => {
+            const d = new Date(data);
+            return d.toLocaleDateString('pt-BR', { 
+                day: '2-digit', 
+                month: '2-digit' 
+            });
+        });
+
+        const dadosPedidos = Object.values(dados).map(d => d.pedidos);
+        const dadosReceita = Object.values(dados).map(d => d.receita);
+
+        res.json({
+            labels,
+            pedidos: dadosPedidos,
+            receita: dadosReceita
+        });
+    } catch (error) {
+        console.error('Erro ao buscar dados de compras e receita:', error);
+        res.status(500).json({ erro: 'Erro ao buscar dados de compras e receita' });
+    }
+});
+
+// GET - Produtos mais vendidos
+router.get('/produtos-vendidos', async (req, res) => {
+    try {
+        const result = await pool.query(`
+            SELECT 
+                produto_nome,
+                SUM(quantidade) as total_vendido,
+                COUNT(*) as total_pedidos,
+                SUM(valor_total) as receita_total
+            FROM pedidos 
+            GROUP BY produto_nome
+            ORDER BY total_vendido DESC
+            LIMIT 10
+        `);
+
+        res.json(result.rows);
+    } catch (error) {
+        console.error('Erro ao buscar produtos mais vendidos:', error);
+        res.status(500).json({ erro: 'Erro ao buscar produtos mais vendidos' });
+    }
+});
+
+// GET - Resumo de receita
+router.get('/resumo-receita', async (req, res) => {
+    try {
+        const [receitaTotal, receitaHoje, receitaMes, pedidosHoje] = await Promise.all([
+            pool.query('SELECT COALESCE(SUM(valor_total), 0) as total FROM pedidos'),
+            pool.query('SELECT COALESCE(SUM(valor_total), 0) as total FROM pedidos WHERE DATE(data_pedido) = CURRENT_DATE'),
+            pool.query('SELECT COALESCE(SUM(valor_total), 0) as total FROM pedidos WHERE data_pedido >= DATE_TRUNC(\'month\', CURRENT_DATE)'),
+            pool.query('SELECT COUNT(*) as total FROM pedidos WHERE DATE(data_pedido) = CURRENT_DATE')
+        ]);
+
+        res.json({
+            receitaTotal: parseFloat(receitaTotal.rows[0].total),
+            receitaHoje: parseFloat(receitaHoje.rows[0].total),
+            receitaMes: parseFloat(receitaMes.rows[0].total),
+            pedidosHoje: parseInt(pedidosHoje.rows[0].total)
+        });
+    } catch (error) {
+        console.error('Erro ao buscar resumo de receita:', error);
+        res.status(500).json({ erro: 'Erro ao buscar resumo de receita' });
+    }
+});
+
 module.exports = router;

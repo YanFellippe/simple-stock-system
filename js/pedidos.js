@@ -83,14 +83,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const total = preco * quantidade;
       
       if (quantidade > estoque) {
-        precoInfo.innerHTML = `<span style="color: red;">❌ Estoque insuficiente! Disponível: ${estoque}</span>`;
+        precoInfo.innerHTML = `<i data-lucide="alert-triangle"></i> Estoque insuficiente! Disponível: ${estoque} unidades`;
+        precoInfo.className = "price-preview error";
         quantidadeInput.setCustomValidity("Quantidade maior que o estoque disponível");
       } else {
-        precoInfo.innerHTML = `💰 Total: R$ ${total.toFixed(2)} | Estoque disponível: ${estoque}`;
+        precoInfo.innerHTML = `<i data-lucide="calculator"></i> Total: R$ ${total.toFixed(2)} • Estoque: ${estoque} unidades`;
+        precoInfo.className = "price-preview success";
         quantidadeInput.setCustomValidity("");
       }
+      // Reinicializar ícones após mudança de conteúdo
+      lucide.createIcons();
     } else {
       precoInfo.innerHTML = "";
+      precoInfo.className = "price-preview";
       quantidadeInput.setCustomValidity("");
     }
   }
@@ -208,3 +213,17 @@ document.addEventListener("DOMContentLoaded", () => {
   carregarProdutos();
   carregarPedidos();
 });
+
+// Função para resetar o formulário
+function resetForm() {
+  const form = document.getElementById("pedidoForm");
+  const precoInfo = document.getElementById("precoInfo");
+  
+  form.reset();
+  precoInfo.innerHTML = "";
+  precoInfo.className = "price-preview";
+  
+  // Limpar validações customizadas
+  const quantidadeInput = document.getElementById("pedidoQtd");
+  quantidadeInput.setCustomValidity("");
+}

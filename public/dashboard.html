@@ -21,7 +21,16 @@
   </div>
 
   <div class="main">
-    <div class="header">📊 Painel da Lanchonete</div>
+    <div class="header">
+      Painel da Empresa
+      <div class="theme-toggle">
+        <!-- <label class="switch">
+          <input type="checkbox" id="toggleThemeCheckbox">
+          <span class="slider"></span>
+        </label>
+        <span class="theme-label">🌙</span> -->
+      </div>
+    </div>
     
     <!-- Cards de Resumo -->
     <div class="cards">
@@ -50,6 +59,13 @@
         <i data-lucide="activity"></i>
         <div class="card-content">
           <h3>Movimentações Hoje</h3>
+          <span class="card-number">...</span>
+        </div>
+      </div>
+      <div class="card" id="receitaHoje">
+        <i data-lucide="dollar-sign"></i>
+        <div class="card-content">
+          <h3>Receita Hoje</h3>
           <span class="card-number">...</span>
         </div>
       </div>
@@ -112,6 +128,33 @@
         </div>
         <canvas id="movimentacoesChart"></canvas>
       </div>
+
+      <!-- Gráfico de Compras e Receita -->
+      <div class="chart-card full-width">
+        <div class="chart-header">
+          <h3>💰 Compras e Receita por Período</h3>
+          <p>Pedidos realizados e receita gerada</p>
+        </div>
+        <canvas id="comprasReceitaChart"></canvas>
+      </div>
+
+      <!-- Gráfico de Status dos Pedidos -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <h3>📋 Status dos Pedidos</h3>
+          <p>Distribuição dos pedidos por status</p>
+        </div>
+        <canvas id="statusPedidosChart"></canvas>
+      </div>
+
+      <!-- Gráfico de Produtos Mais Vendidos -->
+      <div class="chart-card">
+        <div class="chart-header">
+          <h3>🏆 Produtos Mais Vendidos</h3>
+          <p>Top 5 produtos por quantidade vendida</p>
+        </div>
+        <canvas id="produtosVendidosChart"></canvas>
+      </div>
     </div>
 
     <!-- Tabela de Produtos com Estoque Baixo -->
@@ -131,11 +174,32 @@
         </tbody>
       </table>
     </div>
+
+    <!-- Tabela de Pedidos Recentes -->
+    <div class="low-stock-table">
+      <h3>📋 Pedidos Recentes</h3>
+      <table id="tabelaPedidosRecentes">
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Valor Total</th>
+            <th>Status</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Conteúdo dinâmico -->
+        </tbody>
+      </table>
+    </div>
   </div>
   <script>
     // Inicializar ícones do Lucide
     lucide.createIcons();
   </script>
+  <script src="../js/auth-check.js"></script>
   <script src="../js/dashboard.js"></script>
   <script src="../js/theme.js"></script>
 </body>

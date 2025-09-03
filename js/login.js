@@ -98,30 +98,119 @@ closeBtn.addEventListener("click", () => {
 });
 
 // Validação e redirecionamento do formulário de cadastro
-signupForm.addEventListener("submit", (e) => {
+signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("signupEmail").value.trim();
   const password = document.getElementById("signupPassword").value.trim();
-  if (name && email && password && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    // Simula sucesso no cadastro e redireciona
-    window.location.href = "./public/dashboard.html";
-  } else {
+  
+  // Resetar erro
+  signupError.style.display = "none";
+  
+  if (!name || !email || !password) {
+    signupError.textContent = "Todos os campos são obrigatórios";
+    signupError.style.display = "block";
+    return;
+  }
+  
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    signupError.textContent = "Email inválido";
+    signupError.style.display = "block";
+    return;
+  }
+  
+  if (password.length < 6) {
+    signupError.textContent = "A senha deve ter pelo menos 6 caracteres";
+    signupError.style.display = "block";
+    return;
+  }
+  
+  try {
+    const response = await fetch('/api/usuarios', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        nome: name,
+        email: email,
+        senha: password,
+        nivel_acesso: 'funcionario'
+      })
+    });
+    
+    if (response.ok) {
+      // Cadastro realizado com sucesso, agora fazer login automático
+      await realizarLogin(email, password);
+    } else {
+      const error = await response.json();
+      signupError.textContent = error.erro || "Erro ao criar conta";
+      signupError.style.display = "block";
+    }
+  } catch (error) {
+    console.error('Erro no cadastro:', error);
+    signupError.textContent = "Erro de conexão. Tente novamente.";
     signupError.style.display = "block";
   }
 });
+
 // Validação e redirecionamento do formulário de login
-signinForm.addEventListener("submit", (e) => {
+signinForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const email = document.getElementById("loginEmail").value.trim();
   const password = document.getElementById("loginPassword").value.trim();
 
-  if (email && password && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    // Simula sucesso no login e redireciona
-    window.location.href = "./public/dashboard.html";
-  } else {
+  // Resetar erro
+  signinError.style.display = "none";
+  
+  if (!email || !password) {
+    signinError.textContent = "Email e senha são obrigatórios";
+    signinError.style.display = "block";
+    return;
+  }
+  
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    signinError.textContent = "Email inválido";
+    signinError.style.display = "block";
+    return;
+  }
+  
+  await realizarLogin(email, password);
+});
+
+// Função para realizar login
+async function realizarLogin(email, password) {
+  try {
+    const response = await fetch('/api/usuarios/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        senha: password
+      })
+    });
+    
+    if (response.ok) {
+      const data = await response.json();
+      
+      // Salvar token e dados do usuário no localStorage
+      localStorage.setItem('authToken', data.token);
+      localStorage.setItem('userData', JSON.stringify(data.usuario));
+      
+      // Redirecionar para o dashboard
+      window.location.href = "./public/dashboard.html";
+    } else {
+      const error = await response.json();
+      signinError.textContent = error.erro || "Credenciais inválidas";
+      signinError.style.display = "block";
+    }
+  } catch (error) {
+    console.error('Erro no login:', error);
+    signinError.textContent = "Erro de conexão. Tente novamente.";
     signinError.style.display = "block";
   }
-});
+}
 
 lucide.createIcons();
