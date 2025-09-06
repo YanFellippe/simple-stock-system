@@ -98,9 +98,36 @@
   background: #1f2937;
 }
 
+.theme-preview.pastel {
+  background: linear-gradient(135deg, #faf9f7 0%, #f5f3f0 100%);
+  border: 2px solid #e2e8f0;
+}
+
+.theme-preview.pastel-green {
+  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+  border: 2px solid #d1fae5;
+}
+
+.theme-preview.pastel-orange {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef7ed 100%);
+  border: 2px solid #fed7aa;
+}
+
 .theme-preview .theme-bar {
   height: 12px;
   background: var(--primary-color, #ff9800);
+}
+
+.theme-preview.pastel .theme-bar {
+  background: linear-gradient(90deg, #bfdbfe, #a7f3d0, #c7d2fe, #ddd6fe);
+}
+
+.theme-preview.pastel-green .theme-bar {
+  background: linear-gradient(90deg, #bbf7d0, #a7f3d0, #6ee7b7, #5eead4);
+}
+
+.theme-preview.pastel-orange .theme-bar {
+  background: linear-gradient(90deg, #fde68a, #fcd34d, #fef08a, #fb7185);
 }
 
 .theme-preview.light .theme-content {
@@ -111,6 +138,21 @@
 .theme-preview.dark .theme-content {
   height: 28px;
   background: #374151;
+}
+
+.theme-preview.pastel .theme-content {
+  height: 28px;
+  background: linear-gradient(135deg, #e0f2fe 0%, #cffafe 100%);
+}
+
+.theme-preview.pastel-green .theme-content {
+  height: 28px;
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+}
+
+.theme-preview.pastel-orange .theme-content {
+  height: 28px;
+  background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
 }
 
 .theme-option span {
@@ -458,42 +500,10 @@
     width: 100%;
     justify-content: center;
   }
-}/* ===== C
-ORREÇÕES PARA SIDEBAR E TEMA ===== */
-/* Garantir que a sidebar seja sempre visível */
-.sidebar {
-  background-color: #333 !important;
-  color: white !important;
-  z-index: 100;
 }
 
-.sidebar a {
-  color: white !important;
-}
-
-.sidebar a:hover,
-.sidebar a.active {
-  background-color: #555 !important;
-}
-
-/* Correções específicas para tema escuro */
-[data-theme="dark"] .sidebar,
-body.dark-theme .sidebar {
-  background-color: #333 !important;
-  color: white !important;
-}
-
-[data-theme="dark"] .sidebar a,
-body.dark-theme .sidebar a {
-  color: white !important;
-}
-
-[data-theme="dark"] .sidebar a:hover,
-[data-theme="dark"] .sidebar a.active,
-body.dark-theme .sidebar a:hover,
-body.dark-theme .sidebar a.active {
-  background-color: #555 !important;
-}
+/* ===== CORREÇÕES PARA SIDEBAR E TEMA ===== */
+/* Sidebar usa estilos globais do theme.css e style.css */
 
 /* Garantir que o main tenha o fundo correto */
 [data-theme="dark"] .main,
@@ -563,25 +573,8 @@ body.dark-theme .main {
   background-color: #f4f4f4;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
-/* ===== CORREÇÕES PARA TEMA - MANTER SIDEBAR PADRÃO ===== */
-/* Apenas garantir que a sidebar mantenha as cores corretas no tema escuro */
-[data-theme="dark"] .sidebar,
-body.dark-theme .sidebar {
-  background-color: #333 !important;
-  color: white !important;
-}
-
-[data-theme="dark"] .sidebar a,
-body.dark-theme .sidebar a {
-  color: white !important;
-}
-
-[data-theme="dark"] .sidebar a:hover,
-[data-theme="dark"] .sidebar a.active,
-body.dark-theme .sidebar a:hover,
-body.dark-theme .sidebar a.active {
-  background-color: #555 !important;
-}
+/* ===== CORREÇÕES PARA TEMA ===== */
+/* Sidebar usa estilos do theme.css para todos os temas */
 
 /* Tema escuro para o main */
 [data-theme="dark"] .main,
@@ -655,4 +648,38 @@ body.dark-theme .btn-primary i {
 body.dark-theme .btn-primary:hover i {
   color: #1f2937 !important;
   background: none !important;
+}/* =
+==== CORREÇÕES ESPECÍFICAS PARA TEMAS NA SIDEBAR ===== */
+/* Garantir que os estilos dos temas sejam aplicados corretamente */
+
+/* Tema claro (padrão) */
+body:not(.dark-theme):not(.pastel-theme) .sidebar a {
+  color: white;
+}
+
+/* Tema escuro */
+body.dark-theme .sidebar a {
+  color: #bbb;
+}
+
+body.dark-theme .sidebar a:hover,
+body.dark-theme .sidebar a.active {
+  color: #ff9800;
+}
+
+/* Tema pastel */
+body.pastel-theme .sidebar a {
+  color: var(--pastel-text) !important;
+}
+
+body.pastel-theme .sidebar a:hover {
+  color: #0f766e !important;
+}
+
+body.pastel-theme .sidebar a.active {
+  color: #0c4a6e !important;
+}
+
+body.pastel-theme .sidebar [data-lucide] {
+  color: inherit !important;
 }

@@ -1,5 +1,3 @@
-/* ===== SISTEMA DE NOTIFICAÇÕES PERSONALIZADAS ===== */
-
 /* Container para notificações */
 .notifications-container {
   position: fixed;
@@ -115,7 +113,7 @@
   to { transform: scaleX(0); }
 }
 
-/* ===== TIPOS DE NOTIFICAÇÃO ===== */
+/* TIPOS DE NOTIFICAÇÃO  */
 
 /* Sucesso */
 .notification.success {
@@ -205,7 +203,7 @@
   background: #3b82f6;
 }
 
-/* ===== TEMA ESCURO ===== */
+/* TEMA ESCURO */
 [data-theme="dark"] .notification,
 body.dark-theme .notification {
   background: #1f2937;
@@ -335,4 +333,598 @@ body.dark-theme .btn-danger:hover i {
   color: white !important;
   background-color: transparent !important;
   background: none !important;
+}/* ===== 
+TEMA PASTEL - NOTIFICAÇÕES ===== */
+body.pastel-theme .notification {
+  background: var(--pastel-card);
+  border: 2px solid var(--pastel-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(168, 216, 168, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+body.pastel-theme .notification-content h4 {
+  color: var(--pastel-text);
+}
+
+body.pastel-theme .notification-content p {
+  color: var(--pastel-text-light);
+}
+
+/* Tipos de notificação - Tema Pastel */
+body.pastel-theme .notification.success {
+  background: linear-gradient(135deg, var(--pastel-accent-teal) 0%, #6ee7b7 100%);
+  border-left-color: #10b981;
+  border-color: #34d399;
+}
+
+body.pastel-theme .notification.success .notification-icon {
+  color: #047857;
+}
+
+body.pastel-theme .notification.success h4 {
+  color: #064e3b;
+}
+
+body.pastel-theme .notification.error {
+  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+  border-left-color: #f97316;
+  border-color: #fb923c;
+}
+
+body.pastel-theme .notification.error .notification-icon {
+  color: #c2410c;
+}
+
+body.pastel-theme .notification.error h4 {
+  color: #9a3412;
+}
+
+body.pastel-theme .notification.warning {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-left-color: #f59e0b;
+  border-color: #fbbf24;
+}
+
+body.pastel-theme .notification.warning .notification-icon {
+  color: #d97706;
+}
+
+body.pastel-theme .notification.warning h4 {
+  color: #92400e;
+}
+
+body.pastel-theme .notification.info {
+  background: linear-gradient(135deg, var(--pastel-accent-blue) 0%, #93c5fd 100%);
+  border-left-color: #3b82f6;
+  border-color: #60a5fa;
+}
+
+body.pastel-theme .notification.info .notification-icon {
+  color: #1e40af;
+}
+
+body.pastel-theme .notification.info h4 {
+  color: #1e3a8a;
+}
+
+/* Botão de fechar - Tema Pastel */
+body.pastel-theme .notification-close {
+  color: var(--pastel-text-light);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+body.pastel-theme .notification-close:hover {
+  background: rgba(255, 255, 255, 1);
+  color: var(--pastel-text);
+  transform: scale(1.1);
+}
+
+/* Barra de progresso - Tema Pastel */
+body.pastel-theme .notification-progress {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+body.pastel-theme .notification.success .notification-progress-bar {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+body.pastel-theme .notification.error .notification-progress-bar {
+  background: linear-gradient(90deg, #f97316, #fb923c);
+}
+
+body.pastel-theme .notification.warning .notification-progress-bar {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+body.pastel-theme .notification.info .notification-progress-bar {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+/* Efeitos especiais - Tema Pastel */
+body.pastel-theme .notification::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--pastel-accent-blue), var(--pastel-accent-cyan), var(--pastel-accent-indigo), var(--pastel-accent-purple));
+  opacity: 0.6;
+}
+
+body.pastel-theme .notification:hover::before {
+  animation: rainbow-flow 2s linear infinite;
+}
+
+@keyframes rainbow-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Responsividade - Tema Pastel */
+@media (max-width: 480px) {
+  body.pastel-theme .notifications-container {
+    left: 10px;
+    right: 10px;
+    max-width: none;
+  }
+  
+  body.pastel-theme .notification {
+    padding: 12px 16px;
+    border-radius: 12px;
+  }
+}/*
+ ===== TEMA CLARO - NOTIFICAÇÕES ===== */
+body:not(.dark-theme):not(.pastel-theme) .notification {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+body:not(.dark-theme):not(.pastel-theme) .notification-content h4 {
+  color: #1e293b;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .notification-content p {
+  color: #64748b;
+}
+
+/* Tipos de notificação - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) .notification.success {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  border-left-color: #22c55e;
+  border-color: #34d399;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .notification.success .notification-icon {
+  color: #15803d;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .notification.success h4 {
+  color: #14532d;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .notification.error {
+  background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+  border-left-color: #ef4444;
+  border-color: #f87171;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .notification.error .notification-icon {
+  color: #b91c1c;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .notification.error h4 {
+  color: #7f1d1d;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .notification.warning {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-left-color: #f59e0b;
+  border-color: #fbbf24;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .notification.warning .notification-icon {
+  color: #d97706;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .notification.warning h4 {
+  color: #92400e;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .notification.info {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border-left-color: #3b82f6;
+  border-color: #60a5fa;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .notification.info .notification-icon {
+  color: #1d4ed8;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .notification.info h4 {
+  color: #1e3a8a;
+}
+
+/* ===== TEMA ESCURO - NOTIFICAÇÕES ===== */
+body.dark-theme .notification {
+  background: #1f2937;
+  border: 2px solid #374151;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+body.dark-theme .notification-content h4 {
+  color: #f9fafb;
+}
+
+body.dark-theme .notification-content p {
+  color: #d1d5db;
+}
+
+/* Tipos de notificação - Tema Escuro */
+body.dark-theme .notification.success {
+  background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+  border-left-color: #059669;
+  border-color: #10b981;
+}
+
+body.dark-theme .notification.success .notification-icon {
+  color: #34d399;
+}
+
+body.dark-theme .notification.success h4 {
+  color: #a7f3d0;
+}
+
+body.dark-theme .notification.error {
+  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+  border-left-color: #dc2626;
+  border-color: #ef4444;
+}
+
+body.dark-theme .notification.error .notification-icon {
+  color: #f87171;
+}
+
+body.dark-theme .notification.error h4 {
+  color: #fecaca;
+}
+
+body.dark-theme .notification.warning {
+  background: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+  border-left-color: #d97706;
+  border-color: #f59e0b;
+}
+
+body.dark-theme .notification.warning .notification-icon {
+  color: #fbbf24;
+}
+
+body.dark-theme .notification.warning h4 {
+  color: #fed7aa;
+}
+
+body.dark-theme .notification.info {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  border-left-color: #2563eb;
+  border-color: #3b82f6;
+}
+
+body.dark-theme .notification.info .notification-icon {
+  color: #60a5fa;
+}
+
+body.dark-theme .notification.info h4 {
+  color: #dbeafe;
+}
+
+/* Botão de fechar - Tema Escuro */
+body.dark-theme .notification-close {
+  color: #9ca3af;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+body.dark-theme .notification-close:hover {
+  background: rgba(0, 0, 0, 0.5);
+  color: #f9fafb;
+  transform: scale(1.1);
+}
+
+/* Barra de progresso - Tema Escuro */
+body.dark-theme .notification-progress {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .notification.success .notification-progress-bar {
+  background: linear-gradient(90deg, #059669, #10b981);
+}
+
+body.dark-theme .notification.error .notification-progress-bar {
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+}
+
+body.dark-theme .notification.warning .notification-progress-bar {
+  background: linear-gradient(90deg, #d97706, #f59e0b);
+}
+
+body.dark-theme .notification.info .notification-progress-bar {
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+}
+
+/* Efeitos especiais - Tema Escuro */
+body.dark-theme .notification::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #f59e0b, #06b6d4, #8b5cf6, #ec4899);
+  opacity: 0.8;
+}
+
+body.dark-theme .notification:hover::before {
+  animation: rainbow-flow 2s linear infinite;
+}
+
+/* Efeitos especiais - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) .notification::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4, #8b5cf6, #ec4899);
+  opacity: 0.6;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .notification:hover::before {
+  animation: rainbow-flow 2s linear infinite;
+}
+/* =
+==== TEMA PASTEL VERDE ===== */
+[data-theme="pastel-green"] .notification,
+body.pastel-green-theme .notification {
+  background: #ffffff;
+  box-shadow: 0 10px 25px -5px rgba(134, 239, 172, 0.3), 0 10px 10px -5px rgba(134, 239, 172, 0.2);
+  border: 2px solid var(--pastel-green-border);
+}
+
+[data-theme="pastel-green"] .notification.success,
+body.pastel-green-theme .notification.success {
+  background: linear-gradient(135deg, var(--pastel-green-accent-light) 0%, #86efac 100%);
+  border-color: var(--pastel-green-primary);
+}
+
+[data-theme="pastel-green"] .notification.success .notification-title,
+body.pastel-green-theme .notification.success .notification-title {
+  color: #14532d;
+}
+
+[data-theme="pastel-green"] .notification.success .notification-message,
+body.pastel-green-theme .notification.success .notification-message {
+  color: #166534;
+}
+
+[data-theme="pastel-green"] .notification.success .notification-progress,
+body.pastel-green-theme .notification.success .notification-progress {
+  background: var(--pastel-green-primary);
+}
+
+[data-theme="pastel-green"] .notification.error,
+body.pastel-green-theme .notification.error {
+  background: linear-gradient(135deg, #fecaca 0%, #f87171 100%);
+  border-color: #ef4444;
+}
+
+[data-theme="pastel-green"] .notification.error .notification-title,
+body.pastel-green-theme .notification.error .notification-title {
+  color: #7f1d1d;
+}
+
+[data-theme="pastel-green"] .notification.error .notification-message,
+body.pastel-green-theme .notification.error .notification-message {
+  color: #991b1b;
+}
+
+[data-theme="pastel-green"] .notification.error .notification-progress,
+body.pastel-green-theme .notification.error .notification-progress {
+  background: #ef4444;
+}
+
+[data-theme="pastel-green"] .notification.warning,
+body.pastel-green-theme .notification.warning {
+  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+  border-color: #f59e0b;
+}
+
+[data-theme="pastel-green"] .notification.warning .notification-title,
+body.pastel-green-theme .notification.warning .notification-title {
+  color: #9a3412;
+}
+
+[data-theme="pastel-green"] .notification.warning .notification-message,
+body.pastel-green-theme .notification.warning .notification-message {
+  color: #c2410c;
+}
+
+[data-theme="pastel-green"] .notification.warning .notification-progress,
+body.pastel-green-theme .notification.warning .notification-progress {
+  background: #f59e0b;
+}
+
+[data-theme="pastel-green"] .notification.info,
+body.pastel-green-theme .notification.info {
+  background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%);
+  border-color: #3b82f6;
+}
+
+[data-theme="pastel-green"] .notification.info .notification-title,
+body.pastel-green-theme .notification.info .notification-title {
+  color: #1e3a8a;
+}
+
+[data-theme="pastel-green"] .notification.info .notification-message,
+body.pastel-green-theme .notification.info .notification-message {
+  color: #1e40af;
+}
+
+[data-theme="pastel-green"] .notification.info .notification-progress,
+body.pastel-green-theme .notification.info .notification-progress {
+  background: #3b82f6;
+}
+
+[data-theme="pastel-green"] .notification-title,
+body.pastel-green-theme .notification-title {
+  color: var(--pastel-green-text);
+}
+
+[data-theme="pastel-green"] .notification-message,
+body.pastel-green-theme .notification-message {
+  color: var(--pastel-green-text-light);
+}
+
+[data-theme="pastel-green"] .notification-close,
+body.pastel-green-theme .notification-close {
+  color: var(--pastel-green-text-light);
+}
+
+[data-theme="pastel-green"] .notification-close:hover,
+body.pastel-green-theme .notification-close:hover {
+  background: rgba(134, 239, 172, 0.2);
+  color: var(--pastel-green-text);
+}
+
+/* ===== TEMA PASTEL LARANJA ===== */
+[data-theme="pastel-orange"] .notification,
+body.pastel-orange-theme .notification {
+  background: #ffffff;
+  box-shadow: 0 10px 25px -5px rgba(253, 186, 116, 0.3), 0 10px 10px -5px rgba(253, 186, 116, 0.2);
+  border: 2px solid var(--pastel-orange-border);
+}
+
+[data-theme="pastel-orange"] .notification.success,
+body.pastel-orange-theme .notification.success {
+  background: linear-gradient(135deg, #bbf7d0 0%, #86efac 100%);
+  border-color: #22c55e;
+}
+
+[data-theme="pastel-orange"] .notification.success .notification-title,
+body.pastel-orange-theme .notification.success .notification-title {
+  color: #14532d;
+}
+
+[data-theme="pastel-orange"] .notification.success .notification-message,
+body.pastel-orange-theme .notification.success .notification-message {
+  color: #166534;
+}
+
+[data-theme="pastel-orange"] .notification.success .notification-progress,
+body.pastel-orange-theme .notification.success .notification-progress {
+  background: #22c55e;
+}
+
+[data-theme="pastel-orange"] .notification.error,
+body.pastel-orange-theme .notification.error {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-coral) 0%, #f87171 100%);
+  border-color: #ef4444;
+}
+
+[data-theme="pastel-orange"] .notification.error .notification-title,
+body.pastel-orange-theme .notification.error .notification-title {
+  color: #7f1d1d;
+}
+
+[data-theme="pastel-orange"] .notification.error .notification-message,
+body.pastel-orange-theme .notification.error .notification-message {
+  color: #991b1b;
+}
+
+[data-theme="pastel-orange"] .notification.error .notification-progress,
+body.pastel-orange-theme .notification.error .notification-progress {
+  background: #ef4444;
+}
+
+[data-theme="pastel-orange"] .notification.warning,
+body.pastel-orange-theme .notification.warning {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-peach) 0%, #fdba74 100%);
+  border-color: var(--pastel-orange-primary);
+}
+
+[data-theme="pastel-orange"] .notification.warning .notification-title,
+body.pastel-orange-theme .notification.warning .notification-title {
+  color: #9a3412;
+}
+
+[data-theme="pastel-orange"] .notification.warning .notification-message,
+body.pastel-orange-theme .notification.warning .notification-message {
+  color: #c2410c;
+}
+
+[data-theme="pastel-orange"] .notification.warning .notification-progress,
+body.pastel-orange-theme .notification.warning .notification-progress {
+  background: var(--pastel-orange-primary);
+}
+
+[data-theme="pastel-orange"] .notification.info,
+body.pastel-orange-theme .notification.info {
+  background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%);
+  border-color: #3b82f6;
+}
+
+[data-theme="pastel-orange"] .notification.info .notification-title,
+body.pastel-orange-theme .notification.info .notification-title {
+  color: #1e3a8a;
+}
+
+[data-theme="pastel-orange"] .notification.info .notification-message,
+body.pastel-orange-theme .notification.info .notification-message {
+  color: #1e40af;
+}
+
+[data-theme="pastel-orange"] .notification.info .notification-progress,
+body.pastel-orange-theme .notification.info .notification-progress {
+  background: #3b82f6;
+}
+
+[data-theme="pastel-orange"] .notification-title,
+body.pastel-orange-theme .notification-title {
+  color: var(--pastel-orange-text);
+}
+
+[data-theme="pastel-orange"] .notification-message,
+body.pastel-orange-theme .notification-message {
+  color: var(--pastel-orange-text-light);
+}
+
+[data-theme="pastel-orange"] .notification-close,
+body.pastel-orange-theme .notification-close {
+  color: var(--pastel-orange-text-light);
+}
+
+[data-theme="pastel-orange"] .notification-close:hover,
+body.pastel-orange-theme .notification-close:hover {
+  background: rgba(253, 186, 116, 0.2);
+  color: var(--pastel-orange-text);
 }

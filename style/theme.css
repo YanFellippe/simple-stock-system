@@ -13,219 +13,601 @@
   --border-dark: #444;
   --input-bg-light: #fff;
   --input-bg-dark: #444;
+  
+  /* Variáveis do tema pastel */
+  --pastel-primary: #7dd3fc;
+  --pastel-primary-dark: #0ea5e9;
+  --pastel-bg: #f8fafc;
+  --pastel-sidebar: #e0f2fe;
+  --pastel-card: #ffffff;
+  --pastel-text: #334155;
+  --pastel-text-light: #64748b;
+  --pastel-border: #e2e8f0;
+  --pastel-input: #ffffff;
+  --pastel-accent-blue: #bfdbfe;
+  --pastel-accent-cyan: #a7f3d0;
+  --pastel-accent-indigo: #c7d2fe;
+  --pastel-accent-purple: #ddd6fe;
+  --pastel-accent-teal: #99f6e4;
+  --pastel-accent-sky: #bae6fd;
+  
+  /* Variáveis do tema pastel verde */
+  --pastel-green-primary: #86efac;
+  --pastel-green-primary-dark: #22c55e;
+  --pastel-green-bg: #f0fdf4;
+  --pastel-green-sidebar: #dcfce7;
+  --pastel-green-card: #ffffff;
+  --pastel-green-text: #14532d;
+  --pastel-green-text-light: #166534;
+  --pastel-green-border: #d1fae5;
+  --pastel-green-input: #ffffff;
+  --pastel-green-accent-light: #bbf7d0;
+  --pastel-green-accent-mint: #a7f3d0;
+  --pastel-green-accent-emerald: #6ee7b7;
+  --pastel-green-accent-teal: #5eead4;
+  --pastel-green-accent-lime: #d9f99d;
+  --pastel-green-accent-sage: #bef264;
+  
+  /* Variáveis do tema pastel laranja */
+  --pastel-orange-primary: #fdba74;
+  --pastel-orange-primary-dark: #f97316;
+  --pastel-orange-bg: #fffbeb;
+  --pastel-orange-sidebar: #fef3c7;
+  --pastel-orange-card: #ffffff;
+  --pastel-orange-text: #9a3412;
+  --pastel-orange-text-light: #c2410c;
+  --pastel-orange-border: #fed7aa;
+  --pastel-orange-input: #ffffff;
+  --pastel-orange-accent-peach: #fde68a;
+  --pastel-orange-accent-amber: #fcd34d;
+  --pastel-orange-accent-yellow: #fef08a;
+  --pastel-orange-accent-coral: #fb7185;
+  --pastel-orange-accent-rose: #fda4af;
+  --pastel-orange-accent-pink: #f9a8d4;
 }
 
-/* Tema claro (padrão) */
+/* ===== TEMA CLARO (PADRÃO) ===== */
 body {
-  background-color: var(--bg-light);
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   color: var(--text-light);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Tema escuro */
+/* Sidebar - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) .sidebar {
+  background: linear-gradient(180deg, #1e293b 0%, #334155 100%);
+  border-right: 2px solid #e2e8f0;
+  box-shadow: 2px 0 10px rgba(30, 41, 59, 0.1);
+}
+
+body:not(.dark-theme):not(.pastel-theme) .sidebar a {
+  color: #e2e8f0;
+  border-radius: 12px;
+  margin: 4px 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body:not(.dark-theme):not(.pastel-theme) .sidebar a:hover {
+  background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+  color: #ffffff;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(71, 85, 105, 0.3);
+}
+
+body:not(.dark-theme):not(.pastel-theme) .sidebar a.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+body:not(.dark-theme):not(.pastel-theme) .sidebar [data-lucide] {
+  color: inherit;
+}
+
+/* Header - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) .header {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: #ffffff;
+  border-radius: 16px;
+  margin: 16px;
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+body:not(.dark-theme):not(.pastel-theme) .header h1 {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Cards - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) .card {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4, #8b5cf6, #ec4899);
+}
+
+body:not(.dark-theme):not(.pastel-theme) .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+body:not(.dark-theme):not(.pastel-theme) .card-content h3 {
+  color: #64748b;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .card-number {
+  color: #1e293b;
+  font-weight: 700;
+  font-size: 2.2rem;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .card [data-lucide] {
+  color: #3b82f6;
+}
+
+/* Cards específicos - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) #receitaHoje {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  border-color: #22c55e;
+}
+
+body:not(.dark-theme):not(.pastel-theme) #receitaHoje::before {
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+}
+
+body:not(.dark-theme):not(.pastel-theme) #receitaHoje [data-lucide] {
+  color: #15803d;
+}
+
+body:not(.dark-theme):not(.pastel-theme) #receitaHoje .card-number {
+  color: #14532d;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .card.low-stock {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-color: #f59e0b;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .card.low-stock::before {
+  background: linear-gradient(90deg, #d97706, #f59e0b);
+}
+
+body:not(.dark-theme):not(.pastel-theme) .card.low-stock [data-lucide] {
+  color: #b45309;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .card.low-stock .card-number {
+  color: #92400e;
+}
+
+/* ===== TEMA ESCURO ===== */
 body.dark-theme {
-  background-color: var(--bg-dark);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   color: var(--text-dark);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Elementos comuns */
+/* Sidebar - Tema Escuro */
 body.dark-theme .sidebar {
-  background-color: var(--sidebar-dark);
-  border-right: 1px solid var(--border-dark);
+  background: linear-gradient(180deg, #1e293b 0%, #334155 100%);
+  border-right: 2px solid #374151;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
 }
 
-body.dark-theme .main,
-body.dark-theme .config-section,
-body.dark-theme .cards,
-body.dark-theme .summary,
-body.dark-theme table {
-  background-color: var(--card-dark);
+body.dark-theme .sidebar a {
+  color: #cbd5e1;
+  border-radius: 12px;
+  margin: 4px 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body.dark-theme h1,
-body.dark-theme h2,
-body.dark-theme h3,
-body.dark-theme h4 {
-  color: #ff9800;
+body.dark-theme .sidebar a:hover {
+  background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+  color: #f1f5f9;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(71, 85, 105, 0.4);
 }
 
-/* Formulários e inputs */
+body.dark-theme .sidebar a.active {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #1c1917;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+}
+
+body.dark-theme .sidebar [data-lucide] {
+  color: inherit;
+}
+
+/* Header - Tema Escuro */
+body.dark-theme .header {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #1c1917;
+  border-radius: 16px;
+  margin: 16px;
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+body.dark-theme .header h1 {
+  color: #1c1917;
+  font-weight: 600;
+}
+
+/* Cards - Tema Escuro */
+body.dark-theme .card {
+  background: #1f2937;
+  border: 2px solid #374151;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+body.dark-theme .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #f59e0b, #06b6d4, #8b5cf6, #ec4899);
+}
+
+body.dark-theme .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-theme .card-content h3 {
+  color: #9ca3af;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+body.dark-theme .card-number {
+  color: #f9fafb;
+  font-weight: 700;
+  font-size: 2.2rem;
+}
+
+body.dark-theme .card [data-lucide] {
+  color: #f59e0b;
+}
+
+/* Cards específicos - Tema Escuro */
+body.dark-theme #receitaHoje {
+  background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+  border-color: #059669;
+}
+
+body.dark-theme #receitaHoje::before {
+  background: linear-gradient(90deg, #059669, #10b981);
+}
+
+body.dark-theme #receitaHoje [data-lucide] {
+  color: #34d399;
+}
+
+body.dark-theme #receitaHoje .card-number {
+  color: #a7f3d0;
+}
+
+body.dark-theme .card.low-stock {
+  background: linear-gradient(135deg, #7c2d12 0%, #9a3412 100%);
+  border-color: #ea580c;
+}
+
+body.dark-theme .card.low-stock::before {
+  background: linear-gradient(90deg, #ea580c, #f97316);
+}
+
+body.dark-theme .card.low-stock [data-lucide] {
+  color: #fb923c;
+}
+
+body.dark-theme .card.low-stock .card-number {
+  color: #fed7aa;
+}
+
+/* Formulários - Tema Escuro */
 body.dark-theme input,
 body.dark-theme textarea,
-body.dark-theme select,
-body.dark-theme .form-control {
-  background-color: var(--input-bg-dark);
-  color: var(--text-dark);
-  border: 1px solid var(--border-dark);
+body.dark-theme select {
+  background: #374151;
+  border: 2px solid #4b5563;
+  border-radius: 12px;
+  color: #f9fafb;
+  padding: 12px 16px;
+  transition: all 0.3s ease;
 }
 
 body.dark-theme input:focus,
 body.dark-theme textarea:focus,
 body.dark-theme select:focus {
-  border-color: #ff9800;
-  box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.25);
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2);
+  outline: none;
 }
 
-/* Botões */
-body.dark-theme .btn-primary {
-  background-color: var(--primary-light);
-  border-color: var(--primary-light);
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+  color: #9ca3af;
 }
 
-body.dark-theme .btn-primary:hover {
-  background-color: var(--primary-dark);
-  border-color: var(--primary-dark);
+body.dark-theme label {
+  color: #f9fafb;
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 
-/* Links */
-body.dark-theme a {
+/* Botões - Tema Escuro */
+body.dark-theme button,
+body.dark-theme .btn {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  border: 2px solid #f59e0b;
+  border-radius: 12px;
+  color: #1c1917;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+}
+
+body.dark-theme button:hover,
+body.dark-theme .btn:hover {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+body.dark-theme .btn-danger {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  border-color: #dc2626;
   color: #ffffff;
 }
 
-body.dark-theme a:hover {
-  color: #b37e59;
+body.dark-theme .btn-danger:hover {
+  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
 }
 
-/* Tabelas */
+/* Tabelas - Tema Escuro */
+body.dark-theme table {
+  background: #1f2937;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border: 2px solid #374151;
+}
+
 body.dark-theme th {
-  background-color: #3a3a3a;
-  color: var(--text-dark);
+  background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+  color: #f9fafb;
+  font-weight: 600;
+  padding: 16px;
+  border: none;
 }
 
 body.dark-theme td {
-  border-color: var(--border-dark);
+  color: #e5e7eb;
+  padding: 14px 16px;
+  border-bottom: 1px solid #374151;
 }
 
-/* Cards */
-body.dark-theme .card {
-  background-color: #333;
-  border-color: var(--border-dark);
+body.dark-theme tr:hover {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.1) 100%);
 }
 
-/* Alertas */
+/* Seções de configuração - Tema Escuro */
+body.dark-theme .config-section,
+body.dark-theme .config-card {
+  background: #1f2937;
+  border: 2px solid #374151;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+body.dark-theme .config-header {
+  background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+  color: #f9fafb;
+  padding: 20px;
+  border-bottom: 2px solid #374151;
+}
+
+body.dark-theme .config-header h3 {
+  color: #f9fafb;
+  margin: 0;
+}
+
+/* Status badges - Tema Escuro */
+body.dark-theme .status-badge {
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body.dark-theme .status-critico {
+  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+  color: #fecaca;
+}
+
+body.dark-theme .status-baixo {
+  background: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+  color: #fed7aa;
+}
+
+body.dark-theme .status-pendente {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  color: #dbeafe;
+}
+
+body.dark-theme .status-preparando {
+  background: linear-gradient(135deg, #3730a3 0%, #4338ca 100%);
+  color: #e0e7ff;
+}
+
+body.dark-theme .status-pronto {
+  background: linear-gradient(135deg, #14532d 0%, #166534 100%);
+  color: #dcfce7;
+}
+
+body.dark-theme .status-entregue {
+  background: linear-gradient(135deg, #581c87 0%, #6b21a8 100%);
+  color: #f3e8ff;
+}
+
+/* Filtros - Tema Escuro */
+body.dark-theme .filters {
+  background: #1f2937;
+  border: 2px solid #374151;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  padding: 24px;
+}
+
+body.dark-theme .filters h3 {
+  color: #f9fafb;
+  margin-bottom: 20px;
+}
+
+body.dark-theme .filter-btn {
+  background: transparent;
+  border: 2px solid #f59e0b;
+  border-radius: 25px;
+  color: #f59e0b;
+  padding: 8px 20px;
+  margin: 4px;
+  transition: all 0.3s ease;
+}
+
+body.dark-theme .filter-btn:hover,
+body.dark-theme .filter-btn.active {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #1c1917;
+  transform: scale(1.05);
+}
+
+/* Alertas - Tema Escuro */
 body.dark-theme .alert-info {
-  background-color: #1a237e;
-  color: white;
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  border: 2px solid #3b82f6;
+  color: #dbeafe;
+  border-radius: 12px;
 }
 
 body.dark-theme .alert-success {
-  background-color: #1b5e20;
-  color: white;
+  background: linear-gradient(135deg, #14532d 0%, #166534 100%);
+  border: 2px solid #22c55e;
+  color: #dcfce7;
+  border-radius: 12px;
 }
 
 body.dark-theme .alert-warning {
-  background-color: #ff6f00;
-  color: white;
+  background: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+  border: 2px solid #f59e0b;
+  color: #fed7aa;
+  border-radius: 12px;
 }
 
 body.dark-theme .alert-danger {
-  background-color: #b71c1c;
-  color: white;
+  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+  border: 2px solid #ef4444;
+  color: #fecaca;
+  border-radius: 12px;
 }
 
-/* Modal */
-body.dark-theme .modal-content {
-  background-color: var(--card-dark);
-  border-color: var(--border-dark);
-}
-
-body.dark-theme .modal-header,
-body.dark-theme .modal-footer {
-  border-color: var(--border-dark);
-}
-
-/* Navbar */
-body.dark-theme .navbar {
-  background-color: #1e1e1e;
-  border-bottom: 1px solid var(--border-dark);
-}
-
-/* Dropdown */
-body.dark-theme .dropdown-menu {
-  background-color: #333;
-  border-color: var(--border-dark);
-}
-
-body.dark-theme .dropdown-item {
-  color: var(--text-dark);
-}
-
-body.dark-theme .dropdown-item:hover {
-  background-color: #444;
-  color: var(--text-dark);
-}
-
-/* Tooltip */
-body.dark-theme .tooltip-inner {
-  background-color: #444;
-}
-
-body.dark-theme
-  .bs-tooltip-auto[data-popper-placement^="top"]
-  .tooltip-arrow::before,
-body.dark-theme .bs-tooltip-top .tooltip-arrow::before {
-  border-top-color: #444;
-}
-
-/* Custom scrollbar */
+/* Scrollbar - Tema Escuro */
 body.dark-theme ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 body.dark-theme ::-webkit-scrollbar-track {
-  background: #333;
+  background: #374151;
+  border-radius: 10px;
 }
 
 body.dark-theme ::-webkit-scrollbar-thumb {
-  background: #555;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  border-radius: 10px;
 }
 
 body.dark-theme ::-webkit-scrollbar-thumb:hover {
-  background: #666;
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
 }
 
-/* Estilos específicos para o formulário no tema escuro */
+/* Efeitos especiais - Tema Escuro */
+body.dark-theme .card:hover::before {
+  animation: rainbow 2s linear infinite;
+}
+
+/* Melhorias para formulários - Tema Escuro */
 body.dark-theme .addForm {
-  background-color: var(--card-dark) !important;
-  color: var(--text-dark) !important;
+  background: #1f2937 !important;
+  border: 2px solid #374151 !important;
+  border-radius: 20px !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+  color: #f9fafb !important;
 }
 
 body.dark-theme .addForm h3 {
-  color: #ff9800 !important;
+  color: #1c1917 !important;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  margin: -20px -20px 20px -20px;
+  padding: 20px;
+  border-radius: 18px 18px 0 0;
 }
 
-body.dark-theme .addForm input {
-  background-color: var(--input-bg-dark) !important;
-  color: var(--text-dark) !important;
-  border: 1px solid var(--border-dark) !important;
+/* Perfil - Tema Escuro */
+body.dark-theme .profile-container,
+body.dark-theme .profile-area {
+  background: #1f2937;
+  border: 2px solid #374151;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  color: #f9fafb;
 }
 
-body.dark-theme .addForm input::placeholder {
-  color: #ffffff !important;
-  opacity: 0.8;
+body.dark-theme .profile-header {
+  background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+  border-bottom: 2px solid #374151;
+  border-radius: 18px 18px 0 0;
+  padding: 24px;
 }
 
-body.dark-theme .addForm button {
-  background-color: var(--primary-light) !important;
-  color: white !important;
-  border: none !important;
+body.dark-theme .profile-header h2 {
+  color: #f9fafb;
+  margin: 0;
 }
 
-body.dark-theme .addForm button:hover {
-  background-color: var(--primary-dark) !important;
-}
-
-body.dark-theme .config-restauration {
-  background-color: #323232 !important;
-  border-color: #333 !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
-  transition: background-color 0.3s ease;
-  color: var(--text-dark);
-}
-
-body.dark-theme .config-restauration h3 {
-  color: #ff9800;
-}
+/* Estilos antigos removidos - usando novos estilos modernos definidos acima */
 
 /* Página de Perfil - Tema Escuro */
 body.dark-theme .profile-container {
@@ -512,25 +894,7 @@ body.dark-theme .status-entregue {
   color: #e1bee7;
 }
 
-/* Sidebar no tema escuro */
-body.dark-theme .sidebar {
-  background-color: #1e1e1e;
-  border-right: 1px solid var(--border-dark);
-}
-
-body.dark-theme .sidebar a {
-  color: #bbb;
-}
-
-body.dark-theme .sidebar a:hover,
-body.dark-theme .sidebar a.active {
-  background-color: #333;
-  color: #ff9800;
-}
-
-body.dark-theme .sidebar i {
-  color: inherit;
-}
+/* Estilos antigos removidos - usando novos estilos modernos */
 
 /* Scrollbar personalizada para tema escuro */
 body.dark-theme ::-webkit-scrollbar {
@@ -651,14 +1015,7 @@ body.dark-theme [data-lucide] {
   color: inherit !important;
 }
 
-body.dark-theme .sidebar [data-lucide] {
-  color: #bbb !important;
-}
-
-body.dark-theme .sidebar a:hover [data-lucide],
-body.dark-theme .sidebar a.active [data-lucide] {
-  color: #ff9800 !important;
-}
+/* Ícones da sidebar usam estilos modernos definidos acima */
 
 /* Garantir que elementos específicos mantenham suas cores */
 body.dark-theme .card [data-lucide] {
@@ -671,4 +1028,3373 @@ body.dark-theme #receitaHoje [data-lucide] {
 
 body.dark-theme .card.low-stock [data-lucide] {
   color: #ff5722 !important;
+}
+/* =====
+ TEMA PASTEL ===== */
+body.pastel-theme {
+  background: linear-gradient(135deg, #faf9f7 0%, #f5f3f0 100%);
+  color: var(--pastel-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Sidebar - Tema Pastel */
+body.pastel-theme .sidebar {
+  background: linear-gradient(180deg, var(--pastel-sidebar) 0%, #cffafe 100%);
+  border-right: 2px solid var(--pastel-border);
+  box-shadow: 2px 0 10px rgba(125, 211, 252, 0.1);
+}
+
+body.pastel-theme .sidebar a {
+  color: var(--pastel-text);
+  border-radius: 12px;
+  margin: 4px 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.pastel-theme .sidebar a:hover {
+  background: linear-gradient(135deg, var(--pastel-accent-cyan) 0%, #a7f3d0 100%);
+  color: #0f766e;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(125, 211, 252, 0.3);
+}
+
+body.pastel-theme .sidebar a.active {
+  background: linear-gradient(135deg, var(--pastel-primary) 0%, #38bdf8 100%);
+  color: #0c4a6e;
+  box-shadow: 0 4px 15px rgba(125, 211, 252, 0.4);
+}
+
+body.pastel-theme .sidebar [data-lucide] {
+  color: inherit;
+}
+
+/* Main Content - Tema Pastel */
+body.pastel-theme .main {
+  background: transparent;
+}
+
+/* Header - Tema Pastel */
+body.pastel-theme .header {
+  background: linear-gradient(135deg, var(--pastel-accent-blue) 0%, #93c5fd 100%);
+  color: #1e40af;
+  border-radius: 16px;
+  margin: 16px;
+  box-shadow: 0 8px 25px rgba(191, 219, 254, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+body.pastel-theme .header h1 {
+  color: #1e40af;
+  font-weight: 600;
+}
+
+/* Cards - Tema Pastel */
+body.pastel-theme .card {
+  background: var(--pastel-card);
+  border: 2px solid var(--pastel-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(168, 216, 168, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+body.pastel-theme .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--pastel-accent-blue), var(--pastel-accent-cyan), var(--pastel-accent-indigo), var(--pastel-accent-purple));
+}
+
+body.pastel-theme .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(168, 216, 168, 0.25);
+}
+
+body.pastel-theme .card-content h3 {
+  color: var(--pastel-text-light);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+body.pastel-theme .card-number {
+  color: var(--pastel-text);
+  font-weight: 700;
+  font-size: 2.2rem;
+}
+
+body.pastel-theme .card [data-lucide] {
+  color: var(--pastel-primary);
+}
+
+/* Cards específicos - Tema Pastel */
+body.pastel-theme #receitaHoje {
+  background: linear-gradient(135deg, var(--pastel-accent-teal) 0%, #6ee7b7 100%);
+  border-color: #34d399;
+}
+
+body.pastel-theme #receitaHoje::before {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+body.pastel-theme #receitaHoje [data-lucide] {
+  color: #047857;
+}
+
+body.pastel-theme #receitaHoje .card-number {
+  color: #064e3b;
+}
+
+body.pastel-theme .card.low-stock {
+  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+  border-color: #fb923c;
+}
+
+body.pastel-theme .card.low-stock::before {
+  background: linear-gradient(90deg, #f97316, #fb923c);
+}
+
+body.pastel-theme .card.low-stock [data-lucide] {
+  color: #c2410c;
+}
+
+body.pastel-theme .card.low-stock .card-number {
+  color: #9a3412;
+}
+
+/* Formulários - Tema Pastel */
+body.pastel-theme input,
+body.pastel-theme textarea,
+body.pastel-theme select {
+  background: var(--pastel-input);
+  border: 2px solid var(--pastel-border);
+  border-radius: 12px;
+  color: var(--pastel-text);
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+}
+
+body.pastel-theme input:focus,
+body.pastel-theme textarea:focus,
+body.pastel-theme select:focus {
+  border-color: var(--pastel-primary);
+  box-shadow: 0 0 0 4px rgba(168, 216, 168, 0.2);
+  outline: none;
+}
+
+body.pastel-theme input::placeholder,
+body.pastel-theme textarea::placeholder {
+  color: var(--pastel-text-light);
+}
+
+body.pastel-theme label {
+  color: var(--pastel-text);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* Botões - Tema Pastel */
+body.pastel-theme button,
+body.pastel-theme .btn {
+  background: linear-gradient(135deg, var(--pastel-primary) 0%, #38bdf8 100%);
+  border: 2px solid var(--pastel-primary);
+  border-radius: 12px;
+  color: #0c4a6e;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(125, 211, 252, 0.3);
+}
+
+body.pastel-theme button:hover,
+body.pastel-theme .btn:hover {
+  background: linear-gradient(135deg, var(--pastel-primary-dark) 0%, #0284c7 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(125, 211, 252, 0.4);
+}
+
+body.pastel-theme .btn-danger {
+  background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%);
+  border-color: #f87171;
+  color: #7f1d1d;
+}
+
+body.pastel-theme .btn-danger:hover {
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+}
+
+/* Tabelas - Tema Pastel */
+body.pastel-theme table {
+  background: var(--pastel-card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(168, 216, 168, 0.15);
+  border: 2px solid var(--pastel-border);
+}
+
+body.pastel-theme th {
+  background: linear-gradient(135deg, var(--pastel-accent-blue) 0%, #93c5fd 100%);
+  color: #1e40af;
+  font-weight: 600;
+  padding: 16px;
+  border: none;
+}
+
+body.pastel-theme td {
+  color: var(--pastel-text);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--pastel-border);
+}
+
+body.pastel-theme tr:hover {
+  background: linear-gradient(135deg, rgba(125, 211, 252, 0.1) 0%, rgba(167, 243, 208, 0.1) 100%);
+}
+
+/* Seções de configuração - Tema Pastel */
+body.pastel-theme .config-section,
+body.pastel-theme .config-card {
+  background: var(--pastel-card);
+  border: 2px solid var(--pastel-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(168, 216, 168, 0.15);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+body.pastel-theme .config-header {
+  background: linear-gradient(135deg, var(--pastel-accent-blue) 0%, #93c5fd 100%);
+  color: #1e40af;
+  padding: 20px;
+  border-bottom: 2px solid var(--pastel-border);
+}
+
+body.pastel-theme .config-header h3 {
+  color: #1e40af;
+  margin: 0;
+}
+
+/* Status badges - Tema Pastel */
+body.pastel-theme .status-badge {
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body.pastel-theme .status-critico {
+  background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+  color: #7f1d1d;
+}
+
+body.pastel-theme .status-baixo {
+  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+  color: #9a3412;
+}
+
+body.pastel-theme .status-pendente {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1e40af;
+}
+
+body.pastel-theme .status-preparando {
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  color: #3730a3;
+}
+
+body.pastel-theme .status-pronto {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  color: #14532d;
+}
+
+body.pastel-theme .status-entregue {
+  background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+  color: #581c87;
+}
+
+/* Filtros - Tema Pastel */
+body.pastel-theme .filters {
+  background: var(--pastel-card);
+  border: 2px solid var(--pastel-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(168, 216, 168, 0.15);
+  padding: 24px;
+}
+
+body.pastel-theme .filters h3 {
+  color: var(--pastel-text);
+  margin-bottom: 20px;
+}
+
+body.pastel-theme .filter-btn {
+  background: transparent;
+  border: 2px solid var(--pastel-primary);
+  border-radius: 25px;
+  color: var(--pastel-primary);
+  padding: 8px 20px;
+  margin: 4px;
+  transition: all 0.3s ease;
+}
+
+body.pastel-theme .filter-btn:hover,
+body.pastel-theme .filter-btn.active {
+  background: linear-gradient(135deg, var(--pastel-primary) 0%, #38bdf8 100%);
+  color: #0c4a6e;
+  transform: scale(1.05);
+}
+
+/* Alertas - Tema Pastel */
+body.pastel-theme .alert-info {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border: 2px solid #60a5fa;
+  color: #1e40af;
+  border-radius: 12px;
+}
+
+body.pastel-theme .alert-success {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  border: 2px solid #4ade80;
+  color: #14532d;
+  border-radius: 12px;
+}
+
+body.pastel-theme .alert-warning {
+  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+  border: 2px solid #fb923c;
+  color: #9a3412;
+  border-radius: 12px;
+}
+
+body.pastel-theme .alert-danger {
+  background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+  border: 2px solid #f87171;
+  color: #7f1d1d;
+  border-radius: 12px;
+}
+
+/* Scrollbar - Tema Pastel */
+body.pastel-theme ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.pastel-theme ::-webkit-scrollbar-track {
+  background: var(--pastel-border);
+  border-radius: 10px;
+}
+
+body.pastel-theme ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--pastel-primary) 0%, #38bdf8 100%);
+  border-radius: 10px;
+}
+
+body.pastel-theme ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--pastel-primary-dark) 0%, #0284c7 100%);
+}
+
+/* Efeitos especiais - Tema Pastel */
+body.pastel-theme .card:hover::before {
+  animation: pastelRainbow 3s ease-in-out infinite;
+}
+
+@keyframes pastelRainbow {
+  0%, 100% { background: linear-gradient(90deg, var(--pastel-accent-blue), var(--pastel-accent-cyan), var(--pastel-accent-indigo), var(--pastel-accent-purple)); }
+  25% { background: linear-gradient(90deg, var(--pastel-accent-cyan), var(--pastel-accent-teal), var(--pastel-accent-blue), var(--pastel-accent-sky)); }
+  50% { background: linear-gradient(90deg, var(--pastel-accent-indigo), var(--pastel-accent-purple), var(--pastel-accent-cyan), var(--pastel-accent-teal)); }
+  75% { background: linear-gradient(90deg, var(--pastel-accent-purple), var(--pastel-accent-sky), var(--pastel-accent-indigo), var(--pastel-accent-blue)); }
+}
+
+/* Melhorias para formulários - Tema Pastel */
+body.pastel-theme .addForm {
+  background: var(--pastel-card) !important;
+  border: 2px solid var(--pastel-border) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 8px 25px rgba(168, 216, 168, 0.15) !important;
+  color: var(--pastel-text) !important;
+}
+
+body.pastel-theme .addForm h3 {
+  color: #0c4a6e !important;
+  background: linear-gradient(135deg, var(--pastel-primary) 0%, #38bdf8 100%);
+  margin: -20px -20px 20px -20px;
+  padding: 20px;
+  border-radius: 18px 18px 0 0;
+}
+
+/* Perfil - Tema Pastel */
+body.pastel-theme .profile-container,
+body.pastel-theme .profile-area {
+  background: var(--pastel-card);
+  border: 2px solid var(--pastel-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(168, 216, 168, 0.15);
+  color: var(--pastel-text);
+}
+
+body.pastel-theme .profile-header {
+  background: linear-gradient(135deg, var(--pastel-accent-blue) 0%, #93c5fd 100%);
+  border-bottom: 2px solid var(--pastel-border);
+  border-radius: 18px 18px 0 0;
+  padding: 24px;
+}
+
+body.pastel-theme .profile-header h2 {
+  color: #1e40af;
+  margin: 0;
+}
+
+/* ===== TEMA PASTEL VERDE ===== */
+body.pastel-green-theme {
+  background: linear-gradient(135deg, var(--pastel-green-bg) 0%, #ecfdf5 100%);
+  color: var(--pastel-green-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Sidebar - Tema Pastel Verde */
+body.pastel-green-theme .sidebar {
+  background: linear-gradient(180deg, var(--pastel-green-sidebar) 0%, #bbf7d0 100%);
+  border-right: 2px solid var(--pastel-green-border);
+  box-shadow: 2px 0 10px rgba(134, 239, 172, 0.1);
+}
+
+body.pastel-green-theme .sidebar a {
+  color: var(--pastel-green-text);
+  border-radius: 12px;
+  margin: 4px 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.pastel-green-theme .sidebar a:hover {
+  background: linear-gradient(135deg, var(--pastel-green-accent-mint) 0%, #6ee7b7 100%);
+  color: #064e3b;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(134, 239, 172, 0.3);
+}
+
+body.pastel-green-theme .sidebar a.active {
+  background: linear-gradient(135deg, var(--pastel-green-primary) 0%, #4ade80 100%);
+  color: #052e16;
+  box-shadow: 0 4px 15px rgba(134, 239, 172, 0.4);
+}
+
+body.pastel-green-theme .sidebar [data-lucide] {
+  color: inherit;
+}
+
+/* Header - Tema Pastel Verde */
+body.pastel-green-theme .header {
+  background: linear-gradient(135deg, var(--pastel-green-accent-light) 0%, #86efac 100%);
+  color: #14532d;
+  border-radius: 16px;
+  margin: 16px;
+  box-shadow: 0 8px 25px rgba(187, 247, 208, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+body.pastel-green-theme .header h1 {
+  color: #14532d;
+  font-weight: 600;
+}
+
+/* Cards - Tema Pastel Verde */
+body.pastel-green-theme .card {
+  background: var(--pastel-green-card);
+  border: 2px solid var(--pastel-green-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(187, 247, 208, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+body.pastel-green-theme .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--pastel-green-accent-light), var(--pastel-green-accent-mint), var(--pastel-green-accent-emerald), var(--pastel-green-accent-teal));
+}
+
+body.pastel-green-theme .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(187, 247, 208, 0.25);
+}
+
+body.pastel-green-theme .card-content h3 {
+  color: var(--pastel-green-text-light);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+body.pastel-green-theme .card-number {
+  color: var(--pastel-green-text);
+  font-weight: 700;
+  font-size: 2.2rem;
+}
+
+body.pastel-green-theme .card [data-lucide] {
+  color: var(--pastel-green-primary-dark);
+}
+
+/* Cards específicos - Tema Pastel Verde */
+body.pastel-green-theme #receitaHoje {
+  background: linear-gradient(135deg, var(--pastel-green-accent-emerald) 0%, #34d399 100%);
+  border-color: #10b981;
+}
+
+body.pastel-green-theme #receitaHoje::before {
+  background: linear-gradient(90deg, #059669, #10b981);
+}
+
+body.pastel-green-theme #receitaHoje [data-lucide] {
+  color: #047857;
+}
+
+body.pastel-green-theme #receitaHoje .card-number {
+  color: #064e3b;
+}
+
+body.pastel-green-theme .card.low-stock {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-color: #f59e0b;
+}
+
+body.pastel-green-theme .card.low-stock::before {
+  background: linear-gradient(90d, #d97706, #f59e0b);
+}
+
+body.pastel-green-theme .card.low-stock [data-lucide] {
+  color: #b45309;
+}
+
+body.pastel-green-theme .card.low-stock .card-number {
+  color: #92400e;
+}
+
+/* Formulários - Tema Pastel Verde */
+body.pastel-green-theme input,
+body.pastel-green-theme textarea,
+body.pastel-green-theme select {
+  background: var(--pastel-green-input);
+  border: 2px solid var(--pastel-green-border);
+  border-radius: 12px;
+  color: var(--pastel-green-text);
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+}
+
+body.pastel-green-theme input:focus,
+body.pastel-green-theme textarea:focus,
+body.pastel-green-theme select:focus {
+  border-color: var(--pastel-green-primary-dark);
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+  outline: none;
+}
+
+body.pastel-green-theme input::placeholder,
+body.pastel-green-theme textarea::placeholder {
+  color: var(--pastel-green-text-light);
+}
+
+body.pastel-green-theme label {
+  color: var(--pastel-green-text);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* Botões - Tema Pastel Verde */
+body.pastel-green-theme button,
+body.pastel-green-theme .btn {
+  background: linear-gradient(135deg, var(--pastel-green-primary) 0%, #4ade80 100%);
+  border: 2px solid var(--pastel-green-primary);
+  border-radius: 12px;
+  color: #052e16;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(134, 239, 172, 0.3);
+}
+
+body.pastel-green-theme button:hover,
+body.pastel-green-theme .btn:hover {
+  background: linear-gradient(135deg, var(--pastel-green-primary-dark) 0%, #16a34a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(134, 239, 172, 0.4);
+}
+
+body.pastel-green-theme .btn-danger {
+  background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%);
+  border-color: #f87171;
+  color: #7f1d1d;
+}
+
+body.pastel-green-theme .btn-danger:hover {
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+}
+
+/* Tabelas - Tema Pastel Verde */
+body.pastel-green-theme table {
+  background: var(--pastel-green-card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(187, 247, 208, 0.15);
+  border: 2px solid var(--pastel-green-border);
+}
+
+body.pastel-green-theme th {
+  background: linear-gradient(135deg, var(--pastel-green-accent-light) 0%, #86efac 100%);
+  color: #14532d;
+  font-weight: 600;
+  padding: 16px;
+  border: none;
+}
+
+body.pastel-green-theme td {
+  color: var(--pastel-green-text);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--pastel-green-border);
+}
+
+body.pastel-green-theme tr:hover {
+  background: linear-gradient(135deg, rgba(134, 239, 172, 0.1) 0%, rgba(167, 243, 208, 0.1) 100%);
+}
+
+/* Status badges - Tema Pastel Verde */
+body.pastel-green-theme .status-badge {
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body.pastel-green-theme .status-critico {
+  background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+  color: #7f1d1d;
+}
+
+body.pastel-green-theme .status-baixo {
+  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+  color: #9a3412;
+}
+
+body.pastel-green-theme .status-pendente {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1e40af;
+}
+
+body.pastel-green-theme .status-preparando {
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  color: #3730a3;
+}
+
+body.pastel-green-theme .status-pronto {
+  background: linear-gradient(135deg, var(--pastel-green-accent-light) 0%, #86efac 100%);
+  color: #14532d;
+}
+
+body.pastel-green-theme .status-entregue {
+  background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+  color: #581c87;
+}
+
+/* Filtros - Tema Pastel Verde */
+body.pastel-green-theme .filters {
+  background: var(--pastel-green-card);
+  border: 2px solid var(--pastel-green-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(187, 247, 208, 0.15);
+  padding: 24px;
+}
+
+body.pastel-green-theme .filters h3 {
+  color: var(--pastel-green-text);
+  margin-bottom: 20px;
+}
+
+body.pastel-green-theme .filter-btn {
+  background: transparent;
+  border: 2px solid var(--pastel-green-primary-dark);
+  border-radius: 25px;
+  color: var(--pastel-green-primary-dark);
+  padding: 8px 20px;
+  margin: 4px;
+  transition: all 0.3s ease;
+}
+
+body.pastel-green-theme .filter-btn:hover,
+body.pastel-green-theme .filter-btn.active {
+  background: linear-gradient(135deg, var(--pastel-green-primary) 0%, #4ade80 100%);
+  color: #052e16;
+  transform: scale(1.05);
+}
+
+/* Alertas - Tema Pastel Verde */
+body.pastel-green-theme .alert-info {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border: 2px solid #60a5fa;
+  color: #1e40af;
+  border-radius: 12px;
+}
+
+body.pastel-green-theme .alert-success {
+  background: linear-gradient(135deg, var(--pastel-green-accent-light) 0%, #86efac 100%);
+  border: 2px solid var(--pastel-green-primary-dark);
+  color: #14532d;
+  border-radius: 12px;
+}
+
+body.pastel-green-theme .alert-warning {
+  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+  border: 2px solid #fb923c;
+  color: #9a3412;
+  border-radius: 12px;
+}
+
+body.pastel-green-theme .alert-danger {
+  background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+  border: 2px solid #f87171;
+  color: #7f1d1d;
+  border-radius: 12px;
+}
+
+/* Scrollbar - Tema Pastel Verde */
+body.pastel-green-theme ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.pastel-green-theme ::-webkit-scrollbar-track {
+  background: var(--pastel-green-border);
+  border-radius: 10px;
+}
+
+body.pastel-green-theme ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--pastel-green-primary) 0%, #4ade80 100%);
+  border-radius: 10px;
+}
+
+body.pastel-green-theme ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--pastel-green-primary-dark) 0%, #16a34a 100%);
+}
+
+/* ===== TEMA PASTEL LARANJA ===== */
+body.pastel-orange-theme {
+  background: linear-gradient(135deg, var(--pastel-orange-bg) 0%, #fef7ed 100%);
+  color: var(--pastel-orange-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Sidebar - Tema Pastel Laranja */
+body.pastel-orange-theme .sidebar {
+  background: linear-gradient(180deg, var(--pastel-orange-sidebar) 0%, #fed7aa 100%);
+  border-right: 2px solid var(--pastel-orange-border);
+  box-shadow: 2px 0 10px rgba(253, 186, 116, 0.1);
+}
+
+body.pastel-orange-theme .sidebar a {
+  color: var(--pastel-orange-text);
+  border-radius: 12px;
+  margin: 4px 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.pastel-orange-theme .sidebar a:hover {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-peach) 0%, #fcd34d 100%);
+  color: #78350f;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(253, 186, 116, 0.3);
+}
+
+body.pastel-orange-theme .sidebar a.active {
+  background: linear-gradient(135deg, var(--pastel-orange-primary) 0%, #fb923c 100%);
+  color: #7c2d12;
+  box-shadow: 0 4px 15px rgba(253, 186, 116, 0.4);
+}
+
+body.pastel-orange-theme .sidebar [data-lucide] {
+  color: inherit;
+}
+
+/* Header - Tema Pastel Laranja */
+body.pastel-orange-theme .header {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-peach) 0%, #fdba74 100%);
+  color: #9a3412;
+  border-radius: 16px;
+  margin: 16px;
+  box-shadow: 0 8px 25px rgba(253, 230, 138, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+body.pastel-orange-theme .header h1 {
+  color: #9a3412;
+  font-weight: 600;
+}
+
+/* Cards - Tema Pastel Laranja */
+body.pastel-orange-theme .card {
+  background: var(--pastel-orange-card);
+  border: 2px solid var(--pastel-orange-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(253, 215, 170, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+body.pastel-orange-theme .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--pastel-orange-accent-peach), var(--pastel-orange-accent-amber), var(--pastel-orange-accent-yellow), var(--pastel-orange-accent-coral));
+}
+
+body.pastel-orange-theme .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(253, 215, 170, 0.25);
+}
+
+body.pastel-orange-theme .card-content h3 {
+  color: var(--pastel-orange-text-light);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+body.pastel-orange-theme .card-number {
+  color: var(--pastel-orange-text);
+  font-weight: 700;
+  font-size: 2.2rem;
+}
+
+body.pastel-orange-theme .card [data-lucide] {
+  color: var(--pastel-orange-primary-dark);
+}
+
+/* Cards específicos - Tema Pastel Laranja */
+body.pastel-orange-theme #receitaHoje {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  border-color: #22c55e;
+}
+
+body.pastel-orange-theme #receitaHoje::before {
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+}
+
+body.pastel-orange-theme #receitaHoje [data-lucide] {
+  color: #15803d;
+}
+
+body.pastel-orange-theme #receitaHoje .card-number {
+  color: #14532d;
+}
+
+body.pastel-orange-theme .card.low-stock {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-coral) 0%, #f87171 100%);
+  border-color: #ef4444;
+}
+
+body.pastel-orange-theme .card.low-stock::before {
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+}
+
+body.pastel-orange-theme .card.low-stock [data-lucide] {
+  color: #b91c1c;
+}
+
+body.pastel-orange-theme .card.low-stock .card-number {
+  color: #7f1d1d;
+}
+
+/* Formulários - Tema Pastel Laranja */
+body.pastel-orange-theme input,
+body.pastel-orange-theme textarea,
+body.pastel-orange-theme select {
+  background: var(--pastel-orange-input);
+  border: 2px solid var(--pastel-orange-border);
+  border-radius: 12px;
+  color: var(--pastel-orange-text);
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+}
+
+body.pastel-orange-theme input:focus,
+body.pastel-orange-theme textarea:focus,
+body.pastel-orange-theme select:focus {
+  border-color: var(--pastel-orange-primary-dark);
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.2);
+  outline: none;
+}
+
+body.pastel-orange-theme input::placeholder,
+body.pastel-orange-theme textarea::placeholder {
+  color: var(--pastel-orange-text-light);
+}
+
+body.pastel-orange-theme label {
+  color: var(--pastel-orange-text);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* Botões - Tema Pastel Laranja */
+body.pastel-orange-theme button,
+body.pastel-orange-theme .btn {
+  background: linear-gradient(135deg, var(--pastel-orange-primary) 0%, #fb923c 100%);
+  border: 2px solid var(--pastel-orange-primary);
+  border-radius: 12px;
+  color: #7c2d12;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(253, 186, 116, 0.3);
+}
+
+body.pastel-orange-theme button:hover,
+body.pastel-orange-theme .btn:hover {
+  background: linear-gradient(135deg, var(--pastel-orange-primary-dark) 0%, #ea580c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(253, 186, 116, 0.4);
+}
+
+body.pastel-orange-theme .btn-danger {
+  background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%);
+  border-color: #f87171;
+  color: #7f1d1d;
+}
+
+body.pastel-orange-theme .btn-danger:hover {
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+}
+
+/* Tabelas - Tema Pastel Laranja */
+body.pastel-orange-theme table {
+  background: var(--pastel-orange-card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(253, 215, 170, 0.15);
+  border: 2px solid var(--pastel-orange-border);
+}
+
+body.pastel-orange-theme th {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-peach) 0%, #fdba74 100%);
+  color: #9a3412;
+  font-weight: 600;
+  padding: 16px;
+  border: none;
+}
+
+body.pastel-orange-theme td {
+  color: var(--pastel-orange-text);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--pastel-orange-border);
+}
+
+body.pastel-orange-theme tr:hover {
+  background: linear-gradient(135deg, rgba(253, 186, 116, 0.1) 0%, rgba(253, 230, 138, 0.1) 100%);
+}
+
+/* Status badges - Tema Pastel Laranja */
+body.pastel-orange-theme .status-badge {
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body.pastel-orange-theme .status-critico {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-coral) 0%, #f87171 100%);
+  color: #7f1d1d;
+}
+
+body.pastel-orange-theme .status-baixo {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-peach) 0%, #fdba74 100%);
+  color: #9a3412;
+}
+
+body.pastel-orange-theme .status-pendente {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1e40af;
+}
+
+body.pastel-orange-theme .status-preparando {
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  color: #3730a3;
+}
+
+body.pastel-orange-theme .status-pronto {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  color: #14532d;
+}
+
+body.pastel-orange-theme .status-entregue {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-pink) 0%, #f9a8d4 100%);
+  color: #831843;
+}
+
+/* Filtros - Tema Pastel Laranja */
+body.pastel-orange-theme .filters {
+  background: var(--pastel-orange-card);
+  border: 2px solid var(--pastel-orange-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(253, 215, 170, 0.15);
+  padding: 24px;
+}
+
+body.pastel-orange-theme .filters h3 {
+  color: var(--pastel-orange-text);
+  margin-bottom: 20px;
+}
+
+body.pastel-orange-theme .filter-btn {
+  background: transparent;
+  border: 2px solid var(--pastel-orange-primary-dark);
+  border-radius: 25px;
+  color: var(--pastel-orange-primary-dark);
+  padding: 8px 20px;
+  margin: 4px;
+  transition: all 0.3s ease;
+}
+
+body.pastel-orange-theme .filter-btn:hover,
+body.pastel-orange-theme .filter-btn.active {
+  background: linear-gradient(135deg, var(--pastel-orange-primary) 0%, #fb923c 100%);
+  color: #7c2d12;
+  transform: scale(1.05);
+}
+
+/* Alertas - Tema Pastel Laranja */
+body.pastel-orange-theme .alert-info {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border: 2px solid #60a5fa;
+  color: #1e40af;
+  border-radius: 12px;
+}
+
+body.pastel-orange-theme .alert-success {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  border: 2px solid #4ade80;
+  color: #14532d;
+  border-radius: 12px;
+}
+
+body.pastel-orange-theme .alert-warning {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-peach) 0%, #fdba74 100%);
+  border: 2px solid var(--pastel-orange-primary-dark);
+  color: #9a3412;
+  border-radius: 12px;
+}
+
+body.pastel-orange-theme .alert-danger {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-coral) 0%, #f87171 100%);
+  border: 2px solid #f87171;
+  color: #7f1d1d;
+  border-radius: 12px;
+}
+
+/* Scrollbar - Tema Pastel Laranja */
+body.pastel-orange-theme ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.pastel-orange-theme ::-webkit-scrollbar-track {
+  background: var(--pastel-orange-border);
+  border-radius: 10px;
+}
+
+body.pastel-orange-theme ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--pastel-orange-primary) 0%, #fb923c 100%);
+  border-radius: 10px;
+}
+
+body.pastel-orange-theme ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--pastel-orange-primary-dark) 0%, #ea580c 100%);
+}round: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+  border-color: #fb923c;
+  color: #c2410c;
+}
+
+body.pastel-theme .btn-danger:hover {
+  background: linear-gradient(135deg, #fdba74 0%, #f97316 100%);
+}
+
+/* Tabelas - Tema Pastel */
+body.pastel-theme table {
+  background: var(--pastel-card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(125, 211, 252, 0.15);
+  border: 2px solid var(--pastel-border);
+}
+
+body.pastel-theme th {
+  background: linear-gradient(135deg, var(--pastel-accent-indigo) 0%, #a5b4fc 100%);
+  color: #3730a3;
+  font-weight: 600;
+  padding: 16px;
+  border: none;
+}
+
+body.pastel-theme td {
+  color: var(--pastel-text);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--pastel-border);
+}
+
+body.pastel-theme tr:hover {
+  background: linear-gradient(135deg, rgba(125, 211, 252, 0.1) 0%, rgba(186, 230, 253, 0.1) 100%);
+}
+
+/* Filtros - Tema Pastel */
+body.pastel-theme .filters {
+  background: var(--pastel-card);
+  border: 2px solid var(--pastel-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(125, 211, 252, 0.15);
+  padding: 24px;
+}
+
+body.pastel-theme .filters h3 {
+  color: var(--pastel-text);
+  margin-bottom: 20px;
+}
+
+body.pastel-theme .filter-btn {
+  background: transparent;
+  border: 2px solid var(--pastel-primary);
+  border-radius: 25px;
+  color: var(--pastel-primary);
+  padding: 8px 20px;
+  margin: 4px;
+  transition: all 0.3s ease;
+}
+
+body.pastel-theme .filter-btn:hover,
+body.pastel-theme .filter-btn.active {
+  background: linear-gradient(135deg, var(--pastel-primary) 0%, #38bdf8 100%);
+  color: #0c4a6e;
+  transform: scale(1.05);
+}
+
+/* Gráficos - Tema Pastel */
+body.pastel-theme .chart-card {
+  background: var(--pastel-card);
+  border: 2px solid var(--pastel-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(125, 211, 252, 0.15);
+  overflow: hidden;
+}
+
+body.pastel-theme .chart-header {
+  background: linear-gradient(135deg, var(--pastel-accent-purple) 0%, #c4b5fd 100%);
+  padding: 20px;
+  border-bottom: 2px solid var(--pastel-border);
+}
+
+body.pastel-theme .chart-header h3 {
+  color: #6d28d9;
+  margin: 0;
+}
+
+body.pastel-theme .chart-header p {
+  color: #8b5cf6;
+  margin: 4px 0 0 0;
+}
+
+/* Seções de configuração - Tema Pastel */
+body.pastel-theme .config-section {
+  background: var(--pastel-card);
+  border: 2px solid var(--pastel-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(125, 211, 252, 0.15);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+body.pastel-theme .config-section h3 {
+  background: linear-gradient(135deg, var(--pastel-accent-sky) 0%, #7dd3fc 100%);
+  color: #0369a1;
+  margin: 0;
+  padding: 20px;
+  border-bottom: 2px solid var(--pastel-border);
+}
+
+body.pastel-theme .config-restauration {
+  background: var(--pastel-card);
+  border: 2px solid var(--pastel-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(125, 211, 252, 0.15);
+  color: var(--pastel-text);
+}
+
+/* Perfil - Tema Pastel */
+body.pastel-theme .profile-container,
+body.pastel-theme .profile-area {
+  background: var(--pastel-card);
+  border: 2px solid var(--pastel-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(125, 211, 252, 0.15);
+  color: var(--pastel-text);
+}
+
+body.pastel-theme .profile-header {
+  background: linear-gradient(135deg, var(--pastel-accent-blue) 0%, #93c5fd 100%);
+  border-bottom: 2px solid var(--pastel-border);
+  border-radius: 18px 18px 0 0;
+  padding: 24px;
+}
+
+body.pastel-theme .profile-header h2 {
+  color: #1e40af;
+  margin: 0;
+}
+
+/* Status badges - Tema Pastel */
+body.pastel-theme .status-badge {
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body.pastel-theme .status-critico {
+  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+  color: #c2410c;
+}
+
+body.pastel-theme .status-baixo {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  color: #d97706;
+}
+
+body.pastel-theme .status-pendente {
+  background: linear-gradient(135deg, var(--pastel-accent-sky) 0%, #7dd3fc 100%);
+  color: #0369a1;
+}
+
+body.pastel-theme .status-preparando {
+  background: linear-gradient(135deg, var(--pastel-accent-indigo) 0%, #a5b4fc 100%);
+  color: #3730a3;
+}
+
+body.pastel-theme .status-pronto {
+  background: linear-gradient(135deg, var(--pastel-accent-teal) 0%, #6ee7b7 100%);
+  color: #047857;
+}
+
+body.pastel-theme .status-entregue {
+  background: linear-gradient(135deg, var(--pastel-accent-purple) 0%, #c4b5fd 100%);
+  color: #6d28d9;
+}
+
+/* Alertas - Tema Pastel */
+body.pastel-theme .alert-info {
+  background: linear-gradient(135deg, var(--pastel-accent-blue) 0%, #93c5fd 100%);
+  border: 2px solid #60a5fa;
+  color: #1e40af;
+  border-radius: 12px;
+}
+
+body.pastel-theme .alert-success {
+  background: linear-gradient(135deg, var(--pastel-accent-teal) 0%, #6ee7b7 100%);
+  border: 2px solid #34d399;
+  color: #047857;
+  border-radius: 12px;
+}
+
+body.pastel-theme .alert-warning {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 2px solid #fbbf24;
+  color: #d97706;
+  border-radius: 12px;
+}
+
+body.pastel-theme .alert-danger {
+  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+  border: 2px solid #fb923c;
+  color: #c2410c;
+  border-radius: 12px;
+}
+
+/* Toggle de tema - Tema Pastel */
+body.pastel-theme .theme-toggle {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 25px;
+  padding: 8px 16px;
+  box-shadow: 0 4px 15px rgba(168, 216, 168, 0.2);
+}
+
+body.pastel-theme .theme-label {
+  color: var(--pastel-text);
+  font-weight: 500;
+}
+
+body.pastel-theme .slider {
+  background: var(--pastel-border);
+  border-radius: 20px;
+}
+
+body.pastel-theme input:checked + .slider {
+  background: linear-gradient(135deg, var(--pastel-primary) 0%, #38bdf8 100%);
+}
+
+body.pastel-theme .slider:before {
+  background: white;
+  box-shadow: 0 2px 8px rgba(125, 211, 252, 0.3);
+}
+
+/* Scrollbar - Tema Pastel */
+body.pastel-theme ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.pastel-theme ::-webkit-scrollbar-track {
+  background: var(--pastel-border);
+  border-radius: 10px;
+}
+
+body.pastel-theme ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--pastel-primary) 0%, #38bdf8 100%);
+  border-radius: 10px;
+}
+
+body.pastel-theme ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--pastel-primary-dark) 0%, #0284c7 100%);
+}
+
+/* Transições suaves - Tema Pastel */
+body.pastel-theme * {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efeitos especiais - Tema Pastel */
+body.pastel-theme .card:hover::before {
+  animation: rainbow 2s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Melhorias para formulários - Tema Pastel */
+body.pastel-theme .addForm {
+  background: var(--pastel-card) !important;
+  border: 2px solid var(--pastel-border) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 8px 25px rgba(168, 216, 168, 0.15) !important;
+  color: var(--pastel-text) !important;
+}
+
+body.pastel-theme .addForm h3 {
+  color: #1e40af !important;
+  background: linear-gradient(135deg, var(--pastel-accent-blue) 0%, #93c5fd 100%);
+  margin: -20px -20px 20px -20px;
+  padding: 20px;
+  border-radius: 18px 18px 0 0;
+}
+
+/* Melhorias para modais - Tema Pastel */
+body.pastel-theme .modal-content {
+  background: var(--pastel-card);
+  border: 2px solid var(--pastel-border);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(168, 216, 168, 0.3);
+}
+
+body.pastel-theme .modal-header {
+  background: linear-gradient(135deg, var(--pastel-accent-indigo) 0%, #a5b4fc 100%);
+  border-bottom: 2px solid var(--pastel-border);
+  border-radius: 18px 18px 0 0;
+}
+
+body.pastel-theme .modal-header h5 {
+  color: #3730a3;
+}
+
+/* Links - Tema Pastel */
+body.pastel-theme a {
+  color: var(--pastel-primary-dark);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+body.pastel-theme a:hover {
+  color: #2d5a3d;
+  text-decoration: underline;
+}/* 
+Formulários - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) input,
+body:not(.dark-theme):not(.pastel-theme) textarea,
+body:not(.dark-theme):not(.pastel-theme) select {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  color: #1e293b;
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+}
+
+body:not(.dark-theme):not(.pastel-theme) input:focus,
+body:not(.dark-theme):not(.pastel-theme) textarea:focus,
+body:not(.dark-theme):not(.pastel-theme) select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  outline: none;
+}
+
+body:not(.dark-theme):not(.pastel-theme) input::placeholder,
+body:not(.dark-theme):not(.pastel-theme) textarea::placeholder {
+  color: #64748b;
+}
+
+body:not(.dark-theme):not(.pastel-theme) label {
+  color: #1e293b;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* Botões - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) button,
+body:not(.dark-theme):not(.pastel-theme) .btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  border: 2px solid #3b82f6;
+  border-radius: 12px;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+body:not(.dark-theme):not(.pastel-theme) button:hover,
+body:not(.dark-theme):not(.pastel-theme) .btn:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+body:not(.dark-theme):not(.pastel-theme) .btn-danger {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border-color: #ef4444;
+  color: #ffffff;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .btn-danger:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+}
+
+/* Tabelas - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) table {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border: 2px solid #e2e8f0;
+}
+
+body:not(.dark-theme):not(.pastel-theme) th {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  color: #1e293b;
+  font-weight: 600;
+  padding: 16px;
+  border: none;
+}
+
+body:not(.dark-theme):not(.pastel-theme) td {
+  color: #334155;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+body:not(.dark-theme):not(.pastel-theme) tr:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(37, 99, 235, 0.05) 100%);
+}
+
+/* Seções de configuração - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) .config-section,
+body:not(.dark-theme):not(.pastel-theme) .config-card {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .config-header {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  color: #1e293b;
+  padding: 20px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .config-header h3 {
+  color: #1e293b;
+  margin: 0;
+}
+
+/* Status badges - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) .status-badge {
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .status-critico {
+  background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+  color: #b91c1c;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .status-baixo {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  color: #d97706;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .status-pendente {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1d4ed8;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .status-preparando {
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  color: #4338ca;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .status-pronto {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  color: #15803d;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .status-entregue {
+  background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+  color: #7c3aed;
+}
+
+/* Filtros - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) .filters {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .filters h3 {
+  color: #1e293b;
+  margin-bottom: 20px;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .filter-btn {
+  background: transparent;
+  border: 2px solid #3b82f6;
+  border-radius: 25px;
+  color: #3b82f6;
+  padding: 8px 20px;
+  margin: 4px;
+  transition: all 0.3s ease;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .filter-btn:hover,
+body:not(.dark-theme):not(.pastel-theme) .filter-btn.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* Alertas - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) .alert-info {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border: 2px solid #60a5fa;
+  color: #1e40af;
+  border-radius: 12px;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .alert-success {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+  border: 2px solid #34d399;
+  color: #047857;
+  border-radius: 12px;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .alert-warning {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 2px solid #fbbf24;
+  color: #d97706;
+  border-radius: 12px;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .alert-danger {
+  background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+  border: 2px solid #f87171;
+  color: #b91c1c;
+  border-radius: 12px;
+}
+
+/* Scrollbar - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body:not(.dark-theme):not(.pastel-theme) ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+body:not(.dark-theme):not(.pastel-theme) ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  border-radius: 10px;
+}
+
+body:not(.dark-theme):not(.pastel-theme) ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+}
+
+/* Efeitos especiais - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) .card:hover::before {
+  animation: rainbow 2s linear infinite;
+}
+
+/* Melhorias para formulários - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) .addForm {
+  background: #ffffff !important;
+  border: 2px solid #e2e8f0 !important;
+  border-radius: 20px !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
+  color: #1e293b !important;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .addForm h3 {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  margin: -20px -20px 20px -20px;
+  padding: 20px;
+  border-radius: 18px 18px 0 0;
+}
+
+/* Perfil - Tema Claro */
+body:not(.dark-theme):not(.pastel-theme) .profile-container,
+body:not(.dark-theme):not(.pastel-theme) .profile-area {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  color: #1e293b;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .profile-header {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border-bottom: 2px solid #e2e8f0;
+  border-radius: 18px 18px 0 0;
+  padding: 24px;
+}
+
+body:not(.dark-theme):not(.pastel-theme) .profile-header h2 {
+  color: #1e40af;
+  margin: 0;
+}/* 
+===== TEMA PASTEL VERDE ===== */
+body.pastel-green-theme {
+  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+  color: var(--pastel-green-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Sidebar - Tema Pastel Verde */
+body.pastel-green-theme .sidebar {
+  background: linear-gradient(180deg, var(--pastel-green-sidebar) 0%, #bbf7d0 100%);
+  border-right: 2px solid var(--pastel-green-border);
+  box-shadow: 2px 0 10px rgba(134, 239, 172, 0.1);
+}
+
+body.pastel-green-theme .sidebar a {
+  color: var(--pastel-green-text);
+  border-radius: 12px;
+  margin: 4px 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.pastel-green-theme .sidebar a:hover {
+  background: linear-gradient(135deg, var(--pastel-green-accent-mint) 0%, #86efac 100%);
+  color: #064e3b;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(134, 239, 172, 0.3);
+}
+
+body.pastel-green-theme .sidebar a.active {
+  background: linear-gradient(135deg, var(--pastel-green-primary) 0%, #4ade80 100%);
+  color: #052e16;
+  box-shadow: 0 4px 15px rgba(134, 239, 172, 0.4);
+}
+
+body.pastel-green-theme .sidebar [data-lucide] {
+  color: inherit;
+}
+
+/* Header - Tema Pastel Verde */
+body.pastel-green-theme .header {
+  background: linear-gradient(135deg, var(--pastel-green-accent-light) 0%, #86efac 100%);
+  color: #14532d;
+  border-radius: 16px;
+  margin: 16px;
+  box-shadow: 0 8px 25px rgba(187, 247, 208, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+body.pastel-green-theme .header h1 {
+  color: #14532d;
+  font-weight: 600;
+}
+
+/* Cards - Tema Pastel Verde */
+body.pastel-green-theme .card {
+  background: var(--pastel-green-card);
+  border: 2px solid var(--pastel-green-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(134, 239, 172, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+body.pastel-green-theme .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--pastel-green-accent-light), var(--pastel-green-accent-mint), var(--pastel-green-accent-emerald), var(--pastel-green-accent-teal));
+}
+
+body.pastel-green-theme .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(134, 239, 172, 0.25);
+}
+
+body.pastel-green-theme .card-content h3 {
+  color: var(--pastel-green-text-light);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+body.pastel-green-theme .card-number {
+  color: var(--pastel-green-text);
+  font-weight: 700;
+  font-size: 2.2rem;
+}
+
+body.pastel-green-theme .card [data-lucide] {
+  color: var(--pastel-green-primary-dark);
+}
+
+/* Cards específicos - Tema Pastel Verde */
+body.pastel-green-theme #receitaHoje {
+  background: linear-gradient(135deg, var(--pastel-green-accent-emerald) 0%, #34d399 100%);
+  border-color: #10b981;
+}
+
+body.pastel-green-theme #receitaHoje::before {
+  background: linear-gradient(90deg, #10b981, #059669);
+}
+
+body.pastel-green-theme #receitaHoje [data-lucide] {
+  color: #047857;
+}
+
+body.pastel-green-theme #receitaHoje .card-number {
+  color: #064e3b;
+}
+
+body.pastel-green-theme .card.low-stock {
+  background: linear-gradient(135deg, var(--pastel-green-accent-sage) 0%, #a3e635 100%);
+  border-color: #84cc16;
+}
+
+body.pastel-green-theme .card.low-stock::before {
+  background: linear-gradient(90deg, #84cc16, #65a30d);
+}
+
+body.pastel-green-theme .card.low-stock [data-lucide] {
+  color: #365314;
+}
+
+body.pastel-green-theme .card.low-stock .card-number {
+  color: #1a2e05;
+}
+
+/* Formulários - Tema Pastel Verde */
+body.pastel-green-theme input,
+body.pastel-green-theme textarea,
+body.pastel-green-theme select {
+  background: var(--pastel-green-input);
+  border: 2px solid var(--pastel-green-border);
+  border-radius: 12px;
+  color: var(--pastel-green-text);
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+}
+
+body.pastel-green-theme input:focus,
+body.pastel-green-theme textarea:focus,
+body.pastel-green-theme select:focus {
+  border-color: var(--pastel-green-primary-dark);
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+  outline: none;
+}
+
+body.pastel-green-theme input::placeholder,
+body.pastel-green-theme textarea::placeholder {
+  color: var(--pastel-green-text-light);
+}
+
+body.pastel-green-theme label {
+  color: var(--pastel-green-text);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* Botões - Tema Pastel Verde */
+body.pastel-green-theme button,
+body.pastel-green-theme .btn {
+  background: linear-gradient(135deg, var(--pastel-green-primary) 0%, #4ade80 100%);
+  border: 2px solid var(--pastel-green-primary);
+  border-radius: 12px;
+  color: #052e16;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(134, 239, 172, 0.3);
+}
+
+body.pastel-green-theme button:hover,
+body.pastel-green-theme .btn:hover {
+  background: linear-gradient(135deg, var(--pastel-green-primary-dark) 0%, #16a34a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(134, 239, 172, 0.4);
+}
+
+body.pastel-green-theme .btn-danger {
+  background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%);
+  border-color: #ef4444;
+  color: #7f1d1d;
+}
+
+body.pastel-green-theme .btn-danger:hover {
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+}
+
+/* Tabelas - Tema Pastel Verde */
+body.pastel-green-theme table {
+  background: var(--pastel-green-card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(134, 239, 172, 0.15);
+  border: 2px solid var(--pastel-green-border);
+}
+
+body.pastel-green-theme th {
+  background: linear-gradient(135deg, var(--pastel-green-accent-light) 0%, #86efac 100%);
+  color: #14532d;
+  font-weight: 600;
+  padding: 16px;
+  border: none;
+}
+
+body.pastel-green-theme td {
+  color: var(--pastel-green-text);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--pastel-green-border);
+}
+
+body.pastel-green-theme tr:hover {
+  background: linear-gradient(135deg, rgba(134, 239, 172, 0.1) 0%, rgba(187, 247, 208, 0.1) 100%);
+}
+
+/* Seções de configuração - Tema Pastel Verde */
+body.pastel-green-theme .config-section,
+body.pastel-green-theme .config-card {
+  background: var(--pastel-green-card);
+  border: 2px solid var(--pastel-green-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(134, 239, 172, 0.15);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+body.pastel-green-theme .config-header {
+  background: linear-gradient(135deg, var(--pastel-green-accent-mint) 0%, #86efac 100%);
+  color: #14532d;
+  padding: 20px;
+  border-bottom: 2px solid var(--pastel-green-border);
+}
+
+body.pastel-green-theme .config-header h3 {
+  color: #14532d;
+  margin: 0;
+}
+
+/* Status badges - Tema Pastel Verde */
+body.pastel-green-theme .status-badge {
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body.pastel-green-theme .status-critico {
+  background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%);
+  color: #7f1d1d;
+}
+
+body.pastel-green-theme .status-baixo {
+  background: linear-gradient(135deg, var(--pastel-green-accent-sage) 0%, #a3e635 100%);
+  color: #365314;
+}
+
+body.pastel-green-theme .status-pendente {
+  background: linear-gradient(135deg, var(--pastel-green-accent-light) 0%, #86efac 100%);
+  color: #14532d;
+}
+
+body.pastel-green-theme .status-preparando {
+  background: linear-gradient(135deg, var(--pastel-green-accent-teal) 0%, #2dd4bf 100%);
+  color: #134e4a;
+}
+
+body.pastel-green-theme .status-pronto {
+  background: linear-gradient(135deg, var(--pastel-green-accent-emerald) 0%, #34d399 100%);
+  color: #047857;
+}
+
+body.pastel-green-theme .status-entregue {
+  background: linear-gradient(135deg, var(--pastel-green-accent-mint) 0%, #6ee7b7 100%);
+  color: #065f46;
+}
+
+/* Alertas - Tema Pastel Verde */
+body.pastel-green-theme .alert-info {
+  background: linear-gradient(135deg, var(--pastel-green-accent-teal) 0%, #5eead4 100%);
+  border: 2px solid #2dd4bf;
+  color: #134e4a;
+  border-radius: 12px;
+}
+
+body.pastel-green-theme .alert-success {
+  background: linear-gradient(135deg, var(--pastel-green-accent-emerald) 0%, #34d399 100%);
+  border: 2px solid #10b981;
+  color: #047857;
+  border-radius: 12px;
+}
+
+body.pastel-green-theme .alert-warning {
+  background: linear-gradient(135deg, var(--pastel-green-accent-sage) 0%, #a3e635 100%);
+  border: 2px solid #84cc16;
+  color: #365314;
+  border-radius: 12px;
+}
+
+body.pastel-green-theme .alert-danger {
+  background: linear-gradient(135deg, #fca5a5 0%, #f87171 100%);
+  border: 2px solid #ef4444;
+  color: #7f1d1d;
+  border-radius: 12px;
+}
+
+/* Filtros - Tema Pastel Verde */
+body.pastel-green-theme .filters {
+  background: var(--pastel-green-card);
+  border: 2px solid var(--pastel-green-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(134, 239, 172, 0.15);
+  padding: 24px;
+}
+
+body.pastel-green-theme .filters h3 {
+  color: var(--pastel-green-text);
+  margin-bottom: 20px;
+}
+
+body.pastel-green-theme .filter-btn {
+  background: transparent;
+  border: 2px solid var(--pastel-green-primary-dark);
+  border-radius: 25px;
+  color: var(--pastel-green-primary-dark);
+  padding: 8px 20px;
+  margin: 4px;
+  transition: all 0.3s ease;
+}
+
+body.pastel-green-theme .filter-btn:hover,
+body.pastel-green-theme .filter-btn.active {
+  background: linear-gradient(135deg, var(--pastel-green-primary) 0%, #4ade80 100%);
+  color: #052e16;
+  transform: scale(1.05);
+}
+
+/* Scrollbar - Tema Pastel Verde */
+body.pastel-green-theme ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.pastel-green-theme ::-webkit-scrollbar-track {
+  background: var(--pastel-green-border);
+  border-radius: 10px;
+}
+
+body.pastel-green-theme ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--pastel-green-primary) 0%, #4ade80 100%);
+  border-radius: 10px;
+}
+
+body.pastel-green-theme ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--pastel-green-primary-dark) 0%, #16a34a 100%);
+}
+
+/* Efeitos especiais - Tema Pastel Verde */
+body.pastel-green-theme .card:hover::before {
+  animation: rainbow 2s linear infinite;
+}
+
+/* Melhorias para formulários - Tema Pastel Verde */
+body.pastel-green-theme .addForm {
+  background: var(--pastel-green-card) !important;
+  border: 2px solid var(--pastel-green-border) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 8px 25px rgba(134, 239, 172, 0.15) !important;
+  color: var(--pastel-green-text) !important;
+}
+
+body.pastel-green-theme .addForm h3 {
+  color: #052e16 !important;
+  background: linear-gradient(135deg, var(--pastel-green-accent-light) 0%, #86efac 100%);
+  margin: -20px -20px 20px -20px;
+  padding: 20px;
+  border-radius: 18px 18px 0 0;
+}
+
+/* Perfil - Tema Pastel Verde */
+body.pastel-green-theme .profile-container,
+body.pastel-green-theme .profile-area {
+  background: var(--pastel-green-card);
+  border: 2px solid var(--pastel-green-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(134, 239, 172, 0.15);
+  color: var(--pastel-green-text);
+}
+
+body.pastel-green-theme .profile-header {
+  background: linear-gradient(135deg, var(--pastel-green-accent-light) 0%, #86efac 100%);
+  border-bottom: 2px solid var(--pastel-green-border);
+  border-radius: 18px 18px 0 0;
+  padding: 24px;
+}
+
+body.pastel-green-theme .profile-header h2 {
+  color: #14532d;
+  margin: 0;
+}/* 
+===== TEMA PASTEL VERDE ===== */
+body.pastel-green-theme {
+  background: linear-gradient(135deg, var(--pastel-green-bg) 0%, #ecfdf5 100%);
+  color: var(--pastel-green-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sidebar - Tema Pastel Verde */
+body.pastel-green-theme .sidebar {
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+  border-right: 3px solid #34d399;
+  box-shadow: 2px 0 15px rgba(16, 185, 129, 0.3);
+}
+
+body.pastel-green-theme .sidebar a {
+  color: #d1fae5;
+  border-radius: 12px;
+  margin: 4px 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+}
+
+body.pastel-green-theme .sidebar a:hover {
+  background: linear-gradient(135deg, #34d399 0%, #6ee7b7 100%);
+  color: #064e3b;
+  transform: translateX(6px);
+  box-shadow: 0 6px 20px rgba(52, 211, 153, 0.4);
+}
+
+body.pastel-green-theme .sidebar a.active {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: #f0fdf4;
+  box-shadow: 0 6px 25px rgba(34, 197, 94, 0.6);
+  transform: translateX(4px);
+}
+
+body.pastel-green-theme .sidebar [data-lucide] {
+  color: inherit;
+}
+
+/* Header - Tema Pastel Verde */
+body.pastel-green-theme .header {
+  background: linear-gradient(135deg, var(--pastel-green-accent-light) 0%, #86efac 100%);
+  color: #14532d;
+  border-radius: 16px;
+  margin: 16px;
+  box-shadow: 0 8px 25px rgba(187, 247, 208, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+body.pastel-green-theme .header h1 {
+  color: #14532d;
+  font-weight: 600;
+}
+
+/* Cards - Tema Pastel Verde */
+body.pastel-green-theme .card {
+  background: var(--pastel-green-card);
+  border: 2px solid var(--pastel-green-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(134, 239, 172, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+body.pastel-green-theme .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--pastel-green-accent-light), var(--pastel-green-accent-mint), var(--pastel-green-accent-emerald), var(--pastel-green-accent-teal));
+}
+
+body.pastel-green-theme .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(134, 239, 172, 0.25);
+}
+
+body.pastel-green-theme .card-content h3 {
+  color: var(--pastel-green-text-light);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+body.pastel-green-theme .card-number {
+  color: var(--pastel-green-text);
+  font-weight: 700;
+  font-size: 2.2rem;
+}
+
+body.pastel-green-theme .card [data-lucide] {
+  color: var(--pastel-green-primary);
+}
+
+/* Cards específicos - Tema Pastel Verde */
+body.pastel-green-theme #receitaHoje {
+  background: linear-gradient(135deg, var(--pastel-green-accent-emerald) 0%, #34d399 100%);
+  border-color: #10b981;
+}
+
+body.pastel-green-theme #receitaHoje::before {
+  background: linear-gradient(90deg, #059669, #10b981);
+}
+
+body.pastel-green-theme #receitaHoje [data-lucide] {
+  color: #047857;
+}
+
+body.pastel-green-theme #receitaHoje .card-number {
+  color: #064e3b;
+}
+
+body.pastel-green-theme .card.low-stock {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-color: #f59e0b;
+}
+
+body.pastel-green-theme .card.low-stock::before {
+  background: linear-gradient(90deg, #d97706, #f59e0b);
+}
+
+body.pastel-green-theme .card.low-stock [data-lucide] {
+  color: #b45309;
+}
+
+body.pastel-green-theme .card.low-stock .card-number {
+  color: #92400e;
+}
+
+/* Formulários - Tema Pastel Verde */
+body.pastel-green-theme input,
+body.pastel-green-theme textarea,
+body.pastel-green-theme select {
+  background: var(--pastel-green-input);
+  border: 2px solid var(--pastel-green-border);
+  border-radius: 12px;
+  color: var(--pastel-green-text);
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+}
+
+body.pastel-green-theme input:focus,
+body.pastel-green-theme textarea:focus,
+body.pastel-green-theme select:focus {
+  border-color: var(--pastel-green-primary);
+  box-shadow: 0 0 0 4px rgba(134, 239, 172, 0.2);
+  outline: none;
+}
+
+body.pastel-green-theme input::placeholder,
+body.pastel-green-theme textarea::placeholder {
+  color: var(--pastel-green-text-light);
+}
+
+body.pastel-green-theme label {
+  color: var(--pastel-green-text);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* Botões - Tema Pastel Verde */
+body.pastel-green-theme button,
+body.pastel-green-theme .btn {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  border: 2px solid #22c55e;
+  border-radius: 12px;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+}
+
+body.pastel-green-theme button:hover,
+body.pastel-green-theme .btn:hover {
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.5);
+  border-color: #16a34a;
+}
+
+body.pastel-green-theme .btn-primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-color: #10b981;
+  color: #ffffff;
+}
+
+body.pastel-green-theme .btn-primary:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  border-color: #059669;
+}
+
+body.pastel-green-theme .btn-danger {
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+  border-color: #ef4444;
+  color: #ffffff;
+}
+
+body.pastel-green-theme .btn-danger:hover {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+/* Tabelas - Tema Pastel Verde */
+body.pastel-green-theme table {
+  background: var(--pastel-green-card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(134, 239, 172, 0.15);
+  border: 2px solid var(--pastel-green-border);
+}
+
+body.pastel-green-theme th {
+  background: linear-gradient(135deg, var(--pastel-green-accent-light) 0%, #86efac 100%);
+  color: #14532d;
+  font-weight: 600;
+  padding: 16px;
+  border: none;
+}
+
+body.pastel-green-theme td {
+  color: var(--pastel-green-text);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--pastel-green-border);
+}
+
+body.pastel-green-theme tr:hover {
+  background: linear-gradient(135deg, rgba(134, 239, 172, 0.1) 0%, rgba(187, 247, 208, 0.1) 100%);
+}
+
+/* Seções de configuração - Tema Pastel Verde */
+body.pastel-green-theme .config-section,
+body.pastel-green-theme .config-card {
+  background: var(--pastel-green-card);
+  border: 2px solid var(--pastel-green-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(134, 239, 172, 0.15);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+body.pastel-green-theme .config-header {
+  background: linear-gradient(135deg, var(--pastel-green-accent-light) 0%, #86efac 100%);
+  color: #14532d;
+  padding: 20px;
+  border-bottom: 2px solid var(--pastel-green-border);
+}
+
+body.pastel-green-theme .config-header h3 {
+  color: #14532d;
+  margin: 0;
+}
+
+/* Status badges - Tema Pastel Verde */
+body.pastel-green-theme .status-badge {
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body.pastel-green-theme .status-critico {
+  background: linear-gradient(135deg, #fecaca 0%, #f87171 100%);
+  color: #7f1d1d;
+}
+
+body.pastel-green-theme .status-baixo {
+  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+  color: #9a3412;
+}
+
+body.pastel-green-theme .status-pendente {
+  background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%);
+  color: #1e3a8a;
+}
+
+body.pastel-green-theme .status-preparando {
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  color: #3730a3;
+}
+
+body.pastel-green-theme .status-pronto {
+  background: linear-gradient(135deg, var(--pastel-green-accent-light) 0%, #86efac 100%);
+  color: #14532d;
+}
+
+body.pastel-green-theme .status-entregue {
+  background: linear-gradient(135deg, #f3e8ff 0%, #ddd6fe 100%);
+  color: #581c87;
+}
+
+/* Filtros - Tema Pastel Verde */
+body.pastel-green-theme .filters {
+  background: var(--pastel-green-card);
+  border: 2px solid var(--pastel-green-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(134, 239, 172, 0.15);
+  padding: 24px;
+}
+
+body.pastel-green-theme .filters h3 {
+  color: var(--pastel-green-text);
+  margin-bottom: 20px;
+}
+
+body.pastel-green-theme .filter-btn {
+  background: transparent;
+  border: 2px solid var(--pastel-green-primary);
+  border-radius: 25px;
+  color: var(--pastel-green-primary);
+  padding: 8px 20px;
+  margin: 4px;
+  transition: all 0.3s ease;
+}
+
+body.pastel-green-theme .filter-btn:hover,
+body.pastel-green-theme .filter-btn.active {
+  background: linear-gradient(135deg, var(--pastel-green-primary) 0%, #22c55e 100%);
+  color: #14532d;
+  transform: scale(1.05);
+}
+
+/* Alertas - Tema Pastel Verde */
+body.pastel-green-theme .alert-info {
+  background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%);
+  border: 2px solid #3b82f6;
+  color: #1e3a8a;
+  border-radius: 12px;
+}
+
+body.pastel-green-theme .alert-success {
+  background: linear-gradient(135deg, var(--pastel-green-accent-light) 0%, #86efac 100%);
+  border: 2px solid var(--pastel-green-primary);
+  color: #14532d;
+  border-radius: 12px;
+}
+
+body.pastel-green-theme .alert-warning {
+  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
+  border: 2px solid #f59e0b;
+  color: #9a3412;
+  border-radius: 12px;
+}
+
+body.pastel-green-theme .alert-danger {
+  background: linear-gradient(135deg, #fecaca 0%, #f87171 100%);
+  border: 2px solid #ef4444;
+  color: #7f1d1d;
+  border-radius: 12px;
+}
+
+/* Scrollbar - Tema Pastel Verde */
+body.pastel-green-theme ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.pastel-green-theme ::-webkit-scrollbar-track {
+  background: var(--pastel-green-border);
+  border-radius: 10px;
+}
+
+body.pastel-green-theme ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--pastel-green-primary) 0%, #22c55e 100%);
+  border-radius: 10px;
+}
+
+body.pastel-green-theme ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--pastel-green-primary-dark) 0%, #16a34a 100%);
+}
+
+/* ===== TEMA PASTEL LARANJA ===== */
+body.pastel-orange-theme {
+  background: linear-gradient(135deg, var(--pastel-orange-bg) 0%, #fef7ed 100%);
+  color: var(--pastel-orange-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sidebar - Tema Pastel Laranja */
+body.pastel-orange-theme .sidebar {
+  background: linear-gradient(180deg, #f97316 0%, #ea580c 100%);
+  border-right: 3px solid #fb923c;
+  box-shadow: 2px 0 15px rgba(249, 115, 22, 0.3);
+}
+
+body.pastel-orange-theme .sidebar a {
+  color: #fed7aa;
+  border-radius: 12px;
+  margin: 4px 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+}
+
+body.pastel-orange-theme .sidebar a:hover {
+  background: linear-gradient(135deg, #fb923c 0%, #fcd34d 100%);
+  color: #7c2d12;
+  transform: translateX(6px);
+  box-shadow: 0 6px 20px rgba(251, 146, 60, 0.4);
+}
+
+body.pastel-orange-theme .sidebar a.active {
+  background: linear-gradient(135deg, #fdba74 0%, #f59e0b 100%);
+  color: #451a03;
+  box-shadow: 0 6px 25px rgba(253, 186, 116, 0.6);
+  transform: translateX(4px);
+}
+
+body.pastel-orange-theme .sidebar [data-lucide] {
+  color: inherit;
+}
+
+/* Header - Tema Pastel Laranja */
+body.pastel-orange-theme .header {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-peach) 0%, #fdba74 100%);
+  color: #9a3412;
+  border-radius: 16px;
+  margin: 16px;
+  box-shadow: 0 8px 25px rgba(253, 230, 138, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+body.pastel-orange-theme .header h1 {
+  color: #9a3412;
+  font-weight: 600;
+}
+
+/* Cards - Tema Pastel Laranja */
+body.pastel-orange-theme .card {
+  background: var(--pastel-orange-card);
+  border: 2px solid var(--pastel-orange-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(253, 186, 116, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+body.pastel-orange-theme .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--pastel-orange-accent-peach), var(--pastel-orange-accent-amber), var(--pastel-orange-accent-yellow), var(--pastel-orange-accent-coral));
+}
+
+body.pastel-orange-theme .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(253, 186, 116, 0.25);
+}
+
+body.pastel-orange-theme .card-content h3 {
+  color: var(--pastel-orange-text-light);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+body.pastel-orange-theme .card-number {
+  color: var(--pastel-orange-text);
+  font-weight: 700;
+  font-size: 2.2rem;
+}
+
+body.pastel-orange-theme .card [data-lucide] {
+  color: var(--pastel-orange-primary);
+}
+
+/* Cards específicos - Tema Pastel Laranja */
+body.pastel-orange-theme #receitaHoje {
+  background: linear-gradient(135deg, #bbf7d0 0%, #86efac 100%);
+  border-color: #22c55e;
+}
+
+body.pastel-orange-theme #receitaHoje::before {
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+}
+
+body.pastel-orange-theme #receitaHoje [data-lucide] {
+  color: #15803d;
+}
+
+body.pastel-orange-theme #receitaHoje .card-number {
+  color: #14532d;
+}
+
+body.pastel-orange-theme .card.low-stock {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-coral) 0%, #f87171 100%);
+  border-color: #ef4444;
+}
+
+body.pastel-orange-theme .card.low-stock::before {
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+}
+
+body.pastel-orange-theme .card.low-stock [data-lucide] {
+  color: #b91c1c;
+}
+
+body.pastel-orange-theme .card.low-stock .card-number {
+  color: #7f1d1d;
+}
+
+/* Formulários - Tema Pastel Laranja */
+body.pastel-orange-theme input,
+body.pastel-orange-theme textarea,
+body.pastel-orange-theme select {
+  background: var(--pastel-orange-input);
+  border: 2px solid var(--pastel-orange-border);
+  border-radius: 12px;
+  color: var(--pastel-orange-text);
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+}
+
+body.pastel-orange-theme input:focus,
+body.pastel-orange-theme textarea:focus,
+body.pastel-orange-theme select:focus {
+  border-color: var(--pastel-orange-primary);
+  box-shadow: 0 0 0 4px rgba(253, 186, 116, 0.2);
+  outline: none;
+}
+
+body.pastel-orange-theme input::placeholder,
+body.pastel-orange-theme textarea::placeholder {
+  color: var(--pastel-orange-text-light);
+}
+
+body.pastel-orange-theme label {
+  color: var(--pastel-orange-text);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* Botões - Tema Pastel Laranja */
+body.pastel-orange-theme button,
+body.pastel-orange-theme .btn {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  border: 2px solid #f97316;
+  border-radius: 12px;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+}
+
+body.pastel-orange-theme button:hover,
+body.pastel-orange-theme .btn:hover {
+  background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(249, 115, 22, 0.5);
+  border-color: #ea580c;
+}
+
+body.pastel-orange-theme .btn-primary {
+  background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
+  border-color: #fb923c;
+  color: #ffffff;
+}
+
+body.pastel-orange-theme .btn-primary:hover {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  border-color: #f97316;
+}
+
+body.pastel-orange-theme .btn-danger {
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+  border-color: #ef4444;
+  color: #ffffff;
+}
+
+body.pastel-orange-theme .btn-danger:hover {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+/* Tabelas - Tema Pastel Laranja */
+body.pastel-orange-theme table {
+  background: var(--pastel-orange-card);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(253, 186, 116, 0.15);
+  border: 2px solid var(--pastel-orange-border);
+}
+
+body.pastel-orange-theme th {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-peach) 0%, #fdba74 100%);
+  color: #9a3412;
+  font-weight: 600;
+  padding: 16px;
+  border: none;
+}
+
+body.pastel-orange-theme td {
+  color: var(--pastel-orange-text);
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--pastel-orange-border);
+}
+
+body.pastel-orange-theme tr:hover {
+  background: linear-gradient(135deg, rgba(253, 186, 116, 0.1) 0%, rgba(253, 230, 138, 0.1) 100%);
+}
+
+/* Seções de configuração - Tema Pastel Laranja */
+body.pastel-orange-theme .config-section,
+body.pastel-orange-theme .config-card {
+  background: var(--pastel-orange-card);
+  border: 2px solid var(--pastel-orange-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(253, 186, 116, 0.15);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+body.pastel-orange-theme .config-header {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-peach) 0%, #fdba74 100%);
+  color: #9a3412;
+  padding: 20px;
+  border-bottom: 2px solid var(--pastel-orange-border);
+}
+
+body.pastel-orange-theme .config-header h3 {
+  color: #9a3412;
+  margin: 0;
+}
+
+/* Status badges - Tema Pastel Laranja */
+body.pastel-orange-theme .status-badge {
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+body.pastel-orange-theme .status-critico {
+  background: linear-gradient(135deg, #fecaca 0%, #f87171 100%);
+  color: #7f1d1d;
+}
+
+body.pastel-orange-theme .status-baixo {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-peach) 0%, #fdba74 100%);
+  color: #9a3412;
+}
+
+body.pastel-orange-theme .status-pendente {
+  background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%);
+  color: #1e3a8a;
+}
+
+body.pastel-orange-theme .status-preparando {
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  color: #3730a3;
+}
+
+body.pastel-orange-theme .status-pronto {
+  background: linear-gradient(135deg, #bbf7d0 0%, #86efac 100%);
+  color: #14532d;
+}
+
+body.pastel-orange-theme .status-entregue {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-rose) 0%, #f9a8d4 100%);
+  color: #831843;
+}
+
+/* Filtros - Tema Pastel Laranja */
+body.pastel-orange-theme .filters {
+  background: var(--pastel-orange-card);
+  border: 2px solid var(--pastel-orange-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(253, 186, 116, 0.15);
+  padding: 24px;
+}
+
+body.pastel-orange-theme .filters h3 {
+  color: var(--pastel-orange-text);
+  margin-bottom: 20px;
+}
+
+body.pastel-orange-theme .filter-btn {
+  background: transparent;
+  border: 2px solid var(--pastel-orange-primary);
+  border-radius: 25px;
+  color: var(--pastel-orange-primary);
+  padding: 8px 20px;
+  margin: 4px;
+  transition: all 0.3s ease;
+}
+
+body.pastel-orange-theme .filter-btn:hover,
+body.pastel-orange-theme .filter-btn.active {
+  background: linear-gradient(135deg, var(--pastel-orange-primary) 0%, #f97316 100%);
+  color: #9a3412;
+  transform: scale(1.05);
+}
+
+/* Alertas - Tema Pastel Laranja */
+body.pastel-orange-theme .alert-info {
+  background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%);
+  border: 2px solid #3b82f6;
+  color: #1e3a8a;
+  border-radius: 12px;
+}
+
+body.pastel-orange-theme .alert-success {
+  background: linear-gradient(135deg, #bbf7d0 0%, #86efac 100%);
+  border: 2px solid #22c55e;
+  color: #14532d;
+  border-radius: 12px;
+}
+
+body.pastel-orange-theme .alert-warning {
+  background: linear-gradient(135deg, var(--pastel-orange-accent-peach) 0%, #fdba74 100%);
+  border: 2px solid var(--pastel-orange-primary);
+  color: #9a3412;
+  border-radius: 12px;
+}
+
+body.pastel-orange-theme .alert-danger {
+  background: linear-gradient(135deg, #fecaca 0%, #f87171 100%);
+  border: 2px solid #ef4444;
+  color: #7f1d1d;
+  border-radius: 12px;
+}
+
+/* Scrollbar - Tema Pastel Laranja */
+body.pastel-orange-theme ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.pastel-orange-theme ::-webkit-scrollbar-track {
+  background: var(--pastel-orange-border);
+  border-radius: 10px;
+}
+
+body.pastel-orange-theme ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--pastel-orange-primary) 0%, #f97316 100%);
+  border-radius: 10px;
+}
+
+body.pastel-orange-theme ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--pastel-orange-primary-dark) 0%, #ea580c 100%);
+}/* ===
+== MELHORIAS PARA HEADERS DOS TEMAS PASTÉIS ===== */
+
+/* Header melhorado - Tema Pastel Verde */
+body.pastel-green-theme .header {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  border-radius: 16px !important;
+  margin: 16px !important;
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4) !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+body.pastel-green-theme .header h1 {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Header melhorado - Tema Pastel Laranja */
+body.pastel-orange-theme .header {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important;
+  color: #ffffff !important;
+  border-radius: 16px !important;
+  margin: 16px !important;
+  box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4) !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+body.pastel-orange-theme .header h1 {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ===== MELHORIAS PARA BOTÕES SECUNDÁRIOS ===== */
+
+/* Botões secundários - Tema Pastel Verde */
+body.pastel-green-theme .btn-secondary {
+  background: linear-gradient(135deg, #6ee7b7 0%, #34d399 100%) !important;
+  border: 2px solid #34d399 !important;
+  color: #064e3b !important;
+  font-weight: 600 !important;
+}
+
+body.pastel-green-theme .btn-secondary:hover {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%) !important;
+  border-color: #10b981 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Botões secundários - Tema Pastel Laranja */
+body.pastel-orange-theme .btn-secondary {
+  background: linear-gradient(135deg, #fdba74 0%, #fb923c 100%) !important;
+  border: 2px solid #fb923c !important;
+  color: #7c2d12 !important;
+  font-weight: 600 !important;
+}
+
+body.pastel-orange-theme .btn-secondary:hover {
+  background: linear-gradient(135deg, #fb923c 0%, #f97316 100%) !important;
+  border-color: #f97316 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ===== MELHORIAS PARA ÍCONES DA SIDEBAR ===== */
+
+/* Ícones da sidebar - Tema Pastel Verde */
+body.pastel-green-theme .sidebar [data-lucide] {
+  color: inherit !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)) !important;
+}
+
+body.pastel-green-theme .sidebar a:hover [data-lucide] {
+  color: #064e3b !important;
+  transform: scale(1.1) !important;
+}
+
+body.pastel-green-theme .sidebar a.active [data-lucide] {
+  color: #f0fdf4 !important;
+  transform: scale(1.05) !important;
+}
+
+/* Ícones da sidebar - Tema Pastel Laranja */
+body.pastel-orange-theme .sidebar [data-lucide] {
+  color: inherit !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)) !important;
+}
+
+body.pastel-orange-theme .sidebar a:hover [data-lucide] {
+  color: #7c2d12 !important;
+  transform: scale(1.1) !important;
+}
+
+body.pastel-orange-theme .sidebar a.active [data-lucide] {
+  color: #451a03 !important;
+  transform: scale(1.05) !important;
+}
+
+/* ===== MELHORIAS PARA CARDS ===== */
+
+/* Cards com cores mais vibrantes - Tema Pastel Verde */
+body.pastel-green-theme .card::before {
+  background: linear-gradient(90deg, #10b981, #34d399, #6ee7b7, #5eead4) !important;
+  height: 5px !important;
+}
+
+body.pastel-green-theme .card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 15px 40px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Cards com cores mais vibrantes - Tema Pastel Laranja */
+body.pastel-orange-theme .card::before {
+  background: linear-gradient(90deg, #f97316, #fb923c, #fdba74, #fcd34d) !important;
+  height: 5px !important;
+}
+
+body.pastel-orange-theme .card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 15px 40px rgba(249, 115, 22, 0.3) !important;
+}/*
+ ===== CORREÇÃO PARA ÍCONES DOS BOTÕES NO TEMA ESCURO ===== */
+
+/* Remover fundo verde dos ícones em botões no tema escuro */
+[data-theme="dark"] .btn i,
+[data-theme="dark"] .btn [data-lucide],
+[data-theme="dark"] button i,
+[data-theme="dark"] button [data-lucide],
+body.dark-theme .btn i,
+body.dark-theme .btn [data-lucide],
+body.dark-theme button i,
+body.dark-theme button [data-lucide] {
+  background: none !important;
+  background-color: transparent !important;
+  color: inherit !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: auto !important;
+  min-height: auto !important;
+  display: inline !important;
+  vertical-align: middle !important;
+}
+
+/* Correção específica para botões primários no tema escuro */
+[data-theme="dark"] .btn-primary i,
+[data-theme="dark"] .btn-primary [data-lucide],
+body.dark-theme .btn-primary i,
+body.dark-theme .btn-primary [data-lucide] {
+  background: none !important;
+  background-color: transparent !important;
+  color: #1f2937 !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Correção específica para botões secundários no tema escuro */
+[data-theme="dark"] .btn-secondary i,
+[data-theme="dark"] .btn-secondary [data-lucide],
+body.dark-theme .btn-secondary i,
+body.dark-theme .btn-secondary [data-lucide] {
+  background: none !important;
+  background-color: transparent !important;
+  color: inherit !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Correção específica para botões de perigo no tema escuro */
+[data-theme="dark"] .btn-danger i,
+[data-theme="dark"] .btn-danger [data-lucide],
+body.dark-theme .btn-danger i,
+body.dark-theme .btn-danger [data-lucide] {
+  background: none !important;
+  background-color: transparent !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Correção para ícones em formulários no tema escuro */
+[data-theme="dark"] form i,
+[data-theme="dark"] form [data-lucide],
+body.dark-theme form i,
+body.dark-theme form [data-lucide] {
+  background: none !important;
+  background-color: transparent !important;
+  color: inherit !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Correção para ícones em labels no tema escuro */
+[data-theme="dark"] label i,
+[data-theme="dark"] label [data-lucide],
+body.dark-theme label i,
+body.dark-theme label [data-lucide] {
+  background: none !important;
+  background-color: transparent !important;
+  color: inherit !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Correção geral para todos os ícones no tema escuro */
+[data-theme="dark"] i,
+[data-theme="dark"] [data-lucide],
+body.dark-theme i,
+body.dark-theme [data-lucide] {
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: auto !important;
+  min-height: auto !important;
+  display: inline !important;
+  vertical-align: middle !important;
+}
+
+/* Exceções para ícones que devem manter algum estilo específico */
+[data-theme="dark"] .sidebar [data-lucide],
+body.dark-theme .sidebar [data-lucide] {
+  /* Manter estilos específicos da sidebar */
+  background: none !important;
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .card [data-lucide],
+body.dark-theme .card [data-lucide] {
+  /* Manter estilos específicos dos cards */
+  background: none !important;
+  background-color: transparent !important;
+}
+
+/* Correção para ícones em notificações no tema escuro */
+[data-theme="dark"] .notification i,
+[data-theme="dark"] .notification [data-lucide],
+body.dark-theme .notification i,
+body.dark-theme .notification [data-lucide] {
+  background: none !important;
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+/* Reset completo para ícones problemáticos */
+[data-theme="dark"] *:not(.sidebar):not(.card) i,
+[data-theme="dark"] *:not(.sidebar):not(.card) [data-lucide],
+body.dark-theme *:not(.sidebar):not(.card) i,
+body.dark-theme *:not(.sidebar):not(.card) [data-lucide] {
+  background: none !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: auto !important;
+  min-height: auto !important;
+  max-width: none !important;
+  max-height: none !important;
+  display: inline !important;
+  vertical-align: middle !important;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  overflow: visible !important;
+  z-index: auto !important;
+}/* ====
+= CORREÇÃO PARA DROPDOWN DE STATUS NO TEMA ESCURO ===== */
+
+/* Estilos gerais para selects no tema escuro */
+[data-theme="dark"] select,
+body.dark-theme select {
+  background: #374151 !important;
+  border: 2px solid #4b5563 !important;
+  border-radius: 8px !important;
+  color: #f9fafb !important;
+  padding: 8px 12px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f9fafb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 8px center !important;
+  background-size: 16px !important;
+  padding-right: 32px !important;
+}
+
+[data-theme="dark"] select:hover,
+body.dark-theme select:hover {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2) !important;
+}
+
+[data-theme="dark"] select:focus,
+body.dark-theme select:focus {
+  outline: none !important;
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.3) !important;
+}
+
+/* Estilos específicos para dropdown de status */
+[data-theme="dark"] .status-select,
+body.dark-theme .status-select {
+  background: #1f2937 !important;
+  border: 2px solid #f59e0b !important;
+  border-radius: 12px !important;
+  color: #f9fafb !important;
+  padding: 10px 16px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  min-width: 140px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .status-select:hover,
+body.dark-theme .status-select:hover {
+  border-color: #fbbf24 !important;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Opções do dropdown de status no tema escuro */
+[data-theme="dark"] .status-select option,
+body.dark-theme .status-select option {
+  background: #1f2937 !important;
+  color: #f9fafb !important;
+  padding: 12px 16px !important;
+  font-weight: 600 !important;
+  border: none !important;
+}
+
+/* Cores específicas para cada status no tema escuro */
+[data-theme="dark"] .status-select option[value="pendente"],
+body.dark-theme .status-select option[value="pendente"] {
+  background: linear-gradient(135deg, #78350f 0%, #92400e 100%) !important;
+  color: #fed7aa !important;
+}
+
+[data-theme="dark"] .status-select option[value="preparando"],
+body.dark-theme .status-select option[value="preparando"] {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%) !important;
+  color: #dbeafe !important;
+}
+
+[data-theme="dark"] .status-select option[value="pronto"],
+body.dark-theme .status-select option[value="pronto"] {
+  background: linear-gradient(135deg, #14532d 0%, #166534 100%) !important;
+  color: #dcfce7 !important;
+}
+
+[data-theme="dark"] .status-select option[value="entregue"],
+body.dark-theme .status-select option[value="entregue"] {
+  background: linear-gradient(135deg, #581c87 0%, #6b21a8 100%) !important;
+  color: #f3e8ff !important;
+}
+
+[data-theme="dark"] .status-select option[value="cancelado"],
+body.dark-theme .status-select option[value="cancelado"] {
+  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%) !important;
+  color: #fecaca !important;
+}
+
+/* Melhorias para tabelas com status no tema escuro */
+[data-theme="dark"] table,
+body.dark-theme table {
+  background: #1f2937 !important;
+  border: 2px solid #374151 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme="dark"] th,
+body.dark-theme th {
+  background: linear-gradient(135deg, #374151 0%, #4b5563 100%) !important;
+  color: #f9fafb !important;
+  font-weight: 600 !important;
+  padding: 16px !important;
+  border: none !important;
+  border-bottom: 2px solid #4b5563 !important;
+}
+
+[data-theme="dark"] td,
+body.dark-theme td {
+  background: #1f2937 !important;
+  color: #e5e7eb !important;
+  padding: 14px 16px !important;
+  border: none !important;
+  border-bottom: 1px solid #374151 !important;
+}
+
+[data-theme="dark"] tr:hover td,
+body.dark-theme tr:hover td {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.1) 100%) !important;
+}
+
+/* Status badges melhorados para tema escuro */
+[data-theme="dark"] .status-badge,
+body.dark-theme .status-badge {
+  border-radius: 20px !important;
+  padding: 6px 14px !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  border: 2px solid transparent !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .status-critico,
+body.dark-theme .status-critico {
+  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%) !important;
+  color: #fecaca !important;
+  border-color: #dc2626 !important;
+}
+
+[data-theme="dark"] .status-baixo,
+body.dark-theme .status-baixo {
+  background: linear-gradient(135deg, #78350f 0%, #92400e 100%) !important;
+  color: #fed7aa !important;
+  border-color: #f59e0b !important;
+}
+
+[data-theme="dark"] .status-pendente,
+body.dark-theme .status-pendente {
+  background: linear-gradient(135deg, #78350f 0%, #92400e 100%) !important;
+  color: #fed7aa !important;
+  border-color: #f59e0b !important;
+}
+
+[data-theme="dark"] .status-preparando,
+body.dark-theme .status-preparando {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%) !important;
+  color: #dbeafe !important;
+  border-color: #3b82f6 !important;
+}
+
+[data-theme="dark"] .status-pronto,
+body.dark-theme .status-pronto {
+  background: linear-gradient(135deg, #14532d 0%, #166534 100%) !important;
+  color: #dcfce7 !important;
+  border-color: #22c55e !important;
+}
+
+[data-theme="dark"] .status-entregue,
+body.dark-theme .status-entregue {
+  background: linear-gradient(135deg, #581c87 0%, #6b21a8 100%) !important;
+  color: #f3e8ff !important;
+  border-color: #a855f7 !important;
+}
+
+[data-theme="dark"] .status-cancelado,
+body.dark-theme .status-cancelado {
+  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%) !important;
+  color: #fecaca !important;
+  border-color: #dc2626 !important;
+}
+
+/* Melhorias específicas para células de tabela com select */
+[data-theme="dark"] td select,
+body.dark-theme td select {
+  width: 100% !important;
+  max-width: 160px !important;
+  margin: 0 auto !important;
+}
+
+/* Correção para contraste em texto de valores monetários */
+[data-theme="dark"] .currency,
+[data-theme="dark"] .price,
+[data-theme="dark"] .total,
+body.dark-theme .currency,
+body.dark-theme .price,
+body.dark-theme .total {
+  color: #fbbf24 !important;
+  font-weight: 600 !important;
+}
+
+/* Melhorias para datas no tema escuro */
+[data-theme="dark"] .date,
+[data-theme="dark"] .datetime,
+body.dark-theme .date,
+body.dark-theme .datetime {
+  color: #cbd5e1 !important;
+  font-weight: 500 !important;
 }

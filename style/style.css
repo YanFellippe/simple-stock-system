@@ -201,8 +201,8 @@ input:checked + .slider::before {
   body {
     flex-direction: column;
   }
-}/* =
-==== MODERN FORM STYLES ===== */
+}
+
 .form-container {
   background: var(--card-bg, #ffffff);
   border-radius: 12px;

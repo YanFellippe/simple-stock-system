@@ -17,17 +17,28 @@ document.addEventListener("DOMContentLoaded", () => {
 function aplicarTemaSalvo() {
   const savedTheme = localStorage.getItem('theme') || 'light';
   
-  // Aplicar tema imediatamente
+  // Remover todas as classes de tema
+  document.body.classList.remove('dark-theme', 'pastel-theme', 'pastel-green-theme', 'pastel-orange-theme');
+  
+  // Aplicar tema salvo
   if (savedTheme === 'dark') {
     document.body.classList.add('dark-theme');
     document.documentElement.setAttribute('data-theme', 'dark');
+  } else if (savedTheme === 'pastel') {
+    document.body.classList.add('pastel-theme');
+    document.documentElement.setAttribute('data-theme', 'pastel');
+  } else if (savedTheme === 'pastel-green') {
+    document.body.classList.add('pastel-green-theme');
+    document.documentElement.setAttribute('data-theme', 'pastel-green');
+  } else if (savedTheme === 'pastel-orange') {
+    document.body.classList.add('pastel-orange-theme');
+    document.documentElement.setAttribute('data-theme', 'pastel-orange');
   } else {
-    document.body.classList.remove('dark-theme');
     document.documentElement.setAttribute('data-theme', 'light');
   }
   
   // Aplicação suave do tema
-  document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+  document.body.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
 }
 
 // ===== INICIALIZAÇÃO ===== //
@@ -108,8 +119,17 @@ function setupThemeSelector() {
   const themeInputs = document.querySelectorAll('input[name="theme"]');
   const currentTheme = localStorage.getItem('theme') || 'light';
   
-  // Marcar tema atual
-  const themeRadio = document.getElementById(`theme${currentTheme.charAt(0).toUpperCase() + currentTheme.slice(1)}`);
+  // Marcar tema atual - tratamento especial para temas compostos
+  let themeRadioId;
+  if (currentTheme === 'pastel-green') {
+    themeRadioId = 'themePastelGreen';
+  } else if (currentTheme === 'pastel-orange') {
+    themeRadioId = 'themePastelOrange';
+  } else {
+    themeRadioId = `theme${currentTheme.charAt(0).toUpperCase() + currentTheme.slice(1)}`;
+  }
+  
+  const themeRadio = document.getElementById(themeRadioId);
   if (themeRadio) {
     themeRadio.checked = true;
   }
@@ -121,20 +141,44 @@ function setupThemeSelector() {
         const newTheme = e.target.value;
         localStorage.setItem('theme', newTheme);
         
-        // Aplicar tema imediatamente
+        // Remover todas as classes de tema
+        document.body.classList.remove('dark-theme', 'pastel-theme', 'pastel-green-theme', 'pastel-orange-theme');
+        
+        // Aplicar novo tema
         if (newTheme === 'dark') {
           document.body.classList.add('dark-theme');
           document.documentElement.setAttribute('data-theme', 'dark');
+        } else if (newTheme === 'pastel') {
+          document.body.classList.add('pastel-theme');
+          document.documentElement.setAttribute('data-theme', 'pastel');
+        } else if (newTheme === 'pastel-green') {
+          document.body.classList.add('pastel-green-theme');
+          document.documentElement.setAttribute('data-theme', 'pastel-green');
+        } else if (newTheme === 'pastel-orange') {
+          document.body.classList.add('pastel-orange-theme');
+          document.documentElement.setAttribute('data-theme', 'pastel-orange');
         } else {
-          document.body.classList.remove('dark-theme');
           document.documentElement.setAttribute('data-theme', 'light');
         }
         
         // Aplicação suave do tema
-        document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+        document.body.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
         
-        addLog(`Tema alterado para ${newTheme === 'dark' ? 'escuro' : 'claro'}`, 'info');
-        showAlert(`Tema ${newTheme === 'dark' ? 'escuro' : 'claro'} aplicado!`, 'success');
+        const themeNames = {
+          'light': 'claro',
+          'dark': 'escuro',
+          'pastel': 'pastel azul',
+          'pastel-green': 'pastel verde',
+          'pastel-orange': 'pastel laranja'
+        };
+        
+        addLog(`Tema alterado para ${themeNames[newTheme]}`, 'info');
+        
+        if (window.NotificationSystem) {
+          NotificationSystem.success(`Tema ${themeNames[newTheme]} aplicado com sucesso! 🎨`);
+        } else {
+          showAlert(`Tema ${themeNames[newTheme]} aplicado!`, 'success');
+        }
       }
     });
   });

@@ -25,7 +25,7 @@
   </div>
 
   <div class="main">
-    <div class="header">⚙️ Configurações do Sistema</div>
+    <div class="header">Configurações do Sistema</div>
 
     <!-- Configurações Gerais -->
     <div class="config-grid">
@@ -53,6 +53,30 @@
                 <div class="theme-content"></div>
               </div>
               <span>Escuro</span>
+            </label>
+            <label class="theme-option">
+              <input type="radio" name="theme" value="pastel" id="themePastel">
+              <div class="theme-preview pastel">
+                <div class="theme-bar"></div>
+                <div class="theme-content"></div>
+              </div>
+              <span>Pastel Azul</span>
+            </label>
+            <label class="theme-option">
+              <input type="radio" name="theme" value="pastel-green" id="themePastelGreen">
+              <div class="theme-preview pastel-green">
+                <div class="theme-bar"></div>
+                <div class="theme-content"></div>
+              </div>
+              <span>Pastel Verde</span>
+            </label>
+            <label class="theme-option">
+              <input type="radio" name="theme" value="pastel-orange" id="themePastelOrange">
+              <div class="theme-preview pastel-orange">
+                <div class="theme-bar"></div>
+                <div class="theme-content"></div>
+              </div>
+              <span>Pastel Laranja</span>
             </label>
           </div>
         </div>
@@ -310,13 +334,42 @@
   <script>
     // Aplicar tema imediatamente antes de qualquer coisa
     const savedTheme = localStorage.getItem('theme') || 'light';
+
+    // Remover todas as classes de tema
+    document.body.classList.remove('dark-theme', 'pastel-theme', 'pastel-green-theme', 'pastel-orange-theme');
+
+    // Aplicar tema salvo
     if (savedTheme === 'dark') {
       document.body.classList.add('dark-theme');
       document.documentElement.setAttribute('data-theme', 'dark');
+    } else if (savedTheme === 'pastel') {
+      document.body.classList.add('pastel-theme');
+      document.documentElement.setAttribute('data-theme', 'pastel');
+    } else if (savedTheme === 'pastel-green') {
+      document.body.classList.add('pastel-green-theme');
+      document.documentElement.setAttribute('data-theme', 'pastel-green');
+    } else if (savedTheme === 'pastel-orange') {
+      document.body.classList.add('pastel-orange-theme');
+      document.documentElement.setAttribute('data-theme', 'pastel-orange');
     } else {
-      document.body.classList.remove('dark-theme');
       document.documentElement.setAttribute('data-theme', 'light');
     }
+
+    // Forçar aplicação dos estilos da sidebar após carregamento
+    document.addEventListener('DOMContentLoaded', function () {
+      const sidebarLinks = document.querySelectorAll('.sidebar a');
+      const theme = localStorage.getItem('theme') || 'light';
+
+      sidebarLinks.forEach(link => {
+        if (theme === 'pastel') {
+          link.style.color = '#334155';
+        } else if (theme === 'dark') {
+          link.style.color = '#bbb';
+        } else {
+          link.style.color = 'white';
+        }
+      });
+    });
 
     // Inicializar ícones do Lucide
     lucide.createIcons();
