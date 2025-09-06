@@ -628,7 +628,31 @@ body.dark-theme .checkbox-label input[type="checkbox"]:checked + .checkmark {
   border-color: var(--primary-color, #ff9800) !important;
 }
 
+/* Correções para ícones dos botões no tema escuro */
+[data-theme="dark"] .btn-danger i,
+body.dark-theme .btn-danger i {
+  color: white !important;
+}
+
+[data-theme="dark"] .btn-danger:hover i,
+body.dark-theme .btn-danger:hover i {
+  color: white !important;
+}
+
 /* Garantir transições suaves apenas para elementos de tema */
 .main, .config-card, .config-header {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* Correção específica para ícones dos botões primários no tema escuro */
+[data-theme="dark"] .btn-primary i,
+body.dark-theme .btn-primary i {
+  color: #1f2937 !important;
+  background: none !important;
+}
+
+[data-theme="dark"] .btn-primary:hover i,
+body.dark-theme .btn-primary:hover i {
+  color: #1f2937 !important;
+  background: none !important;
 }

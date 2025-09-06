@@ -1,0 +1,338 @@
+/* ===== SISTEMA DE NOTIFICAÇÕES PERSONALIZADAS ===== */
+
+/* Container para notificações */
+.notifications-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  pointer-events: none;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Estilo base das notificações */
+.notification {
+  background: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-left: 4px solid #e5e7eb;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  pointer-events: auto;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animação de entrada */
+.notification.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Animação de saída */
+.notification.hide {
+  transform: translateX(100%);
+  opacity: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  max-height: 0;
+}
+
+/* Ícone da notificação */
+.notification-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Conteúdo da notificação */
+.notification-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-title {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0 0 4px 0;
+  color: #1f2937;
+}
+
+.notification-message {
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+  color: #6b7280;
+}
+
+/* Botão de fechar */
+.notification-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  transition: all 0.2s ease;
+}
+
+.notification-close:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #6b7280;
+}
+
+/* Barra de progresso */
+.notification-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 12px 12px;
+  transform-origin: left;
+  animation: progress 4s linear forwards;
+}
+
+@keyframes progress {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+
+/* ===== TIPOS DE NOTIFICAÇÃO ===== */
+
+/* Sucesso */
+.notification.success {
+  border-left-color: #10b981;
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+}
+
+.notification.success .notification-icon {
+  color: #10b981;
+}
+
+.notification.success .notification-title {
+  color: #065f46;
+}
+
+.notification.success .notification-message {
+  color: #047857;
+}
+
+.notification.success .notification-progress {
+  background: #10b981;
+}
+
+/* Erro */
+.notification.error {
+  border-left-color: #ef4444;
+  background: linear-gradient(135deg, #fef2f2 0%, #fef2f2 100%);
+}
+
+.notification.error .notification-icon {
+  color: #ef4444;
+}
+
+.notification.error .notification-title {
+  color: #991b1b;
+}
+
+.notification.error .notification-message {
+  color: #dc2626;
+}
+
+.notification.error .notification-progress {
+  background: #ef4444;
+}
+
+/* Aviso */
+.notification.warning {
+  border-left-color: #f59e0b;
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+}
+
+.notification.warning .notification-icon {
+  color: #f59e0b;
+}
+
+.notification.warning .notification-title {
+  color: #92400e;
+}
+
+.notification.warning .notification-message {
+  color: #d97706;
+}
+
+.notification.warning .notification-progress {
+  background: #f59e0b;
+}
+
+/* Informação */
+.notification.info {
+  border-left-color: #3b82f6;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+.notification.info .notification-icon {
+  color: #3b82f6;
+}
+
+.notification.info .notification-title {
+  color: #1e40af;
+}
+
+.notification.info .notification-message {
+  color: #2563eb;
+}
+
+.notification.info .notification-progress {
+  background: #3b82f6;
+}
+
+/* ===== TEMA ESCURO ===== */
+[data-theme="dark"] .notification,
+body.dark-theme .notification {
+  background: #1f2937;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .notification.success,
+body.dark-theme .notification.success {
+  background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+}
+
+[data-theme="dark"] .notification.error,
+body.dark-theme .notification.error {
+  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+}
+
+[data-theme="dark"] .notification.warning,
+body.dark-theme .notification.warning {
+  background: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+}
+
+[data-theme="dark"] .notification.info,
+body.dark-theme .notification.info {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+}
+
+[data-theme="dark"] .notification-title,
+body.dark-theme .notification-title {
+  color: #f9fafb;
+}
+
+[data-theme="dark"] .notification-message,
+body.dark-theme .notification-message {
+  color: #d1d5db;
+}
+
+[data-theme="dark"] .notification-close,
+body.dark-theme .notification-close {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .notification-close:hover,
+body.dark-theme .notification-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #d1d5db;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 480px) {
+  .notifications-container {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+  
+  .notification {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  
+  .notification-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* ===== ANIMAÇÕES ESPECIAIS ===== */
+.notification.bounce {
+  animation: bounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes bounce {
+  0% { transform: translateX(100%) scale(0.8); }
+  50% { transform: translateX(-10px) scale(1.05); }
+  100% { transform: translateX(0) scale(1); }
+}
+
+.notification.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+/* 
+===== CORREÇÕES PARA ÍCONES DOS BOTÕES NO TEMA ESCURO ===== */
+[data-theme="dark"] .btn-primary i,
+body.dark-theme .btn-primary i {
+  color: #1f2937 !important;
+  background-color: transparent !important;
+  background: none !important;
+}
+
+[data-theme="dark"] .btn-primary:hover i,
+body.dark-theme .btn-primary:hover i {
+  color: #1f2937 !important;
+  background-color: transparent !important;
+  background: none !important;
+}
+
+[data-theme="dark"] .btn-secondary i,
+body.dark-theme .btn-secondary i {
+  color: #e5e7eb !important;
+  background-color: transparent !important;
+  background: none !important;
+}
+
+[data-theme="dark"] .btn-secondary:hover i,
+body.dark-theme .btn-secondary:hover i {
+  color: #e5e7eb !important;
+  background-color: transparent !important;
+  background: none !important;
+}
+
+[data-theme="dark"] .btn-danger i,
+body.dark-theme .btn-danger i {
+  color: white !important;
+  background-color: transparent !important;
+  background: none !important;
+}
+
+[data-theme="dark"] .btn-danger:hover i,
+body.dark-theme .btn-danger:hover i {
+  color: white !important;
+  background-color: transparent !important;
+  background: none !important;
+}

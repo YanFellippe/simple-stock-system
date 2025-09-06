@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../style/theme.css">
   <link rel="stylesheet" href="../style/configuracoes.css">
   <link rel="stylesheet" href="../style/form-fixes.css">
+  <link rel="stylesheet" href="../style/notifications.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 
 </head>
@@ -197,6 +198,34 @@
         </div>
       </div>
 
+      <!-- Teste de Notificações -->
+      <div class="config-card">
+        <div class="config-header">
+          <i data-lucide="bell"></i>
+          <h3>Teste de Notificações</h3>
+        </div>
+        <div class="config-content">
+          <div class="report-actions">
+            <button class="btn-secondary" onclick="showSuccess('Esta é uma notificação de sucesso!')">
+              <i data-lucide="check-circle"></i>
+              Sucesso
+            </button>
+            <button class="btn-secondary" onclick="showError('Esta é uma notificação de erro!')">
+              <i data-lucide="x-circle"></i>
+              Erro
+            </button>
+            <button class="btn-secondary" onclick="showWarning('Esta é uma notificação de aviso!')">
+              <i data-lucide="alert-triangle"></i>
+              Aviso
+            </button>
+            <button class="btn-secondary" onclick="showInfo('Esta é uma notificação informativa!')">
+              <i data-lucide="info"></i>
+              Info
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Relatórios e Estatísticas -->
       <div class="config-card">
         <div class="config-header">
@@ -292,6 +321,7 @@
     // Inicializar ícones do Lucide
     lucide.createIcons();
   </script>
+  <script src="../js/notifications.js"></script>
   <script src="../js/auth-check.js"></script>
   <script src="../js/configuracoes.js"></script>
 </body>

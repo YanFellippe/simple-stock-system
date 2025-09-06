@@ -90,6 +90,10 @@
   color: #1f2937 !important;
 }
 
+[data-theme="dark"] .btn-primary i {
+  color: #1f2937 !important;
+}
+
 [data-theme="dark"] .btn-secondary {
   background-color: #374151 !important;
   color: #e5e7eb !important;
@@ -98,6 +102,14 @@
 
 [data-theme="dark"] .btn-secondary:hover {
   background-color: #4b5563 !important;
+}
+
+[data-theme="dark"] .btn-secondary i {
+  color: #e5e7eb !important;
+}
+
+[data-theme="dark"] .btn-secondary:hover i {
+  color: #e5e7eb !important;
 }
 
 /* Search box dark theme */

@@ -584,6 +584,14 @@ input:checked + .slider::before {
   box-shadow: 0 4px 8px rgba(251, 191, 36, 0.3);
 }
 
+[data-theme="dark"] .btn-primary i {
+  color: #1f2937 !important;
+}
+
+[data-theme="dark"] .btn-primary:hover i {
+  color: #1f2937 !important;
+}
+
 [data-theme="dark"] .btn-secondary {
   background-color: var(--card-bg) !important;
   color: var(--text-secondary) !important;

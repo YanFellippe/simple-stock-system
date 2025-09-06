@@ -1,4 +1,7 @@
-# 📦 Sistema de Estoque para Lanchonete 🥪🍹
+# 🍔 Sistema de Gestão para Lanchonete
+
+Sistema completo de **gestão para lanchonetes** com interface moderna, sistema de notificações personalizadas, tema escuro/claro dinâmico, e funcionalidades essenciais para controle de estoque, pedidos e configurações do usuário.
+
 <div align="center">
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/YanFellippe/simple-stock-system?style=flat-square)
@@ -6,22 +9,49 @@
 ![GitHub issues](https://img.shields.io/github/issues/YanFellippe/simple-stock-system?style=flat-square)
 
 </div>
-Sistema completo para <strong>gestão de estoque de uma lanchonete</strong>, com painel visual moderno, backend robusto em <strong>Node.js + PostgreSQL</strong>, e funcionalidades essenciais para controle de produtos.
 
 ---
 
-## 🌟 Funcionalidades Principais
+## 🌟 Funcionalidades Implementadas
 
-| Funcionalidade               | Status | Descrição                                  |
-|------------------------------|--------|--------------------------------------------|
-| Listagem de produtos          | ✅     | Visualização completa do estoque           |
-| Adição de novos itens         | ✅     | Nome, quantidade e categoria               |
-| Exclusão de produtos          | ✅     | Remoção segura com confirmação             |
-| Filtro em tempo real          | ✅     | Busca instantânea por nome                 |
-| Resumo total de itens         | ✅     | Contagem automática                        |
-| Registro automático de ações  | ✅     | Via triggers no PostgreSQL                 |
-| Painel visual moderno         | ✅     | Com Lucide Icons                           |
-| Páginas separadas             | ✅     | Dashboard, Pedidos e Configurações         |
+### 📦 **Gestão de Estoque**
+✅ Listagem completa de produtos com filtro em tempo real
+✅ Adição de novos itens (nome, quantidade, categoria, preço)
+✅ Exclusão de produtos com confirmação
+✅ Alertas de estoque baixo com notificações personalizadas
+✅ Interface responsiva e intuitiva
+
+### 📋 **Sistema de Pedidos**
+✅ Criação de pedidos com interface moderna
+✅ Controle de status (Pendente, Em preparo, Pronto, Entregue)
+✅ Histórico completo de pedidos
+✅ Integração automática com controle de estoque
+
+### ⚙️ **Configurações Avançadas**
+✅ **Tema dinâmico**: Alternância suave entre modo claro e escuro
+✅ **Aplicação imediata**: Tema aplicado instantaneamente sem reload
+✅ Configurações da lanchonete (nome, endereço, telefone)
+✅ Configurações de estoque e alertas
+✅ Sistema de backup e restauração
+✅ Relatórios de vendas e produtos
+
+### 🔔 **Sistema de Notificações Personalizado**
+✅ **NotificationSystem class** com animações CSS modernas
+✅ **Tipos variados**: Sucesso, erro, aviso, informação
+✅ **Auto-dismiss**: Desaparecem automaticamente após 5 segundos
+✅ **Tema responsivo**: Adapta-se automaticamente ao tema ativo
+✅ **Substituição completa**: Eliminou todos os alerts nativos do navegador
+
+### 👤 **Gestão de Usuário**
+✅ Perfil do usuário com edição de dados pessoais
+✅ Sistema de autenticação seguro
+✅ Controle de sessão com logout automático
+
+### 🎨 **Interface e UX**
+✅ **Correções de tema**: Sidebar sempre visível durante mudanças
+✅ **Estilos otimizados**: Botões com ícones corrigidos no tema escuro
+✅ **Layout responsivo**: Conteúdo ajustado para não sobrepor sidebar
+✅ **Formulários melhorados**: Checkboxes e inputs com estilos consistentes
 
 ---
 
@@ -32,246 +62,122 @@ Sistema completo para <strong>gestão de estoque de uma lanchonete</strong>, com
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-### Backend
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
-
-### Banco de Dados
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![Triggers](https://img.shields.io/badge/PostgreSQL-Triggers-336791?style=for-the-badge&logo=postgresql&logoColor=white)
-
-### UI/UX
-![Lucide Icons](https://img.shields.io/badge/Lucide_Icons-FF6B6B?style=for-the-badge&logo=react&logoColor=white)
-![Responsivo](https://img.shields.io/badge/Responsivo-Design-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+### Recursos Especiais
+![Notificações](https://img.shields.io/badge/Sistema_de-Notificações-FF6B6B?style=for-the-badge)
+![Tema Dinâmico](https://img.shields.io/badge/Tema-Dinâmico-9B59B6?style=for-the-badge)
+![Lucide Icons](https://img.shields.io/badge/Lucide-Icons-00BCD4?style=for-the-badge)
 
 ---
 
 ## 📁 Estrutura do Projeto
 
-```bash
+```
 simple-stock-system/
-├── database/
-│   └── lanchonete_db.sql       # Script completo do PostgreSQL
 ├── js/
 │   ├── cadastro-estoque.js     # Lógica do estoque
-│   ├── configuracoes.js        # Configurações do sistema
+│   ├── configuracoes.js        # Configurações com tema dinâmico
 │   ├── dashboard.js            # Dashboard principal
 │   ├── pedidos.js              # Gestão de pedidos
 │   ├── perfil.js               # Gestão do perfil
-│   ├── login.js                # Gestão do usuario
-│   ├── theme.js                # Logica dos temas
-│   └── server.js               # Servidor Express
+│   ├── login.js                # Sistema de login
+│   ├── theme.js                # Controle de temas
+│   └── notifications.js        # Sistema de notificações
 ├── public/
 │   ├── configuracoes.html      # Página de configurações
 │   ├── dashboard.html          # Dashboard principal
-│   ├── estoque.html            # Dashboard de estoque dos produtos
-│   ├── perfil-usuario.html     # Pagina do usuario
-│   └── pedidos.html            # Página de pedidos
-├── route/
-│   ├── pedidos.js              # API de pedidos
-│   └── usuario.js              # Rotas de usuário (WIP)
-├── src/
-│   ├── logo.png                # Logo da lanchonete
-│   └── sistema-example.png     # Screenshot do sistema
+│   ├── estoque.html            # Gestão de estoque
+│   ├── perfil-usuario.html     # Perfil do usuário
+│   └── pedidos.html            # Gestão de pedidos
 ├── style/
-│   ├── dashboard.css           # Estilo da dashboard
-│   ├── pedidos.css             # Estilo de pedidos
 │   ├── style.css               # Estilos globais
 │   ├── configuracoes.css       # Estilos de configurações
+│   ├── dashboard.css           # Estilos do dashboard
+│   ├── pedidos.css             # Estilos de pedidos
 │   ├── perfil.css              # Estilos do perfil
-│   ├── theme.css               # Estilos para alterar tema (LIGHT/DARK)
-│   └── login.css               # Estilo da Index
+│   ├── login.css               # Estilos de login
+│   ├── theme.css               # Estilos de tema
+│   ├── form-fixes.css          # Correções de formulários
+│   └── notifications.css       # Estilos das notificações
+├── src/
+│   └── logo.png                # Logo da lanchonete
 ├── index.html                  # Página inicial
 └── README.md                   # Documentação
-
-```
-
-## 🚀 Instalação e Execução
-
-```bash
-# 1. Clone o repositório
-git clone https://github.com/YanFellippe/simple-stock-system.git
-cd simple-stock-system
-
-# 2. Instale as dependências
-npm run install-backend
-
-# 3. Configure o banco PostgreSQL
-createdb lanchonete_db
-
-# 4. Configure as variáveis de ambiente
-# Edite backend/.env com suas configurações
-
-# 5. Inicialize o banco de dados
-npm run init-db
-
-# 6. Inicie o servidor
-npm run dev
-```
-
-### ⚙️ **Configuração Detalhada**
-
-npm install pg
-
-```
-
-2. **Configurar variáveis de ambiente:**
-```bash
-CREATE DATABASE lanchonete_db;
-\c lanchonete_db;
-
-CREATE TABLE produtos (
-  id SERIAL PRIMARY KEY,
-  nome VARCHAR(100) NOT NULL,
-  quantidade INT NOT NULL,
-  categoria VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE logs_estoque (
-  id SERIAL PRIMARY KEY,
-  produto_id INT NOT NULL,
-  acao TEXT NOT NULL CHECK (acao IN ('adicionado', 'removido', 'atualizado')),
-  quantidade INT NOT NULL,
-  data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (produto_id) REFERENCES produtos(id)
-);
-
--- Trigger para registrar automaticamente as ações
--- Consulte o arquivo SQL para detalhes completos
-
--- Dados de exemplo
-INSERT INTO produtos (nome, quantidade, categoria) VALUES
-('Pão', 50, 'Padaria'),
-('Queijo', 30, 'Laticínios'),
-('Refrigerante', 100, 'Bebidas');
-```
-
-## 4️⃣ Configure a conexão PostgreeSQL no server.js
-```bash
-const { Pool } = require('pg');
-
-const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'lanchonete_db',
-  password: 'SUA_SENHA_AQUI',
-  port: 5432,
-});
-
 ```
 
 ---
 
-## 🌐 Como Usar
+## 🚀 Como Usar
 
-### **Acessar o Sistema**
-- 🏠 **Página Principal (Estoque)**: http://localhost:3000
-- 📊 **Dashboard**: http://localhost:3000/public/dashboard.html
-- 📋 **Pedidos**: http://localhost:3000/public/pedidos.html
-- ⚙️ **Configurações**: http://localhost:3000/public/configuracoes.html
+### **Páginas Disponíveis**
+🏠 **Página Principal**: `index.html` - Sistema de login
+📊 **Dashboard**: `public/dashboard.html` - Visão geral do sistema
+📦 **Estoque**: `public/estoque.html` - Gestão de produtos
+📋 **Pedidos**: `public/pedidos.html` - Controle de pedidos
+⚙️ **Configurações**: `public/configuracoes.html` - Configurações e tema
+👤 **Perfil**: `public/perfil-usuario.html` - Dados do usuário
 
-### **Credenciais Padrão**
-- 📧 **Email**: admin@lanchonete.com
-- 🔑 **Senha**: admin123
+### **Funcionalidades Principais**
 
-### **Scripts Disponíveis**
-```bash
-npm start              # Iniciar em produção
-npm run dev            # Iniciar em desenvolvimento
-npm run install-backend # Instalar dependências do backend
-npm run init-db        # Inicializar/resetar banco de dados
-npm run test-api       # Testar APIs
+#### 🎨 **Sistema de Temas**
+Alternância entre modo claro e escuro
+Aplicação imediata sem necessidade de reload
+Persistência da preferência do usuário
+Estilos otimizados para ambos os temas
+
+#### 🔔 **Sistema de Notificações**
+```javascript
+// Exemplos de uso das notificações
+NotificationSystem.success('Produto adicionado com sucesso!');
+NotificationSystem.error('Erro ao salvar produto');
+NotificationSystem.warning('Estoque baixo detectado');
+NotificationSystem.info('Configurações atualizadas');
 ```
+
+#### 📦 **Gestão de Estoque**
+Filtro em tempo real por nome do produto
+Alertas automáticos para estoque baixo
+Interface intuitiva para adição/remoção
+Validação de dados integrada
 
 ---
 
-## 📊 APIs Disponíveis
+## 🔧 Melhorias Implementadas
 
-### **Produtos** (`/api/produtos`)
-```http
-GET    /api/produtos           # Listar todos os produtos
-GET    /api/produtos/:id       # Buscar produto específico
-POST   /api/produtos           # Criar novo produto
-PUT    /api/produtos/:id       # Atualizar produto
-DELETE /api/produtos/:id       # Excluir produto
-GET    /api/produtos/estoque/baixo # Produtos com estoque baixo
-```
+### **Correções de Interface**
+✅ **Sidebar sempre visível**: Corrigido problema de invisibilidade durante troca de tema
+✅ **Ícones otimizados**: Removido fundo verde indesejado dos ícones no tema escuro
+✅ **Layout responsivo**: Ajustado margin-left para evitar sobreposição de conteúdo
+✅ **Formulários consistentes**: Corrigidos checkboxes duplicados e estilos conflitantes
 
-### **Pedidos** (`/api/pedidos`)
-```http
-GET    /api/pedidos            # Listar todos os pedidos
-GET    /api/pedidos/:id        # Buscar pedido específico
-POST   /api/pedidos            # Criar novo pedido
-PUT    /api/pedidos/:id        # Atualizar pedido
-DELETE /api/pedidos/:id        # Excluir pedido
-GET    /api/pedidos/status/:status # Pedidos por status
-```
+### **Sistema de Notificações**
+✅ **Substituição completa**: Eliminados todos os `alert()` nativos
+✅ **Design moderno**: Animações suaves de entrada e saída
+✅ **Tipos diferenciados**: Cores e ícones específicos para cada tipo
+✅ **Responsividade**: Adapta-se automaticamente ao tema ativo
 
-### **Dashboard** (`/api/dashboard`)
-```http
-GET    /api/dashboard/stats           # Estatísticas gerais
-GET    /api/dashboard/estoque-baixo   # Produtos com estoque baixo
-GET    /api/dashboard/pedidos-recentes # Últimos pedidos
-GET    /api/dashboard/logs-estoque    # Histórico de movimentações
-GET    /api/dashboard/categorias      # Resumo por categoria
-```
-
-### **Usuários** (`/api/usuarios`)
-```http
-GET    /api/usuarios           # Listar usuários
-POST   /api/usuarios           # Criar novo usuário
-POST   /api/usuarios/login     # Autenticação
-PUT    /api/usuarios/:id       # Atualizar usuário
-DELETE /api/usuarios/:id       # Excluir usuário
-```
+### **Otimização de Código**
+✅ **Limpeza de arquivos**: Removidos arquivos não utilizados
+✅ **Código organizado**: Separação clara de responsabilidades
+✅ **Performance melhorada**: Aplicação imediata de temas
 
 ---
 
-## 🗄️ Banco de Dados
+## 🎯 Próximas Funcionalidades
 
-### **Tabelas Principais**
-- **`produtos`** - Gerenciamento de estoque
-- **`pedidos`** - Sistema de pedidos
-- **`usuarios`** - Autenticação e controle de acesso
-- **`logs_estoque`** - Auditoria automática
-
-### **Recursos Avançados**
-- ✅ **Triggers automáticos** para logs
-- ✅ **Constraints** para validação
-- ✅ **Índices** para performance
-- ✅ **Relacionamentos** bem definidos
+🔵 Backend com Node.js e PostgreSQL
+🔵 Sistema de autenticação JWT
+🔵 API REST completa
+🔵 Relatórios avançados com gráficos
+🔵 Upload de imagens para produtos
+🔵 Sistema de backup automático
 
 ---
 
-## 🔒 Segurança
+## 👨‍💻 Desenvolvedor
 
-- 🔐 **Senhas criptografadas** com bcrypt (salt rounds: 10)
-- 🎫 **JWT tokens** com expiração de 24h
-- 🛡️ **Validação de dados** no backend
-- 🚫 **Sanitização** de inputs
-- 🔑 **Controle de acesso** por níveis (admin/funcionário)
-- 🌐 **CORS** configurado adequadamente
+<p>Desenvolvido com 💻 e ☕ para facilitar a gestão de lanchonetes</p>
+<p>Sistema focado em usabilidade, performance e experiência do usuário</p>
 
 ---
 
-## 🧪 Testes
-
-```bash
-http://localhost:3000
-```
-
-### 🖼️ Preview
-![Dashboard Estoque](./src/sistema-example.png)
-
-### 🛠️ Funcionalidades futuras
-
-- 🔵 Login e autenticação de usuários
-- 🔵 Histórico detalhado de alterações
-- 🔵 Upload de imagem por produto
-- 🔵 Edição inline dos campos
-- 🔵 Dashboard com gráficos (por categoria, movimentações)
-
-
-### 👨‍💻 Desenvolvedor
-<p>Feito com 💻 por Yan Fellippe — Desenvolvedor Fullstack</p>
-<p>Sinta-se à vontade para sugerir melhorias ou abrir issues! 🚀</p>
+**Versão atual**: Frontend completo com sistema de notificações e temas dinâmicos

@@ -80,15 +80,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 const novoProduto = await response.json();
                 produtos.push(novoProduto);
                 renderTabela(filterInput.value);
+                showSuccess('Produto adicionado com sucesso!');
                 return true;
             } else {
                 const error = await response.json();
-                alert('Erro ao adicionar produto: ' + error.erro);
+                showError('Erro ao adicionar produto: ' + error.erro);
                 return false;
             }
         } catch (error) {
             console.error('Erro ao adicionar produto:', error);
-            alert('Erro ao adicionar produto');
+            showError('Erro ao adicionar produto');
             return false;
         }
     }
@@ -107,13 +108,14 @@ document.addEventListener("DOMContentLoaded", () => {
             if (response.ok) {
                 produtos = produtos.filter(p => p.id !== id);
                 renderTabela(filterInput.value);
+                showSuccess('Produto excluído com sucesso!');
             } else {
                 const error = await response.json();
-                alert('Erro ao excluir produto: ' + error.erro);
+                showError('Erro ao excluir produto: ' + error.erro);
             }
         } catch (error) {
             console.error('Erro ao excluir produto:', error);
-            alert('Erro ao excluir produto');
+            showError('Erro ao excluir produto');
         }
     }
 

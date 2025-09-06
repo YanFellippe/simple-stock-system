@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const quantidade = parseInt(quantidadeInput.value);
 
     if (!produto_id) {
-      alert("Por favor, selecione um produto");
+      showWarning("Por favor, selecione um produto");
       return;
     }
 
@@ -133,14 +133,14 @@ document.addEventListener("DOMContentLoaded", () => {
         // Recarregar produtos para atualizar estoque
         await carregarProdutos();
         
-        alert("Pedido criado com sucesso!");
+        showSuccess("Pedido criado com sucesso!");
       } else {
         const error = await response.json();
-        alert("Erro ao criar pedido: " + error.erro);
+        showError("Erro ao criar pedido: " + error.erro);
       }
     } catch (error) {
       console.error("Erro ao criar pedido:", error);
-      alert("Erro ao criar pedido");
+      showError("Erro ao criar pedido");
     }
   });
 
@@ -165,17 +165,17 @@ document.addEventListener("DOMContentLoaded", () => {
           await carregarProdutos();
           
           if (result.estoque_devolvido) {
-            alert("Pedido excluído e estoque devolvido!");
+            showSuccess("Pedido excluído e estoque devolvido!");
           } else {
-            alert("Pedido excluído!");
+            showSuccess("Pedido excluído!");
           }
         } else {
           const error = await response.json();
-          alert("Erro ao excluir pedido: " + error.erro);
+          showError("Erro ao excluir pedido: " + error.erro);
         }
       } catch (error) {
         console.error("Erro ao excluir pedido:", error);
-        alert("Erro ao excluir pedido");
+        showError("Erro ao excluir pedido");
       }
     }
   });
@@ -197,13 +197,13 @@ document.addEventListener("DOMContentLoaded", () => {
           console.log("Status atualizado com sucesso");
         } else {
           const error = await response.json();
-          alert("Erro ao atualizar status: " + error.erro);
+          showError("Erro ao atualizar status: " + error.erro);
           // Reverter a mudança
           carregarPedidos();
         }
       } catch (error) {
         console.error("Erro ao atualizar status:", error);
-        alert("Erro ao atualizar status");
+        showError("Erro ao atualizar status");
         carregarPedidos();
       }
     }
