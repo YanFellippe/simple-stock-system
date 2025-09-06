@@ -15,7 +15,28 @@ class Particle {
     this.size = Math.random() * 5 + 2;
     this.speedX = Math.random() * 2 - 1;
     this.speedY = Math.random() * 2 - 1;
-    this.color = `rgba(255, ${Math.random() * 152 + 80}, 0, 0.7)`;
+    this.updateColor();
+  }
+
+  updateColor() {
+    const theme = document.body.className;
+    
+    if (theme.includes('dark-theme')) {
+      // Tema escuro - partículas laranjas
+      this.color = `rgba(${Math.random() * 100 + 200}, ${Math.random() * 100 + 120}, 0, 0.7)`;
+    } else if (theme.includes('pastel-green-theme')) {
+      // Tema pastel verde
+      this.color = `rgba(${Math.random() * 100 + 50}, ${Math.random() * 100 + 200}, ${Math.random() * 100 + 100}, 0.7)`;
+    } else if (theme.includes('pastel-orange-theme')) {
+      // Tema pastel laranja
+      this.color = `rgba(${Math.random() * 100 + 200}, ${Math.random() * 100 + 120}, ${Math.random() * 50 + 50}, 0.7)`;
+    } else if (theme.includes('pastel-theme')) {
+      // Tema pastel azul
+      this.color = `rgba(${Math.random() * 100 + 100}, ${Math.random() * 100 + 180}, ${Math.random() * 50 + 200}, 0.7)`;
+    } else {
+      // Tema claro - partículas azuis (padrão)
+      this.color = `rgba(${Math.random() * 100 + 33}, ${Math.random() * 100 + 150}, 243, 0.7)`;
+    }
   }
 
   update() {
@@ -48,7 +69,23 @@ function animate() {
       const distance = Math.sqrt(dx * dx + dy * dy);
       if (distance < 100) {
         ctx.beginPath();
-        ctx.strokeStyle = `rgba(255, 152, 0, ${1 - distance / 100})`;
+        
+        const theme = document.body.className;
+        let strokeColor;
+        
+        if (theme.includes('dark-theme')) {
+          strokeColor = `rgba(245, 158, 11, ${1 - distance / 100})`;
+        } else if (theme.includes('pastel-green-theme')) {
+          strokeColor = `rgba(134, 239, 172, ${1 - distance / 100})`;
+        } else if (theme.includes('pastel-orange-theme')) {
+          strokeColor = `rgba(253, 186, 116, ${1 - distance / 100})`;
+        } else if (theme.includes('pastel-theme')) {
+          strokeColor = `rgba(125, 211, 252, ${1 - distance / 100})`;
+        } else {
+          strokeColor = `rgba(33, 150, 243, ${1 - distance / 100})`;
+        }
+        
+        ctx.strokeStyle = strokeColor;
         ctx.lineWidth = 1;
         ctx.moveTo(particles[i].x, particles[i].y);
         ctx.lineTo(particles[j].x, particles[j].y);
@@ -65,6 +102,28 @@ window.addEventListener("resize", () => {
 });
 
 animate();
+
+// Função para atualizar partículas quando o tema mudar
+function updateParticlesForTheme() {
+  particles.forEach(particle => {
+    particle.updateColor();
+  });
+}
+
+// Observar mudanças de tema
+const observer = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+      updateParticlesForTheme();
+    }
+  });
+});
+
+// Observar mudanças na classe do body
+observer.observe(document.body, {
+  attributes: true,
+  attributeFilter: ['class']
+});
 
 // Lógica do modal
 const modal = document.getElementById("authModal");

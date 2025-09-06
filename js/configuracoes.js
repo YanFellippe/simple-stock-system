@@ -335,6 +335,67 @@ function restaurarBackup(event) {
 }
 
 // ===== FUNÇÕES DE RELATÓRIO ===== //
+async function gerarRelatorioGeral() {
+  const periodo = document.getElementById('periodoRelatorio').value;
+  showAlert(`Gerando relatório geral completo dos últimos ${periodo} dias...`, 'info');
+  
+  try {
+    // Mostrar progresso
+    const progressDialog = criarDialogoProgresso();
+    document.body.appendChild(progressDialog);
+    
+    // Buscar todos os dados necessários
+    atualizarProgresso(progressDialog, 20, 'Coletando dados de produtos...');
+    const produtos = await buscarDadosProdutos();
+    
+    atualizarProgresso(progressDialog, 40, 'Coletando dados de pedidos...');
+    const pedidos = await buscarDadosPedidos();
+    
+    atualizarProgresso(progressDialog, 60, 'Calculando estatísticas...');
+    const config = JSON.parse(localStorage.getItem('lanchoneteConfig') || '{}');
+    
+    // Calcular estatísticas
+    const stats = calcularEstatisticasGerais(produtos, pedidos, periodo);
+    
+    atualizarProgresso(progressDialog, 80, 'Gerando relatório...');
+    
+    // Gerar relatório completo
+    let relatorio = gerarCabecalhoRelatorio();
+    relatorio += gerarSecaoResumoExecutivo(stats, periodo);
+    relatorio += gerarSecaoVendas(stats);
+    relatorio += gerarSecaoEstoque(produtos, config);
+    relatorio += gerarSecaoProdutosMaisVendidos(stats.produtosMaisVendidos);
+    relatorio += gerarSecaoAnaliseFinanceira(stats);
+    relatorio += gerarSecaoRecomendacoes(stats, produtos, config);
+    relatorio += gerarRodapeRelatorio();
+    
+    atualizarProgresso(progressDialog, 100, 'Finalizando...');
+    
+    // Aguardar um pouco para mostrar o progresso completo
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    // Remover diálogo de progresso
+    progressDialog.remove();
+    
+    // Baixar arquivo
+    const nomeArquivo = `relatorio-geral-${new Date().toISOString().split('T')[0]}.txt`;
+    baixarArquivo(relatorio, nomeArquivo);
+    
+    addLog(`Relatório geral completo gerado (${periodo} dias)`, 'success');
+    showAlert('Relatório geral completo gerado com sucesso! 📊', 'success');
+    
+  } catch (error) {
+    console.error('Erro ao gerar relatório geral:', error);
+    showAlert('Erro ao gerar relatório geral!', 'error');
+    
+    // Remover diálogo de progresso se existir
+    const progressDialog = document.querySelector('.progress-dialog');
+    if (progressDialog) {
+      progressDialog.remove();
+    }
+  }
+}
+
 async function gerarRelatorioVendas() {
   const periodo = document.getElementById('periodoRelatorio').value;
   showAlert(`Gerando relatório de vendas dos últimos ${periodo} dias...`, 'info');
@@ -592,6 +653,370 @@ function baixarArquivo(conteudo, nomeArquivo) {
   link.click();
 }
 
+// ===== FUNÇÕES AUXILIARES PARA RELATÓRIO GERAL ===== //
+function calcularEstatisticasGerais(produtos, pedidos, periodo) {
+  const agora = new Date();
+  const dataLimite = new Date(agora.getTime() - (periodo * 24 * 60 * 60 * 1000));
+  
+  // Filtrar pedidos do período
+  const pedidosPeriodo = pedidos.filter(pedido => {
+    const dataPedido = new Date(pedido.data_pedido || agora);
+    return dataPedido >= dataLimite;
+  });
+  
+  // Calcular estatísticas de vendas
+  const totalVendas = pedidosPeriodo.reduce((sum, pedido) => sum + (parseFloat(pedido.valor_total) || 0), 0);
+  const totalPedidos = pedidosPeriodo.length;
+  const ticketMedio = totalPedidos > 0 ? totalVendas / totalPedidos : 0;
+  
+  // Produtos mais vendidos
+  const produtosVendidos = {};
+  pedidosPeriodo.forEach(pedido => {
+    const nome = pedido.produto_nome || pedido.produto;
+    const quantidade = parseInt(pedido.quantidade) || 0;
+    produtosVendidos[nome] = (produtosVendidos[nome] || 0) + quantidade;
+  });
+  
+  const produtosMaisVendidos = Object.entries(produtosVendidos)
+    .map(([nome, quantidade]) => ({ nome, quantidade }))
+    .sort((a, b) => b.quantidade - a.quantidade)
+    .slice(0, 10);
+  
+  // Análise de estoque
+  const totalProdutos = produtos.length;
+  const valorTotalEstoque = produtos.reduce((sum, produto) => {
+    return sum + (parseFloat(produto.preco) || 0) * (parseInt(produto.quantidade) || 0);
+  }, 0);
+  
+  const config = JSON.parse(localStorage.getItem('lanchoneteConfig') || '{}');
+  const limiteBaixo = config.estoque?.limiteBaixo || 10;
+  const limiteCritico = config.estoque?.limiteCritico || 5;
+  
+  const produtosEstoqueBaixo = produtos.filter(p => p.quantidade <= limiteBaixo && p.quantidade > limiteCritico);
+  const produtosEstoqueCritico = produtos.filter(p => p.quantidade <= limiteCritico);
+  
+  // Análise por categoria
+  const categorias = {};
+  produtos.forEach(produto => {
+    const categoria = produto.categoria || 'Sem categoria';
+    if (!categorias[categoria]) {
+      categorias[categoria] = { produtos: 0, quantidade: 0, valor: 0 };
+    }
+    categorias[categoria].produtos++;
+    categorias[categoria].quantidade += parseInt(produto.quantidade) || 0;
+    categorias[categoria].valor += (parseFloat(produto.preco) || 0) * (parseInt(produto.quantidade) || 0);
+  });
+  
+  // Status dos pedidos
+  const statusPedidos = {};
+  pedidosPeriodo.forEach(pedido => {
+    const status = pedido.status || 'pendente';
+    statusPedidos[status] = (statusPedidos[status] || 0) + 1;
+  });
+  
+  return {
+    periodo,
+    totalVendas,
+    totalPedidos,
+    ticketMedio,
+    produtosMaisVendidos,
+    totalProdutos,
+    valorTotalEstoque,
+    produtosEstoqueBaixo: produtosEstoqueBaixo.length,
+    produtosEstoqueCritico: produtosEstoqueCritico.length,
+    categorias,
+    statusPedidos,
+    produtosDetalhes: produtos,
+    pedidosDetalhes: pedidosPeriodo
+  };
+}
+
+function gerarCabecalhoRelatorio() {
+  const config = JSON.parse(localStorage.getItem('lanchoneteConfig') || '{}');
+  const nomeLanchonete = config.lanchonete?.nome || 'Lanchonete';
+  const endereco = config.lanchonete?.endereco || 'Endereço não informado';
+  const telefone = config.lanchonete?.telefone || 'Telefone não informado';
+  
+  return `
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                           RELATÓRIO GERAL COMPLETO                          ║
+║                              ${nomeLanchonete.padEnd(42)}║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║ Endereço: ${endereco.padEnd(63)}║
+║ Telefone: ${telefone.padEnd(63)}║
+║ Data de Geração: ${new Date().toLocaleString('pt-BR').padEnd(55)}║
+║ Sistema: Lanchonete Management v1.0                                         ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+`;
+}
+
+function gerarSecaoResumoExecutivo(stats, periodo) {
+  return `
+┌─ RESUMO EXECUTIVO ─────────────────────────────────────────────────────────┐
+│                                                                            │
+│ Período Analisado: Últimos ${periodo} dias                                      │
+│                                                                            │
+│ 💰 VENDAS                                                                  │
+│   • Total de Vendas: R$ ${stats.totalVendas.toFixed(2).padStart(10)}                              │
+│   • Total de Pedidos: ${stats.totalPedidos.toString().padStart(6)}                                    │
+│   • Ticket Médio: R$ ${stats.ticketMedio.toFixed(2).padStart(10)}                                 │
+│                                                                            │
+│ 📦 ESTOQUE                                                                 │
+│   • Total de Produtos: ${stats.totalProdutos.toString().padStart(6)}                                  │
+│   • Valor Total em Estoque: R$ ${stats.valorTotalEstoque.toFixed(2).padStart(10)}                 │
+│   • Produtos com Estoque Baixo: ${stats.produtosEstoqueBaixo.toString().padStart(3)}                          │
+│   • Produtos com Estoque Crítico: ${stats.produtosEstoqueCritico.toString().padStart(3)}                        │
+│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
+
+`;
+}
+
+function gerarSecaoVendas(stats) {
+  let secao = `
+┌─ ANÁLISE DE VENDAS ────────────────────────────────────────────────────────┐
+│                                                                            │
+│ Status dos Pedidos:                                                        │
+`;
+
+  Object.entries(stats.statusPedidos).forEach(([status, quantidade]) => {
+    const statusFormatado = status.charAt(0).toUpperCase() + status.slice(1);
+    const porcentagem = ((quantidade / stats.totalPedidos) * 100).toFixed(1);
+    secao += `│   • ${statusFormatado.padEnd(12)}: ${quantidade.toString().padStart(3)} pedidos (${porcentagem.padStart(5)}%)                    │\n`;
+  });
+
+  const vendaDiaria = stats.totalVendas / parseInt(stats.periodo);
+  const pedidosDiarios = stats.totalPedidos / parseInt(stats.periodo);
+
+  secao += `│                                                                            │
+│ Médias Diárias:                                                            │
+│   • Vendas por dia: R$ ${vendaDiaria.toFixed(2).padStart(10)}                                 │
+│   • Pedidos por dia: ${pedidosDiarios.toFixed(1).padStart(8)}                                    │
+│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
+
+`;
+
+  return secao;
+}
+
+function gerarSecaoEstoque(produtos, config) {
+  const limiteBaixo = config.estoque?.limiteBaixo || 10;
+  const limiteCritico = config.estoque?.limiteCritico || 5;
+  
+  let secao = `
+┌─ ANÁLISE DE ESTOQUE ───────────────────────────────────────────────────────┐
+│                                                                            │
+│ Configurações:                                                             │
+│   • Limite Estoque Baixo: ${limiteBaixo.toString().padStart(3)} unidades                                │
+│   • Limite Estoque Crítico: ${limiteCritico.toString().padStart(3)} unidades                              │
+│                                                                            │
+│ Produtos com Estoque Crítico (≤ ${limiteCritico}):                                   │
+`;
+
+  const produtosCriticos = produtos.filter(p => p.quantidade <= limiteCritico);
+  if (produtosCriticos.length === 0) {
+    secao += `│   ✅ Nenhum produto com estoque crítico                                   │\n`;
+  } else {
+    produtosCriticos.forEach(produto => {
+      secao += `│   🚨 ${produto.nome.padEnd(30)} - ${produto.quantidade.toString().padStart(3)} unidades                    │\n`;
+    });
+  }
+
+  secao += `│                                                                            │
+│ Produtos com Estoque Baixo (≤ ${limiteBaixo}):                                     │
+`;
+
+  const produtosBaixos = produtos.filter(p => p.quantidade <= limiteBaixo && p.quantidade > limiteCritico);
+  if (produtosBaixos.length === 0) {
+    secao += `│   ✅ Nenhum produto com estoque baixo                                     │\n`;
+  } else {
+    produtosBaixos.forEach(produto => {
+      secao += `│   ⚠️  ${produto.nome.padEnd(30)} - ${produto.quantidade.toString().padStart(3)} unidades                    │\n`;
+    });
+  }
+
+  secao += `│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
+
+`;
+
+  return secao;
+}
+
+function gerarSecaoProdutosMaisVendidos(produtosMaisVendidos) {
+  let secao = `
+┌─ PRODUTOS MAIS VENDIDOS ───────────────────────────────────────────────────┐
+│                                                                            │
+`;
+
+  if (produtosMaisVendidos.length === 0) {
+    secao += `│   Nenhuma venda registrada no período                                     │\n`;
+  } else {
+    produtosMaisVendidos.forEach((produto, index) => {
+      const posicao = `${index + 1}º`.padStart(3);
+      const nome = produto.nome.padEnd(35);
+      const quantidade = produto.quantidade.toString().padStart(4);
+      secao += `│ ${posicao} ${nome} ${quantidade} vendas                              │\n`;
+    });
+  }
+
+  secao += `│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
+
+`;
+
+  return secao;
+}
+
+function gerarSecaoAnaliseFinanceira(stats) {
+  const projecaoMensal = (stats.totalVendas / parseInt(stats.periodo)) * 30;
+  const projecaoAnual = (stats.totalVendas / parseInt(stats.periodo)) * 365;
+  
+  return `
+┌─ ANÁLISE FINANCEIRA ───────────────────────────────────────────────────────┐
+│                                                                            │
+│ Receitas do Período:                                                       │
+│   • Total: R$ ${stats.totalVendas.toFixed(2).padStart(15)}                                        │
+│   • Ticket Médio: R$ ${stats.ticketMedio.toFixed(2).padStart(10)}                                 │
+│                                                                            │
+│ Projeções (baseadas no período atual):                                    │
+│   • Projeção Mensal: R$ ${projecaoMensal.toFixed(2).padStart(12)}                                │
+│   • Projeção Anual: R$ ${projecaoAnual.toFixed(2).padStart(13)}                               │
+│                                                                            │
+│ Valor em Estoque:                                                          │
+│   • Total Investido: R$ ${stats.valorTotalEstoque.toFixed(2).padStart(12)}                                │
+│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
+
+`;
+}
+
+function gerarSecaoRecomendacoes(stats, produtos, config) {
+  let recomendacoes = [];
+  
+  // Recomendações baseadas em estoque
+  if (stats.produtosEstoqueCritico > 0) {
+    recomendacoes.push('🚨 URGENTE: Reabastecer produtos com estoque crítico');
+  }
+  
+  if (stats.produtosEstoqueBaixo > 0) {
+    recomendacoes.push('⚠️  Planejar reabastecimento de produtos com estoque baixo');
+  }
+  
+  // Recomendações baseadas em vendas
+  if (stats.totalPedidos === 0) {
+    recomendacoes.push('📈 Implementar estratégias de marketing para aumentar vendas');
+  } else if (stats.ticketMedio < 20) {
+    recomendacoes.push('💰 Considerar estratégias para aumentar o ticket médio');
+  }
+  
+  // Recomendações baseadas em produtos mais vendidos
+  if (stats.produtosMaisVendidos.length > 0) {
+    const maisVendido = stats.produtosMaisVendidos[0];
+    recomendacoes.push(`⭐ Manter estoque adequado de "${maisVendido.nome}" (produto mais vendido)`);
+  }
+  
+  // Recomendações gerais
+  if (stats.totalProdutos < 5) {
+    recomendacoes.push('📦 Considerar expandir o catálogo de produtos');
+  }
+  
+  if (recomendacoes.length === 0) {
+    recomendacoes.push('✅ Sistema funcionando adequadamente');
+  }
+  
+  let secao = `
+┌─ RECOMENDAÇÕES ────────────────────────────────────────────────────────────┐
+│                                                                            │
+`;
+
+  recomendacoes.forEach(recomendacao => {
+    // Quebrar linhas longas
+    const linhas = quebrarLinha(recomendacao, 74);
+    linhas.forEach((linha, index) => {
+      if (index === 0) {
+        secao += `│ ${linha.padEnd(74)} │\n`;
+      } else {
+        secao += `│   ${linha.padEnd(72)} │\n`;
+      }
+    });
+    secao += `│                                                                            │\n`;
+  });
+
+  secao += `└────────────────────────────────────────────────────────────────────────────┘
+
+`;
+
+  return secao;
+}
+
+function gerarRodapeRelatorio() {
+  return `
+┌─ INFORMAÇÕES TÉCNICAS ─────────────────────────────────────────────────────┐
+│                                                                            │
+│ Sistema: Lanchonete Management System v1.0                                │
+│ Gerado em: ${new Date().toLocaleString('pt-BR').padEnd(58)} │
+│ Formato: Relatório Geral Completo                                         │
+│                                                                            │
+│ Este relatório foi gerado automaticamente pelo sistema e contém           │
+│ informações consolidadas sobre vendas, estoque e performance geral.        │
+│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+                              FIM DO RELATÓRIO
+═══════════════════════════════════════════════════════════════════════════════
+`;
+}
+
+function quebrarLinha(texto, maxLength) {
+  const palavras = texto.split(' ');
+  const linhas = [];
+  let linhaAtual = '';
+  
+  palavras.forEach(palavra => {
+    if ((linhaAtual + palavra).length <= maxLength) {
+      linhaAtual += (linhaAtual ? ' ' : '') + palavra;
+    } else {
+      if (linhaAtual) {
+        linhas.push(linhaAtual);
+      }
+      linhaAtual = palavra;
+    }
+  });
+  
+  if (linhaAtual) {
+    linhas.push(linhaAtual);
+  }
+  
+  return linhas;
+}
+
+function criarDialogoProgresso() {
+  const dialog = document.createElement('div');
+  dialog.className = 'progress-dialog';
+  dialog.innerHTML = `
+    <div class="progress-content">
+      <h3>Gerando Relatório Geral</h3>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 0%"></div>
+      </div>
+      <p class="progress-text">Iniciando...</p>
+    </div>
+  `;
+  return dialog;
+}
+
+function atualizarProgresso(dialog, porcentagem, texto) {
+  const fill = dialog.querySelector('.progress-fill');
+  const textElement = dialog.querySelector('.progress-text');
+  
+  fill.style.width = `${porcentagem}%`;
+  textElement.textContent = texto;
+}
+
 // ===== FUNÇÕES DE UI ===== //
 function showAlert(message, type = 'info') {
   const alert = document.createElement('div');
@@ -725,9 +1150,77 @@ style.textContent = `
     to { opacity: 0; transform: translateY(-20px); }
   }
   
-  [data-theme="dark"] .dialog-content {
+  .progress-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    backdrop-filter: blur(4px);
+  }
+  
+  .progress-content {
+    background: var(--card-bg, white);
+    padding: 2rem;
+    border-radius: 12px;
+    min-width: 400px;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+    color: var(--text-primary, #1f2937);
+    text-align: center;
+  }
+  
+  .progress-content h3 {
+    margin: 0 0 1.5rem 0;
+    color: var(--text-primary, #1f2937);
+  }
+  
+  .progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #06b6d4);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+  
+  .progress-text {
+    margin: 0;
+    color: var(--text-secondary, #6b7280);
+    font-size: 0.9rem;
+  }
+  
+  [data-theme="dark"] .dialog-content,
+  [data-theme="dark"] .progress-content {
     background: #1f2937;
     color: #f9fafb;
+  }
+  
+  [data-theme="dark"] .progress-content h3 {
+    color: #f9fafb;
+  }
+  
+  [data-theme="dark"] .progress-text {
+    color: #d1d5db;
+  }
+  
+  [data-theme="dark"] .progress-bar {
+    background-color: #374151;
+  }
+  
+  [data-theme="dark"] .progress-fill {
+    background: linear-gradient(90deg, #f59e0b, #d97706);
   }
 `;
 document.head.appendChild(style);

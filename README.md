@@ -1,13 +1,12 @@
-# 🍔 Sistema de Gestão para Lanchonete
+# 🍔 Sistema de Gestão para Lanchonetes e Mercados
 
-Sistema **completo de gestão para lanchonetes** com arquitetura full-stack, interface moderna, dashboard interativo com gráficos, sistema de notificações personalizadas, múltiplos temas dinâmicos, e API REST robusta com PostgreSQL.
+Sistema **completo de gestão para lanchonetes e mercados** com arquitetura full-stack, interface moderna, dashboard interativo com gráficos, sistema de notificações personalizadas, múltiplos temas dinâmicos, e API REST robusta com PostgreSQL.
 
 <div align="center">
 
-![Node.js](https://img.shields.io/badge/Node.js-v18+-339933?style=flat-square&logo=node.js)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white)
-![Express](https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white)
-![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=flat-square&logo=chart.js&logoColor=white)
+![GitHub last commit](https://img.shields.io/github/last-commit/YanFellippe/simple-stock-system?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/YanFellippe/simple-stock-system?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues/YanFellippe/simple-stock-system?style=flat-square)
 
 </div>
 
@@ -16,69 +15,69 @@ Sistema **completo de gestão para lanchonetes** com arquitetura full-stack, int
 ## 🌟 Funcionalidades Implementadas
 
 ### 🚀 **Backend Completo (Node.js + PostgreSQL)**
-✅ **API REST** com Express.js e rotas organizadas
-✅ **Banco PostgreSQL** com triggers automáticos e logs
-✅ **Autenticação JWT** com bcrypt para senhas
-✅ **CORS habilitado** para integração frontend/backend
-✅ **Middleware de validação** e tratamento de erros
-✅ **Scripts de inicialização** do banco de dados
+- ✅ **API REST** com Express.js e rotas organizadas
+- ✅ **Banco PostgreSQL** com triggers automáticos e logs
+- ✅ **Autenticação JWT** com bcrypt para senhas
+- ✅ **CORS habilitado** para integração frontend/backend
+- ✅ **Middleware de validação** e tratamento de erros
+- ✅ **Scripts de inicialização** do banco de dados
 
 ### 📊 **Dashboard Interativo**
-✅ **Gráficos dinâmicos** com Chart.js (8 tipos diferentes)
-✅ **Estatísticas em tempo real** (produtos, pedidos, receita)
-✅ **Filtros por período** (7, 15, 30 dias)
-✅ **Produtos com estoque baixo** em tempo real
-✅ **Análise de tendências** e produtos mais vendidos
-✅ **Gráficos responsivos** que se adaptam ao tema
+- ✅ **Gráficos dinâmicos** com Chart.js (8 tipos diferentes)
+- ✅ **Estatísticas em tempo real** (produtos, pedidos, receita)
+- ✅ **Filtros por período** (7, 15, 30 dias)
+- ✅ **Produtos com estoque baixo** em tempo real
+- ✅ **Análise de tendências** e produtos mais vendidos
+- ✅ **Gráficos responsivos** que se adaptam ao tema
 
 ### 📦 **Gestão de Estoque Avançada**
-✅ **CRUD completo** via API REST
-✅ **Filtros em tempo real** por nome e categoria
-✅ **Alertas automáticos** de estoque baixo
-✅ **Logs automáticos** de todas as operações
-✅ **Validação de dados** no frontend e backend
-✅ **Interface responsiva** e intuitiva
+- ✅ **CRUD completo** via API REST
+- ✅ **Filtros em tempo real** por nome e categoria
+- ✅ **Alertas automáticos** de estoque baixo
+- ✅ **Logs automáticos** de todas as operações
+- ✅ **Validação de dados** no frontend e backend
+- ✅ **Interface responsiva** e intuitiva
 
 ### 📋 **Sistema de Pedidos Completo**
-✅ **Gestão completa** de pedidos via API
-✅ **Status dinâmicos** (Pendente, Preparando, Pronto, Entregue)
-✅ **Histórico detalhado** com filtros
-✅ **Cálculo automático** de valores totais
-✅ **Integração com estoque** para controle de disponibilidade
+- ✅ **Gestão completa** de pedidos via API
+- ✅ **Status dinâmicos** (Pendente, Preparando, Pronto, Entregue)
+- ✅ **Histórico detalhado** com filtros
+- ✅ **Cálculo automático** de valores totais
+- ✅ **Integração com estoque** para controle de disponibilidade
 
 ### 🎨 **Sistema de Temas Múltiplos**
-✅ **5 temas disponíveis**: Claro, Escuro, Pastel, Pastel Verde, Pastel Laranja
-✅ **Aplicação instantânea** sem reload da página
-✅ **Persistência** da preferência do usuário
-✅ **Detecção automática** da preferência do sistema
-✅ **Gráficos adaptativos** que mudam com o tema
+- ✅ **5 temas disponíveis**: Claro, Escuro, Pastel, Pastel Verde, Pastel Laranja
+- ✅ **Aplicação instantânea** sem reload da página
+- ✅ **Persistência** da preferência do usuário
+- ✅ **Detecção automática** da preferência do sistema
+- ✅ **Gráficos adaptativos** que mudam com o tema
 
 ### 🔔 **Sistema de Notificações Avançado**
-✅ **NotificationSystem class** com animações CSS modernas
-✅ **4 tipos**: Sucesso, erro, aviso, informação
-✅ **Auto-dismiss** configurável (4-6 segundos)
-✅ **Tema responsivo** que se adapta automaticamente
-✅ **Limite de notificações** simultâneas (máx. 5)
-✅ **Substituição completa** dos alerts nativos
+- ✅ **NotificationSystem class** com animações CSS modernas
+- ✅ **4 tipos**: Sucesso, erro, aviso, informação
+- ✅ **Auto-dismiss** configurável (4-6 segundos)
+- ✅ **Tema responsivo** que se adapta automaticamente
+- ✅ **Limite de notificações** simultâneas (máx. 5)
+- ✅ **Substituição completa** dos alerts nativos
 
 ### 👤 **Sistema de Usuários**
-✅ **Autenticação segura** com JWT e bcrypt
-✅ **Níveis de acesso** (admin, funcionário)
-✅ **Perfil editável** com dados pessoais
-✅ **Controle de sessão** com logout automático
-✅ **Validação de email** único no cadastro
+- ✅ **Autenticação segura** com JWT e bcrypt
+- ✅ **Níveis de acesso** (admin, funcionário)
+- ✅ **Perfil editável** com dados pessoais
+- ✅ **Controle de sessão** com logout automático
+- ✅ **Validação de email** único no cadastro
 
 ### 🔧 **Recursos Técnicos**
-✅ **Triggers PostgreSQL** para logs automáticos
-✅ **Conexão pooling** para performance
-✅ **Middleware de CORS** configurado
-✅ **Variáveis de ambiente** (.env)
-✅ **Scripts NPM** para desenvolvimento e produção
-✅ **Teste de APIs** automatizado
+- ✅ **Triggers PostgreSQL** para logs automáticos
+- ✅ **Conexão pooling** para performance
+- ✅ **Middleware de CORS** configurado
+- ✅ **Variáveis de ambiente** (.env)
+- ✅ **Scripts NPM** para desenvolvimento e produção
+- ✅ **Teste de APIs** automatizado
 
 ---
 
-## 🛠️ Stack Tecnológica
+## 🛠️ Tecnologias Utilizadas
 
 ### Backend
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
@@ -217,12 +216,12 @@ npm run test-api
 ## 🌐 Páginas e Funcionalidades
 
 ### **Páginas Disponíveis**
-🏠 **Login** (`index.html`) - Autenticação com animação de fundo
-📊 **Dashboard** (`public/dashboard.html`) - Gráficos interativos e estatísticas
-📦 **Estoque** (`public/estoque.html`) - CRUD completo de produtos
-📋 **Pedidos** (`public/pedidos.html`) - Gestão completa de pedidos
-⚙️ **Configurações** (`public/configuracoes.html`) - Temas e configurações
-👤 **Perfil** (`public/perfil-usuario.html`) - Dados do usuário
+- 🏠 **Login** (`index.html`) - Autenticação com animação de fundo
+- 📊 **Dashboard** (`public/dashboard.html`) - Gráficos interativos e estatísticas
+- 📦 **Estoque** (`public/estoque.html`) - CRUD completo de produtos
+- 📋 **Pedidos** (`public/pedidos.html`) - Gestão completa de pedidos
+- ⚙️ **Configurações** (`public/configuracoes.html`) - Temas e configurações
+- 👤 **Perfil** (`public/perfil-usuario.html`) - Dados do usuário
 
 ### **APIs REST Disponíveis**
 
@@ -302,36 +301,36 @@ NotificationSystem.show('Mensagem', 'success', {
 ## 🔧 Recursos Técnicos Avançados
 
 ### **Backend Robusto**
-✅ **Arquitetura MVC** com rotas organizadas
-✅ **Pool de conexões** PostgreSQL para performance
-✅ **Triggers automáticos** para logs de estoque
-✅ **Middleware de validação** e tratamento de erros
-✅ **CORS configurado** para desenvolvimento e produção
-✅ **Variáveis de ambiente** para configuração segura
+- ✅ **Arquitetura MVC** com rotas organizadas
+- ✅ **Pool de conexões** PostgreSQL para performance
+- ✅ **Triggers automáticos** para logs de estoque
+- ✅ **Middleware de validação** e tratamento de erros
+- ✅ **CORS configurado** para desenvolvimento e produção
+- ✅ **Variáveis de ambiente** para configuração segura
 
 ### **Frontend Moderno**
-✅ **Sistema de notificações** sem dependências externas
-✅ **Gráficos interativos** com Chart.js responsivo
-✅ **Temas múltiplos** com transições suaves
-✅ **Interface responsiva** para desktop e mobile
-✅ **Validação de formulários** em tempo real
-✅ **Gerenciamento de estado** local com localStorage
+- ✅ **Sistema de notificações** sem dependências externas
+- ✅ **Gráficos interativos** com Chart.js responsivo
+- ✅ **Temas múltiplos** com transições suaves
+- ✅ **Interface responsiva** para desktop e mobile
+- ✅ **Validação de formulários** em tempo real
+- ✅ **Gerenciamento de estado** local com localStorage
 
 ### **Banco de Dados Inteligente**
-✅ **Schema normalizado** com relacionamentos
-✅ **Triggers PostgreSQL** para auditoria automática
-✅ **Índices otimizados** para consultas rápidas
-✅ **Dados de exemplo** para desenvolvimento
-✅ **Scripts de migração** e atualização
-✅ **Backup e restore** via SQL
+- ✅ **Schema normalizado** com relacionamentos
+- ✅ **Triggers PostgreSQL** para auditoria automática
+- ✅ **Índices otimizados** para consultas rápidas
+- ✅ **Dados de exemplo** para desenvolvimento
+- ✅ **Scripts de migração** e atualização
+- ✅ **Backup e restore** via SQL
 
 ### **Segurança e Performance**
-✅ **Autenticação JWT** com expiração configurável
-✅ **Senhas criptografadas** com bcrypt
-✅ **Validação de entrada** no frontend e backend
-✅ **Sanitização de dados** para prevenir SQL injection
-✅ **Rate limiting** implícito via pool de conexões
-✅ **Logs de auditoria** automáticos
+- ✅ **Autenticação JWT** com expiração configurável
+- ✅ **Senhas criptografadas** com bcrypt
+- ✅ **Validação de entrada** no frontend e backend
+- ✅ **Sanitização de dados** para prevenir SQL injection
+- ✅ **Rate limiting** implícito via pool de conexões
+- ✅ **Logs de auditoria** automáticos
 
 ---
 
@@ -373,38 +372,10 @@ PORT=3000
 
 ---
 
-## 🎯 Roadmap e Melhorias Futuras
-
-### **Versão 2.0 (Planejado)**
-🔵 **Upload de imagens** para produtos
-🔵 **Relatórios em PDF** com gráficos
-🔵 **Sistema de backup** automático
-🔵 **Notificações push** em tempo real
-🔵 **App mobile** com React Native
-🔵 **Integração com impressoras** térmicas
-
-### **Versão 2.1 (Planejado)**
-🔵 **Multi-tenancy** para várias lanchonetes
-🔵 **Sistema de delivery** integrado
-🔵 **Pagamentos online** (PIX, cartão)
-🔵 **Analytics avançados** com BI
-🔵 **API pública** para integrações
-🔵 **Modo offline** com sincronização
-
-### **Melhorias Técnicas**
-🔵 **Testes automatizados** (Jest, Cypress)
-🔵 **Docker** para containerização
-🔵 **CI/CD** com GitHub Actions
-🔵 **Monitoramento** com logs estruturados
-🔵 **Cache Redis** para performance
-🔵 **WebSockets** para atualizações em tempo real
-
----
-
 ## 📸 Screenshots
 
 ### Dashboard Interativo
-![Dashboard](src/sistema-example.png)
+![Dashboard](src/sistema_example.png)
 
 ### Temas Múltiplos
 - **Tema Claro**: Interface limpa e moderna
@@ -430,12 +401,6 @@ PORT=3000
 
 ### **Reportar Bugs**
 Use as [Issues do GitHub](../../issues) para reportar bugs ou sugerir melhorias.
-
----
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
 

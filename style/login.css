@@ -19,7 +19,7 @@ body {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background: #ff9800;
+  background: #2196f3;
 }
 
 /* Seção Inicial */
@@ -57,7 +57,7 @@ body {
   border: none;
   border-radius: 20px;
   padding: 0.75rem 2.5rem;
-  background-color: #ff9800;
+  background-color: #2196f3;
   color: white;
   font-size: 1rem;
   font-weight: bold;
@@ -66,7 +66,7 @@ body {
 }
 
 #openModal:hover {
-  background-color: #e68900;
+  background-color: #1976d2;
 }
 
 /* Modal de Login/Cadastro */
@@ -163,7 +163,7 @@ button {
   border: none;
   border-radius: 20px;
   padding: 0.75rem 2.5rem;
-  background-color: #ff9800;
+  background-color: #2196f3;
   color: white;
   font-size: 0.9rem;
   font-weight: bold;
@@ -173,7 +173,7 @@ button {
 }
 
 button:hover {
-  background-color: #e68900;
+  background-color: #1976d2;
 }
 
 .ghost {
@@ -198,7 +198,7 @@ button:hover {
 }
 
 .overlay {
-  background: linear-gradient(120deg, #ff9800, #ffa726);
+  background: linear-gradient(120deg, #2196f3, #42a5f5);
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
@@ -263,6 +263,230 @@ button:hover {
   font-size: 0.8rem;
   margin-top: 0.5rem;
   display: none;
+}
+
+/* ===== TEMA ESCURO ===== */
+body.dark-theme #background {
+  background: #1e293b;
+}
+
+body.dark-theme .landing {
+  color: #f1f5f9;
+}
+
+body.dark-theme .landing h1 {
+  color: #f1f5f9;
+}
+
+body.dark-theme .landing p {
+  color: #cbd5e1;
+}
+
+body.dark-theme #openModal {
+  background-color: #f59e0b;
+  color: #1c1917;
+}
+
+body.dark-theme #openModal:hover {
+  background-color: #d97706;
+}
+
+body.dark-theme .container {
+  background: #1f2937;
+}
+
+body.dark-theme form {
+  background: #1f2937;
+}
+
+body.dark-theme label {
+  color: #f9fafb;
+}
+
+body.dark-theme input {
+  background-color: #374151;
+  color: #f9fafb;
+  border: 1px solid #4b5563;
+}
+
+body.dark-theme input::placeholder {
+  color: #9ca3af;
+}
+
+body.dark-theme button {
+  background-color: #f59e0b;
+  color: #1c1917;
+}
+
+body.dark-theme button:hover {
+  background-color: #d97706;
+}
+
+body.dark-theme .overlay {
+  background: linear-gradient(120deg, #f59e0b, #d97706);
+}
+
+body.dark-theme .close-btn {
+  color: #f9fafb;
+}
+
+/* ===== TEMA PASTEL ===== */
+body.pastel-theme #background {
+  background: #7dd3fc;
+}
+
+body.pastel-theme .landing {
+  color: #334155;
+}
+
+body.pastel-theme .landing h1 {
+  color: #1e293b;
+}
+
+body.pastel-theme .landing p {
+  color: #475569;
+}
+
+body.pastel-theme #openModal {
+  background-color: #7dd3fc;
+  color: #0c4a6e;
+}
+
+body.pastel-theme #openModal:hover {
+  background-color: #0ea5e9;
+}
+
+body.pastel-theme .container {
+  background: #ffffff;
+  border: 2px solid #e0f2fe;
+}
+
+body.pastel-theme button {
+  background-color: #7dd3fc;
+  color: #0c4a6e;
+}
+
+body.pastel-theme button:hover {
+  background-color: #0ea5e9;
+}
+
+body.pastel-theme .overlay {
+  background: linear-gradient(120deg, #7dd3fc, #38bdf8);
+}
+
+body.pastel-theme input {
+  border: 2px solid #e0f2fe;
+}
+
+body.pastel-theme input:focus {
+  border-color: #7dd3fc;
+  box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.2);
+}
+
+/* ===== TEMA PASTEL VERDE ===== */
+body.pastel-green-theme #background {
+  background: #86efac;
+}
+
+body.pastel-green-theme .landing {
+  color: #14532d;
+}
+
+body.pastel-green-theme .landing h1 {
+  color: #052e16;
+}
+
+body.pastel-green-theme .landing p {
+  color: #166534;
+}
+
+body.pastel-green-theme #openModal {
+  background-color: #86efac;
+  color: #14532d;
+}
+
+body.pastel-green-theme #openModal:hover {
+  background-color: #22c55e;
+}
+
+body.pastel-green-theme .container {
+  background: #ffffff;
+  border: 2px solid #dcfce7;
+}
+
+body.pastel-green-theme button {
+  background-color: #86efac;
+  color: #14532d;
+}
+
+body.pastel-green-theme button:hover {
+  background-color: #22c55e;
+}
+
+body.pastel-green-theme .overlay {
+  background: linear-gradient(120deg, #86efac, #4ade80);
+}
+
+body.pastel-green-theme input {
+  border: 2px solid #dcfce7;
+}
+
+body.pastel-green-theme input:focus {
+  border-color: #86efac;
+  box-shadow: 0 0 0 3px rgba(134, 239, 172, 0.2);
+}
+
+/* ===== TEMA PASTEL LARANJA ===== */
+body.pastel-orange-theme #background {
+  background: #fdba74;
+}
+
+body.pastel-orange-theme .landing {
+  color: #9a3412;
+}
+
+body.pastel-orange-theme .landing h1 {
+  color: #7c2d12;
+}
+
+body.pastel-orange-theme .landing p {
+  color: #c2410c;
+}
+
+body.pastel-orange-theme #openModal {
+  background-color: #fdba74;
+  color: #9a3412;
+}
+
+body.pastel-orange-theme #openModal:hover {
+  background-color: #f97316;
+}
+
+body.pastel-orange-theme .container {
+  background: #ffffff;
+  border: 2px solid #fed7aa;
+}
+
+body.pastel-orange-theme button {
+  background-color: #fdba74;
+  color: #9a3412;
+}
+
+body.pastel-orange-theme button:hover {
+  background-color: #f97316;
+}
+
+body.pastel-orange-theme .overlay {
+  background: linear-gradient(120deg, #fdba74, #fb923c);
+}
+
+body.pastel-orange-theme input {
+  border: 2px solid #fed7aa;
+}
+
+body.pastel-orange-theme input:focus {
+  border-color: #fdba74;
+  box-shadow: 0 0 0 3px rgba(253, 186, 116, 0.2);
 }
 
 /* Responsividade */
