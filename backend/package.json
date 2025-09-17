@@ -8,6 +8,7 @@
     "dev": "nodemon server.js",
     "init-db": "node scripts/init-db.js",
     "update-db": "node scripts/update-db.js",
+    "update-caixa": "node scripts/update-caixa-db.js",
     "setup": "npm install && npm run init-db"
   },
   "dependencies": {

@@ -50,26 +50,39 @@ document.addEventListener("DOMContentLoaded", () => {
     const tr = document.createElement("tr");
     const dataFormatada = new Date(pedido.data_pedido).toLocaleString('pt-BR');
     
+    // Tratar dados que podem estar undefined
+    const cliente = pedido.cliente || pedido.cliente_nome || 'Cliente não informado';
+    const produto_nome = pedido.produto_nome || 'Produto não informado';
+    const quantidade = pedido.quantidade || 0;
+    const preco_unitario = pedido.preco_unitario || 0;
+    const valor_total = pedido.valor_total || 0;
+    
     tr.innerHTML = `
-      <td>${pedido.cliente}</td>
-      <td>${pedido.produto_nome}</td>
-      <td>${pedido.quantidade}</td>
-      <td>R$ ${parseFloat(pedido.preco_unitario).toFixed(2)}</td>
-      <td>R$ ${parseFloat(pedido.valor_total).toFixed(2)}</td>
+      <td>${cliente}</td>
+      <td>${produto_nome}</td>
+      <td>${quantidade}</td>
+      <td>R$ ${parseFloat(preco_unitario).toFixed(2)}</td>
+      <td>R$ ${parseFloat(valor_total).toFixed(2)}</td>
       <td>
         <select class="status-select" data-id="${pedido.id}">
           <option value="pendente" ${pedido.status === 'pendente' ? 'selected' : ''}>Pendente</option>
           <option value="preparando" ${pedido.status === 'preparando' ? 'selected' : ''}>Preparando</option>
           <option value="pronto" ${pedido.status === 'pronto' ? 'selected' : ''}>Pronto</option>
           <option value="entregue" ${pedido.status === 'entregue' ? 'selected' : ''}>Entregue</option>
+          <option value="finalizado" ${pedido.status === 'finalizado' ? 'selected' : ''}>Finalizado</option>
         </select>
       </td>
       <td>${dataFormatada}</td>
       <td>
-        <button class="btn-delete" data-id="${pedido.id}">Excluir</button>
+        <button class="btn-delete" data-id="${pedido.id}" style="background: #dc3545; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+          <i data-lucide="trash-2"></i> Excluir
+        </button>
       </td>
     `;
+    
+    // Reinicializar ícones do Lucide
     tabela.appendChild(tr);
+    lucide.createIcons();
   }
 
   // Atualizar informações de preço

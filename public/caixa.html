@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Caixa/PDV - Lanchonete</title>
+  <link rel="stylesheet" href="../style/style.css">
+  <link rel="stylesheet" href="../style/theme.css">
+  <link rel="stylesheet" href="../style/notifications.css">
+  <link rel="stylesheet" href="../style/caixa.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+  <div class="sidebar">
+    <img src="../src/Blue and Beige Vintage Retro Illustration Sweet Pancake Badge Logo.png" alt="lanchonete">
+    <a href="./dashboard.html"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+    <a href="./estoque.html"><i data-lucide="boxes"></i> Estoque</a>
+    <a href="./pedidos.html"><i data-lucide="clipboard-list"></i> Pedidos</a>
+    <a href="./caixa.html" class="active"><i data-lucide="calculator"></i> Caixa/PDV</a>
+    <a href="./configuracoes.html"><i data-lucide="settings"></i> Configurações</a>
+    <a href="./perfil-usuario.html"><i data-lucide="user"></i> Perfil</a>
+  </div>
+
+  <div class="main">
+    <div class="header">
+      <div class="header-title">
+        <i data-lucide="calculator"></i>
+        Sistema de Caixa/PDV
+      </div>
+      <div class="header-actions">
+        <div class="caixa-status" id="caixaStatus">
+          <span class="status-indicator closed"></span>
+          <span class="status-text">Caixa Fechado</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Abertura de Caixa -->
+    <div id="modalAberturaCaixa" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i data-lucide="unlock"></i> Abrir Caixa</h3>
+          <button class="close-btn" onclick="fecharModal('modalAberturaCaixa')">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="valorInicialCaixa">
+              <i data-lucide="dollar-sign"></i>
+              Valor Inicial do Caixa
+            </label>
+            <input type="number" id="valorInicialCaixa" step="0.01" min="0" placeholder="0.00" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="fecharModal('modalAberturaCaixa')">Cancelar</button>
+          <button class="btn btn-primary" onclick="abrirCaixa()">
+            <i data-lucide="unlock"></i>
+            Abrir Caixa
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Fechamento de Caixa -->
+    <div id="modalFechamentoCaixa" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i data-lucide="lock"></i> Fechar Caixa</h3>
+          <button class="close-btn" onclick="fecharModal('modalFechamentoCaixa')">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="resumo-caixa" id="resumoCaixa">
+            <!-- Será preenchido dinamicamente -->
+          </div>
+          <div class="form-group">
+            <label for="valorFinalCaixa">
+              <i data-lucide="dollar-sign"></i>
+              Valor Final Contado
+            </label>
+            <input type="number" id="valorFinalCaixa" step="0.01" min="0" placeholder="0.00" required>
+          </div>
+          <div class="form-group">
+            <label for="observacoesFechamento">
+              <i data-lucide="file-text"></i>
+              Observações (opcional)
+            </label>
+            <textarea id="observacoesFechamento" placeholder="Observações sobre o fechamento..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="fecharModal('modalFechamentoCaixa')">Cancelar</button>
+          <button class="btn btn-danger" onclick="fecharCaixa()">
+            <i data-lucide="lock"></i>
+            Fechar Caixa
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Histórico de Caixas -->
+    <div id="modalHistoricoCaixas" class="modal">
+      <div class="modal-content modal-large">
+        <div class="modal-header">
+          <h3><i data-lucide="history"></i> Histórico de Caixas</h3>
+          <button class="close-btn" onclick="fecharModal('modalHistoricoCaixas')">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="historico-filtros">
+            <div class="filtro-periodo">
+              <label for="periodoHistorico">Período:</label>
+              <select id="periodoHistorico" onchange="carregarHistoricoCaixas()">
+                <option value="7">Últimos 7 dias</option>
+                <option value="30">Últimos 30 dias</option>
+                <option value="90">Últimos 90 dias</option>
+                <option value="0">Todos</option>
+              </select>
+            </div>
+          </div>
+          <div class="historico-lista" id="historicoLista">
+            <div class="loading-state">
+              <i data-lucide="loader"></i>
+              <p>Carregando histórico...</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="fecharModal('modalHistoricoCaixas')">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conteúdo Principal do Caixa -->
+    <div class="caixa-container" id="caixaContainer" style="display: none;">
+      <div class="caixa-grid">
+        <!-- Painel de Vendas -->
+        <div class="venda-panel">
+          <div class="panel-header">
+            <h3><i data-lucide="shopping-cart"></i> Nova Venda</h3>
+            <button class="btn btn-secondary btn-sm" onclick="limparVenda()">
+              <i data-lucide="trash-2"></i>
+              Limpar
+            </button>
+            <button class="btn btn-info btn-sm" onclick="testarItem()" style="margin-left: 0.5rem;">
+              Teste
+            </button>
+          </div>
+
+          <!-- Busca de Produtos -->
+          <div class="produto-search">
+            <div class="search-box">
+              <i data-lucide="search"></i>
+              <input type="text" id="buscaProduto" placeholder="Buscar produto por nome ou código...">
+            </div>
+            <div class="produtos-grid" id="produtosGrid">
+              <!-- Produtos serão carregados aqui -->
+            </div>
+          </div>
+
+          <!-- Itens da Venda -->
+          <div class="itens-venda">
+            <h4>Itens da Venda</h4>
+            <div class="itens-lista" id="itensVenda">
+              <div class="empty-state">
+                <i data-lucide="shopping-cart"></i>
+                <p>Nenhum item adicionado</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Finalização -->
+          <div class="venda-footer">
+            <button class="btn btn-success btn-large" onclick="finalizarVenda()" id="btnFinalizar" disabled>
+              <i data-lucide="check-circle"></i>
+              Finalizar Venda
+            </button>
+          </div>
+        </div>
+
+        <!-- Painel de Informações -->
+        <div class="info-panel">
+          <!-- Resumo da Venda -->
+          <div class="venda-resumo">
+            <h3><i data-lucide="calculator"></i> Resumo da Venda</h3>
+            <div class="resumo-grid">
+              <div class="resumo-item">
+                <span class="label">Subtotal:</span>
+                <span class="value" id="subtotalVenda">R$ 0,00</span>
+              </div>
+              <div class="resumo-item desconto-item">
+                <label for="descontoVenda">Desconto:</label>
+                <input type="number" id="descontoVenda" step="0.01" min="0" value="0" onchange="calcularTotal()">
+              </div>
+              <div class="resumo-item total-item">
+                <span class="label">Total:</span>
+                <span class="value total-value" id="totalVenda">R$ 0,00</span>
+              </div>
+              <div class="resumo-item pagamento-item">
+                <label for="formaPagamento">Pagamento:</label>
+                <select id="formaPagamento">
+                  <option value="dinheiro">Dinheiro</option>
+                  <option value="cartao_debito">Cartão de Débito</option>
+                  <option value="cartao_credito">Cartão de Crédito</option>
+                  <option value="pix">PIX</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Informações do Caixa -->
+          <div class="caixa-info">
+            <h3><i data-lucide="info"></i> Informações do Caixa</h3>
+            <div class="info-grid">
+              <div class="info-item">
+                <span class="label">Valor Inicial:</span>
+                <span class="value" id="valorInicial">R$ 0,00</span>
+              </div>
+              <div class="info-item">
+                <span class="label">Valor Atual:</span>
+                <span class="value" id="valorAtual">R$ 0,00</span>
+              </div>
+              <div class="info-item">
+                <span class="label">Vendas Hoje:</span>
+                <span class="value" id="vendasHoje">0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ações do Caixa -->
+          <div class="caixa-actions">
+            <h3><i data-lucide="settings"></i> Ações do Caixa</h3>
+            <div class="actions-grid">
+              <button class="btn btn-warning" onclick="abrirModalSangria()">
+                <i data-lucide="minus-circle"></i>
+                Sangria
+              </button>
+              <button class="btn btn-info" onclick="abrirModalSuprimento()">
+                <i data-lucide="plus-circle"></i>
+                Suprimento
+              </button>
+              <button class="btn btn-secondary" onclick="verMovimentacoes()">
+                <i data-lucide="list"></i>
+                Movimentações
+              </button>
+              <button class="btn btn-danger" onclick="abrirModalFechamento()">
+                <i data-lucide="lock"></i>
+                Fechar Caixa
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tela de Caixa Fechado -->
+    <div class="caixa-fechado" id="caixaFechado">
+      <div class="empty-state">
+        <i data-lucide="lock"></i>
+        <h3>Caixa Fechado</h3>
+        <p>Para começar a usar o sistema de vendas, você precisa abrir o caixa.</p>
+        <div class="caixa-actions-closed">
+          <button class="btn btn-primary" onclick="abrirModalAbertura()" id="btnAbrirCaixa">
+            <i data-lucide="unlock"></i>
+            Abrir Caixa
+          </button>
+          <button class="btn btn-secondary" onclick="abrirModalHistorico()">
+            <i data-lucide="history"></i>
+            Ver Histórico
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/notifications.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/caixa.js"></script>
+  <script>
+    // Inicializar ícones Lucide após carregar a página
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+
+</html>

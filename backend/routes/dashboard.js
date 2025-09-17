@@ -46,10 +46,23 @@ router.get('/estoque-baixo', async (req, res) => {
 router.get('/pedidos-recentes', async (req, res) => {
     try {
         const limite = req.query.limite || 5;
-        const result = await pool.query(
-            'SELECT * FROM pedidos ORDER BY data_pedido DESC LIMIT $1',
-            [limite]
-        );
+        const result = await pool.query(`
+            SELECT 
+                p.id,
+                p.cliente_nome as cliente,
+                p.valor_total,
+                p.status,
+                p.data_pedido,
+                COALESCE(
+                    (SELECT pr.nome FROM itens_pedido ip 
+                     JOIN produtos pr ON ip.produto_id = pr.id 
+                     WHERE ip.pedido_id = p.id LIMIT 1),
+                    'Múltiplos itens'
+                ) as produto_nome
+            FROM pedidos p
+            ORDER BY p.data_pedido DESC 
+            LIMIT $1
+        `, [limite]);
         res.json(result.rows);
     } catch (error) {
         console.error('Erro ao buscar pedidos recentes:', error);
@@ -178,11 +191,16 @@ router.get('/movimentacoes-resumo', async (req, res) => {
 router.get('/tendencias', async (req, res) => {
     try {
         const [produtosMaisVendidos, categoriasPopulares, estoqueStatus] = await Promise.all([
-            // Produtos mais pedidos (simulado)
+            // Produtos mais pedidos
             pool.query(`
-                SELECT produto, COUNT(*) as total_pedidos
-                FROM pedidos 
-                GROUP BY produto 
+                SELECT 
+                    pr.nome as produto, 
+                    COUNT(DISTINCT p.id) as total_pedidos
+                FROM itens_pedido ip
+                JOIN produtos pr ON ip.produto_id = pr.id
+                JOIN pedidos p ON ip.pedido_id = p.id
+                WHERE p.status IN ('entregue', 'finalizado')
+                GROUP BY pr.id, pr.nome
                 ORDER BY total_pedidos DESC 
                 LIMIT 5
             `),
@@ -297,12 +315,15 @@ router.get('/produtos-vendidos', async (req, res) => {
     try {
         const result = await pool.query(`
             SELECT 
-                produto_nome,
-                SUM(quantidade) as total_vendido,
-                COUNT(*) as total_pedidos,
-                SUM(valor_total) as receita_total
-            FROM pedidos 
-            GROUP BY produto_nome
+                pr.nome as produto_nome,
+                SUM(ip.quantidade) as total_vendido,
+                COUNT(DISTINCT p.id) as total_pedidos,
+                SUM(ip.quantidade * ip.preco_unitario) as receita_total
+            FROM itens_pedido ip
+            JOIN produtos pr ON ip.produto_id = pr.id
+            JOIN pedidos p ON ip.pedido_id = p.id
+            WHERE p.status IN ('entregue', 'finalizado')
+            GROUP BY pr.id, pr.nome
             ORDER BY total_vendido DESC
             LIMIT 10
         `);

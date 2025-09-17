@@ -23,12 +23,14 @@ const produtosRoutes = require('./routes/produtos');
 const pedidosRoutes = require('./routes/pedidos');
 const usuariosRoutes = require('./routes/usuarios');
 const dashboardRoutes = require('./routes/dashboard');
+const caixaRoutes = require('./routes/caixa');
 
 // Usar rotas
 app.use('/api/produtos', produtosRoutes);
 app.use('/api/pedidos', pedidosRoutes);
 app.use('/api/usuarios', usuariosRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/caixa', caixaRoutes);
 
 // Rota para servir a página principal
 app.get('/', (req, res) => {
